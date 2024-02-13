@@ -636,11 +636,11 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0284189, -0.365264, 0.708333, 0.603356)
+bones/6/rotation = Quaternion(-0.0288899, -0.365817, 0.708048, 0.603333)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.312367, -0.572361, -0.126936, 0.747473)
+bones/7/rotation = Quaternion(0.313437, -0.571776, -0.128333, 0.747235)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
@@ -652,7 +652,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0498648, 0.00751069, 0.998728, 0.998457, -0.0248515, -0.0496645, 0.0244469, 0.999663, -0.0087384, -0.337302, -0.160494, 0.170387)
+transform = Transform3D(0.0495869, 0.00713624, 0.998744, 0.998524, -0.0225515, -0.0494147, 0.0221705, 0.99972, -0.00824397, -0.3374, -0.160879, 0.170064)
 bone_name = "forearm.R"
 bone_idx = 7
 
