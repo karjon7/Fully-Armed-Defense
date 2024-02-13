@@ -637,9 +637,15 @@ bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
 <<<<<<< HEAD
+<<<<<<< HEAD
 bones/6/rotation = Quaternion(-0.0288899, -0.365817, 0.708048, 0.603333)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(0.313437, -0.571776, -0.128333, 0.747235)
+=======
+bones/6/rotation = Quaternion(-0.0324149, -0.369948, 0.705898, 0.603154)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.321408, -0.567334, -0.138777, 0.745366)
+>>>>>>> parent of 888f203 (testing)
 =======
 bones/6/rotation = Quaternion(-0.0324149, -0.369948, 0.705898, 0.603154)
 bones/6/scale = Vector3(1, 1, 1)
@@ -659,7 +665,11 @@ bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
 <<<<<<< HEAD
+<<<<<<< HEAD
 transform = Transform3D(0.0495869, 0.00713624, 0.998744, 0.998524, -0.0225515, -0.0494147, 0.0221705, 0.99972, -0.00824397, -0.3374, -0.160879, 0.170064)
+=======
+transform = Transform3D(0.0475967, 0.00428191, 0.998858, 0.998853, -0.00533175, -0.0475736, 0.00512215, 0.999977, -0.00453074, -0.33813, -0.163749, 0.167627)
+>>>>>>> parent of 888f203 (testing)
 =======
 transform = Transform3D(0.0475967, 0.00428191, 0.998858, 0.998853, -0.00533175, -0.0475736, 0.00512215, 0.999977, -0.00453074, -0.33813, -0.163749, 0.167627)
 >>>>>>> parent of 888f203 (testing)
