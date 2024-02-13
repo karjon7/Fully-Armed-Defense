@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1707786947
+::res://::1707786725
 icon.svg::CompressedTexture2D::372432209532460171::1706581853::1706581861::1::::<><>::
 ::res://assets/::1707776962
 ::res://assets/addons/::1707165941
@@ -107,9 +107,9 @@ build_data.gd::GDScript::-1::1707777605::0::1::::<>Resource<>::
 ::res://scenes/::1706594825
 ::res://scenes/maps/::1707776763
 test_world.tscn::PackedScene::2384928043989676238::1707776763::0::1::::<><>::uid://ut2egjcueayn::::res://static/environment.tres<>uid://mtithp0nddiq::::res://assets/maps/test_world.tscn<>uid://cbl63n3ikl8eq::::res://entities/player/player.tscn
-::res://shaders/::1707786729
-hurt_shader.gdshader::Shader::-1::1707786729::0::1::::<><>::
-shader.gdshader::Shader::-1::1707786729::0::1::::<><>::
+::res://shaders/::1707786715
+hurt_shader.gdshader::Shader::-1::1707786715::0::1::::<><>::
+shader.gdshader::Shader::-1::1707786715::0::1::::<><>::
 ::res://static/::1707772922
 environment.tres::Environment::1444646881229193757::1707772922::0::1::::<><>::
 ::res://static/debug/::1707702887
