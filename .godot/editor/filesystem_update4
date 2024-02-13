@@ -1,6 +1,5 @@
-res://scenes/maps/test_world.tscn
+res://entities/player/player.tscn
 res://static/environment.tres
 res://shaders/shader.gdshader
 res://shaders/hurt_shader.gdshader
-res://entities/player/player.gd
-res://entities/player/player.tscn
+res://test/branch test.gd
