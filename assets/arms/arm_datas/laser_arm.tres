@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ArmData" load_steps=2 format=3 uid="uid://cou37mxwlr84m"]
+
+[ext_resource type="Script" path="res://assets/datas/arm_data.gd" id="1_sg703"]
+
+[resource]
+script = ExtResource("1_sg703")
+build_name = "Laser"
+description = ""
+is_semi = false
+is_laser = false
+bullet_damage = 0.0
+bullet_range = 100.0
+bullets_per_min = 500
+bullet_pierce = 0
+recoil_type = "Laser Recoil"

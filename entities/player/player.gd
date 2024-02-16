@@ -1,11 +1,17 @@
 extends CharacterBody3D
+class_name Player
 
+#View
 @onready var camera = %Camera3D
 @onready var arm_model = %arm_model
 
-@onready var ray_cast_3d = %RayCast3D
+#Shooting
+@onready var view_cast = %ViewCast
 @onready var fire_point = %FirePoint
+@onready var arm_clearance = %ArmClearance
+@onready var fire_rate_timer = %FireRateTimer
 
+#Anims
 @onready var animation_tree = %AnimationTree
 
 
@@ -37,6 +43,9 @@ const MAX_CAMERA_TILT_DEGREES = 2.5
 #Arms
 @export_group("Arms")
 @export var can_shoot : bool = true
+@export var arm_data : ArmData 
+
+@export_subgroup("Arm Settings")
 @export_range(1, 3, 0.1) var arm_tilt_amount : float = 2
 @export_range(0.1, 2, 0.1) var arm_offset_amount : float = 0.1
 @export var arm_sway_amount : float = 0.05
@@ -84,13 +93,14 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion: #Mouse Motion
 		if can_look: camera_input = -event.relative
 	
-	#FIXME
-	if Input.is_action_just_pressed("primary_fire"):
-		var anim_recoil = animation_tree.get("parameters/Recoil State/current_state")
-		
-		anim_node.filter_enabled = false if anim_recoil == "Laser Recoil" else true
-		
-		animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	#DEPRECATED
+	#if Input.is_action_just_pressed("primary_fire"):
+	#	var anim_recoil = animation_tree.get("parameters/Recoil State/current_state")
+	#	
+	#	anim_node.filter_enabled = false if anim_recoil == "Laser Recoil" else true
+	#	
+	#	animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
 	
 	#FIXME
 	if Input.is_action_just_released("primary_fire"):
@@ -98,24 +108,86 @@ func _unhandled_input(event):
 		
 		animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
 	
+	
 	if Input.is_action_just_pressed("melee"):
 		if animation_tree.get("parameters/Melee/active"): return
 		
 		animation_tree.set("parameters/Melee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		
+	
 	
 	if Input.is_action_just_pressed("quit"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
 		can_look = true if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED else false
 	
-
-
+	
+	if Input.is_action_just_pressed("secondary_fire"):
+		pass
 
 
 func _physics_process(delta):
+	#TESTING
+	var target_point : Vector3 = view_cast.get_target_position()
+	var hit_point : Vector3 = view_cast.get_collision_point()
+	$LookMarker.global_position = hit_point
+	fire_point.look_at(hit_point)
+	fire_point.rotation = Vector3(0, 0, 0) if view_cast.global_position.distance_to(hit_point) < 1.5 else fire_point.rotation
+	can_shoot = !arm_clearance.has_overlapping_bodies()
+	
+	
+	handle_shooting()
 	handle_arms(delta)
 	handle_camera(delta)
 	handle_movement(delta)
+
+
+func shoot_bullets():
+	#Anims
+	var anim_shoot_node : AnimationNode = animation_tree.get_tree_root().get_node("Shoot")
+	
+	anim_shoot_node.filter_enabled = true #false only for laser recoil
+	animation_tree.set("parameters/Recoil State/transition_request", arm_data.recoil_type)
+	animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
+	#Instancing Bullet
+	var bullet : Bullet = arm_data.shoot_scene.instantiate()
+	
+	#General Shot Assignment
+	bullet.color = arm_data.light_color
+	bullet.energy = arm_data.light_energy
+	
+	#Bullet Specific Assignment
+	bullet.bullet_damage = arm_data.bullet_damage
+	bullet.max_distance = arm_data.bullet_range
+	bullet.pierce_left = arm_data.bullet_pierce
+	bullet.bounces_left = arm_data.bullet_bounces
+	bullet.bullet_speed = arm_data.bullet_speed
+	
+	#Player Bullet Constants
+	bullet.can_bounce = true
+	bullet.can_pierce = true
+	bullet.disable_flyby_detect = true
+	bullet.player = self
+	fire_point.add_child(bullet)
+	bullet.top_level = true
+	
+	#Setup Timer
+	fire_rate_timer.start(60.0 / arm_data.shots_per_min)
+
+
+func handle_shooting():
+	#Requirments
+	if not arm_data: return #Arm data actually exist 
+	if not can_shoot: return #Not allowed to shoot
+	if fire_rate_timer.get_time_left() > 0: return
+	
+	view_cast.target_position = Vector3(0, 0, -arm_data.bullet_range)
+	
+	#Firing
+	#Semi auto firing
+	if arm_data.is_semi and Input.is_action_just_pressed("primary_fire"): shoot_bullets()
+	
+	#Auto firing
+	if not arm_data.is_semi and Input.is_action_pressed("primary_fire"): shoot_bullets()
 
 
 func handle_arms(delta):
@@ -135,7 +207,6 @@ func handle_arms(delta):
 	
 	arm_model.rotation_degrees.x = -sway_y
 	arm_model.rotation_degrees.y = sway_x - 180
-	
 
 
 func handle_camera(delta):

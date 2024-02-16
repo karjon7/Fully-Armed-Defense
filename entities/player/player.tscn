@@ -1,18 +1,26 @@
-[gd_scene load_steps=34 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=37 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
+[ext_resource type="Resource" uid="uid://bxiy65ocexvna" path="res://assets/arms/arm_datas/test_arm.tres" id="2_of7qa"]
 [ext_resource type="PackedScene" uid="uid://cow84b2o7oa7b" path="res://assets/models/blender/arm_model.blend" id="2_s4flv"]
 [ext_resource type="Script" path="res://static/debug/debug_hud.gd" id="3_iccx7"]
+[ext_resource type="Script" path="res://entities/player/HUD.gd" id="4_ob7ph"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4e0m"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcr0c"]
+shading_mode = 0
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ibhqh"]
-material = SubResource("StandardMaterial3D_y4e0m")
+material = SubResource("StandardMaterial3D_gcr0c")
+radius = 0.25
+height = 0.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sy8cg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_krcvk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlr05"]
+size = Vector3(0.172, 0.356, 0.518)
 
 [sub_resource type="Animation" id="Animation_udgr1"]
 resource_name = "idle_pose"
@@ -565,16 +573,17 @@ max_space = 2.0
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d48nq"]
+graph_offset = Vector2(-881.694, -214.794)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_t5r7p")
 nodes/Animation/position = Vector2(-700, 260)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ueprh")
-"nodes/Animation 2/position" = Vector2(-540, -380)
+"nodes/Animation 2/position" = Vector2(-780, -520)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_1uxtm")
-"nodes/Animation 3/position" = Vector2(-540, -140)
+"nodes/Animation 3/position" = Vector2(-780, -280)
 "nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_5u243")
-"nodes/Animation 4/position" = Vector2(-540, -260)
+"nodes/Animation 4/position" = Vector2(-780, -400)
 "nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_yvle5")
-"nodes/Animation 5/position" = Vector2(-540, -20)
+"nodes/Animation 5/position" = Vector2(-780, -160)
 "nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_pffqo")
 "nodes/Animation 6/position" = Vector2(-80, 340)
 nodes/Grounded/node = SubResource("AnimationNodeTransition_6svfp")
@@ -582,18 +591,20 @@ nodes/Grounded/position = Vector2(-400, 100)
 nodes/Melee/node = SubResource("AnimationNodeOneShot_ik8a6")
 nodes/Melee/position = Vector2(120, 80)
 "nodes/Recoil State/node" = SubResource("AnimationNodeTransition_eb5bc")
-"nodes/Recoil State/position" = Vector2(-240, -220)
+"nodes/Recoil State/position" = Vector2(-480, -360)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_xmtuv")
 nodes/Shoot/position = Vector2(-80, 80)
 "nodes/Walk Blend/node" = SubResource("AnimationNodeBlendSpace1D_oit0s")
 "nodes/Walk Blend/position" = Vector2(-700, 120)
-nodes/output/position = Vector2(300, 100)
+nodes/output/position = Vector2(400, 100)
 node_connections = [&"Grounded", 0, &"Walk Blend", &"Grounded", 1, &"Animation", &"Melee", 0, &"Shoot", &"Melee", 1, &"Animation 6", &"Recoil State", 0, &"Animation 2", &"Recoil State", 1, &"Animation 4", &"Recoil State", 2, &"Animation 3", &"Recoil State", 3, &"Animation 5", &"Shoot", 0, &"Grounded", &"Shoot", 1, &"Recoil State", &"output", 0, &"Melee"]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_6x15j")
 fov_multiplier = 0.5
+arm_data = ExtResource("2_of7qa")
 arm_tilt_amount = 3.0
 arm_offset_amount = 1.5
 arm_sway_amount = 0.15
@@ -619,9 +630,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 fov = 90.0
 near = 0.001
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+[node name="ArmClearance" type="Area3D" parent="Camera3D"]
 unique_name_in_owner = true
-target_position = Vector3(0, 0, -75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336223, -0.156321, -0.173823)
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/ArmClearance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00510305, 0.0563759, -0.221807)
+shape = SubResource("BoxShape3D_xlr05")
+
+[node name="ViewCast" type="RayCast3D" parent="Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -100)
+debug_shape_custom_color = Color(0, 0, 0, 0)
+debug_shape_thickness = 1
 
 [node name="arm_model" parent="Camera3D" instance=ExtResource("2_s4flv")]
 unique_name_in_owner = true
@@ -636,9 +659,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0324149, -0.369948, 0.705898, 0.603154)
+bones/6/rotation = Quaternion(-0.0422657, -0.381433, 0.699759, 0.602544)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.321408, -0.567334, -0.138777, 0.745366)
+bones/7/rotation = Quaternion(0.343358, -0.554325, -0.167832, 0.739366)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -647,23 +670,61 @@ bones/8/scale = Vector3(1, 1, 1)
 cast_shadow = 0
 
 [node name="LeftHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="1"]
-transform = Transform3D(-0.679633, 0.610086, -0.407301, -0.732025, -0.599876, 0.322936, -0.0473115, 0.517633, 0.854294, 0.500693, -0.561294, 0.0985893)
+transform = Transform3D(-0.679633, 0.610085, -0.407302, -0.732025, -0.599877, 0.322936, -0.0473124, 0.517633, 0.854294, 0.500692, -0.561294, 0.0985894)
 bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0475967, 0.00428191, 0.998858, 0.998853, -0.00533175, -0.0475736, 0.00512215, 0.999977, -0.00453074, -0.33813, -0.163749, 0.167627)
+transform = Transform3D(0.042849, -0.00412931, 0.999073, 0.998174, 0.0427954, -0.0426334, -0.0425794, 0.999075, 0.00595547, -0.340088, -0.171641, 0.160635)
 bone_name = "forearm.R"
 bone_idx = 7
 
-[node name="FirePoint" type="Marker3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D/RightHandBone"]
+[node name="FirePointHolder" type="Node3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D/RightHandBone"]
+transform = Transform3D(-2.95695e-08, 1, -7.45058e-09, 4.56348e-08, -3.72529e-09, -1, -1, -4.69154e-08, -4.09782e-08, 0.0626823, 0.45666, 0.0161423)
+
+[node name="FirePoint" type="Marker3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D/RightHandBone/FirePointHolder"]
 unique_name_in_owner = true
-transform = Transform3D(-2.64263e-08, 1, -7.45058e-09, 4.47035e-08, 0, -1, -1, -4.44707e-08, -4.19095e-08, 0.0626824, 0.45666, 0.0161423)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="FireCast" type="RayCast3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D/RightHandBone/FirePointHolder"]
+unique_name_in_owner = true
+transform = Transform3D(1, -1.03319e-09, -1.11759e-08, 2.98314e-09, 1, -2.32831e-10, -1.11759e-08, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 5
+hit_from_inside = true
+debug_shape_thickness = 1
 
 [node name="AnimationPlayer" parent="Camera3D/arm_model" index="1"]
 autoplay = "idle"
 
-[node name="HUD" type="Control" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%arm_model")
+libraries = {
+"": SubResource("AnimationLibrary_comw2")
+}
+tree_root = SubResource("AnimationNodeBlendTree_d48nq")
+anim_player = NodePath("../Camera3D/arm_model/AnimationPlayer")
+parameters/Grounded/current_state = "Grounded"
+parameters/Grounded/transition_request = ""
+parameters/Grounded/current_index = 0
+parameters/Melee/active = false
+parameters/Melee/internal_active = false
+parameters/Melee/request = 0
+"parameters/Recoil State/current_state" = "Light Recoil"
+"parameters/Recoil State/transition_request" = "Light Recoil"
+"parameters/Recoil State/current_index" = 0
+parameters/Shoot/active = false
+parameters/Shoot/internal_active = false
+parameters/Shoot/request = 0
+"parameters/Walk Blend/blend_position" = 0.0
+
+[node name="FireRateTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+one_shot = true
+
+[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -671,6 +732,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("4_ob7ph")
+player = NodePath("..")
+
+[node name="Crosshairs" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Crosshair" type="Control" parent="HUD/Crosshairs"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
+unique_name_in_owner = true
+points = PackedVector2Array(-7, 0, -10, 0)
+width = 2.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
+unique_name_in_owner = true
+points = PackedVector2Array(7, 0, 10, 0)
+width = 2.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
+unique_name_in_owner = true
+points = PackedVector2Array(0, -7, 0, -10)
+width = 2.0
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 7, 0, 10)
+width = 2.0
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="DebugHUD" type="Control" parent="."]
 layout_mode = 3
@@ -714,28 +825,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-unique_name_in_owner = true
-root_node = NodePath("%arm_model")
-libraries = {
-"": SubResource("AnimationLibrary_comw2")
-}
-tree_root = SubResource("AnimationNodeBlendTree_d48nq")
-anim_player = NodePath("../Camera3D/arm_model/AnimationPlayer")
-parameters/Grounded/current_state = "Grounded"
-parameters/Grounded/transition_request = ""
-parameters/Grounded/current_index = 0
-parameters/Melee/active = false
-parameters/Melee/internal_active = false
-parameters/Melee/request = 0
-"parameters/Recoil State/current_state" = "Light Recoil"
-"parameters/Recoil State/transition_request" = "Laser Recoil"
-"parameters/Recoil State/current_index" = 0
-parameters/Shoot/active = false
-parameters/Shoot/internal_active = false
-parameters/Shoot/request = 0
-"parameters/Walk Blend/blend_position" = 0.0
 
 [connection signal="text_submitted" from="DebugHUD/LineEdit" to="DebugHUD" method="_on_line_edit_text_submitted"]
 

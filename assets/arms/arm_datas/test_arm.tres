@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ArmData" load_steps=3 format=3 uid="uid://bxiy65ocexvna"]
+
+[ext_resource type="Script" path="res://assets/datas/arm_data.gd" id="1_71j30"]
+[ext_resource type="PackedScene" uid="uid://1npkpeywkw07" path="res://assets/bullet/bullets/test_bullet.tscn" id="1_iae1b"]
+
+[resource]
+script = ExtResource("1_71j30")
+build_name = "Test Arms"
+description = "For testing puposed only."
+is_semi = false
+light_color = Color(1, 0.843137, 0, 1)
+light_energy = 0.25
+shots_per_min = 500
+recoil_type = "Light Recoil"
+shooting_type = "Bullets"
+shoot_scene = ExtResource("1_iae1b")
+bullet_damage = 0.0
+bullet_range = 100.0
+bullet_pierce = 0
+bullet_bounces = 0
+bullet_speed = 50.0

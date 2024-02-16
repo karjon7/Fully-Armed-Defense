@@ -3,10 +3,11 @@ extends Control
 @onready var line_edit = %LineEdit
 @onready var label = %Label
 
+@onready var can_debug : bool = false
 
 func _input(event):
-	if Input.is_action_just_pressed("debug"):
-		line_edit.show()
+	if Input.is_action_just_pressed("debug") and can_debug:
+		line_edit.visible = !line_edit.visible
 
 
 func _process(delta):
