@@ -49,7 +49,6 @@ func _process(delta):
 	
 	#Crosshair Styling
 	crosshair_style(delta)
-	print(view_cast.get_collider().is_in_group("Enemy"))
 	
 	crosshair_rotation_degrees = 45 if not arm_cleared \
 	or (fire_cast.get_collider() and fire_cast.get_collider().is_in_group("Enemy")) \
