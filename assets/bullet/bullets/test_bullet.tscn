@@ -8,6 +8,7 @@ point_count = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ueju8"]
 shading_mode = 0
+albedo_color = Color(1, 0.854902, 0, 1)
 disable_receive_shadows = true
 use_particle_trails = true
 
@@ -35,7 +36,8 @@ mesh = SubResource("TubeTrailMesh_6tcq1")
 shape = SubResource("SphereShape3D_747li")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+visible = false
+light_color = Color(1, 0.854902, 0, 1)
 light_energy = 0.25
-light_specular = 2.0
 shadow_enabled = true
 omni_range = 2.5

@@ -34,6 +34,7 @@ var disable_flyby_detect : bool = false
 #Ricochet
 var bounces_left : int = 3
 var can_bounce : bool = false
+var min_bounce_angle : float = 45
 
 var pierce_left : int = 3
 var can_pierce : bool = false
@@ -55,10 +56,10 @@ func _ready():
 	bullet_fly_direction = global_transform.basis.z
 	prev_pos = global_transform.origin
 	
-	light.omni_range = energy * 10
+	light.omni_range = energy * 100
 	light.light_energy = energy
 	light.light_color = color
-	mesh.mesh.surface_get_material(0).albedo_color = Color.from_hsv(color.h, color.s * 0.25, color.s)
+	mesh.mesh.surface_get_material(0).albedo_color = color * 100
 	
 	flyby_detection.body_entered.connect(flyby_detection_body_entered)
 	get_tree().create_timer(life_time).timeout.connect(destroy)
@@ -89,7 +90,7 @@ func _physics_process(delta):
 		
 		#Bounce
 		if not result.collider.is_in_group("Enemy") and can_bounce:
-			if bullet_fly_direction.angle_to(result.normal) >= deg_to_rad(45) \
+			if bullet_fly_direction.angle_to(result.normal) >= deg_to_rad(min_bounce_angle) \
 			and bounces_left > 0 and total_distance > 0.75:
 				bullet_fly_direction = bullet_fly_direction.bounce(result.normal)
 				bounces_left -= 1

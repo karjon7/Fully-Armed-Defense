@@ -1,8 +1,8 @@
+OmniLight3D
 MeshInstance3D
 CollisionShape3D
 StaticBody3D
 AnimationPlayer
-OmniLight3D
 Line2D
 Control
 Panel
@@ -12,4 +12,3 @@ Node3D
 BoneAttachment3D
 RigidBody3D
 ColorRect
-RayCast3D

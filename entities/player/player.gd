@@ -127,8 +127,9 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	#TESTING
 	var target_point : Vector3 = view_cast.get_target_position()
-	var hit_point : Vector3 = view_cast.get_collision_point()
+	var hit_point : Vector3 = view_cast.get_collision_point() if view_cast.is_colliding() else view_cast.to_global(target_point)
 	$LookMarker.global_position = hit_point
+	
 	fire_point.look_at(hit_point)
 	fire_point.rotation = Vector3(0, 0, 0) if view_cast.global_position.distance_to(hit_point) < 1.5 else fire_point.rotation
 	can_shoot = !arm_clearance.has_overlapping_bodies()
@@ -160,6 +161,7 @@ func shoot_bullets():
 	bullet.max_distance = arm_data.bullet_range
 	bullet.pierce_left = arm_data.bullet_pierce
 	bullet.bounces_left = arm_data.bullet_bounces
+	bullet.min_bounce_angle = arm_data.min_bounce_angle
 	bullet.bullet_speed = arm_data.bullet_speed
 	
 	#Player Bullet Constants

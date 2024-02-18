@@ -659,11 +659,11 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0422657, -0.381433, 0.699759, 0.602544)
+bones/6/rotation = Quaternion(-0.0239827, -0.360047, 0.710999, 0.603548)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.343358, -0.554325, -0.167832, 0.739366)
+bones/7/rotation = Quaternion(0.30225, -0.577768, -0.113766, 0.749591)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
@@ -675,7 +675,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.042849, -0.00412931, 0.999073, 0.998174, 0.0427954, -0.0426334, -0.0425794, 0.999075, 0.00595547, -0.340088, -0.171641, 0.160635)
+transform = Transform3D(0.0526072, 0.0109582, 0.998555, 0.997562, -0.0464814, -0.0520449, 0.0458441, 0.998859, -0.0133768, -0.33636, -0.156844, 0.173398)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -684,7 +684,6 @@ transform = Transform3D(-2.95695e-08, 1, -7.45058e-09, 4.56348e-08, -3.72529e-09
 
 [node name="FirePoint" type="Marker3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D/RightHandBone/FirePointHolder"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="FireCast" type="RayCast3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D/RightHandBone/FirePointHolder"]
 unique_name_in_owner = true
