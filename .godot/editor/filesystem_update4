@@ -1,12 +1,9 @@
-res://entities/player/player.tscn
+res://scenes/maps/test_world.tscn
 res://static/environment.tres
 res://assets/arms/arm_datas/test_arm.tres
 res://shaders/shader.gdshader
 res://shaders/hurt_shader.gdshader
-res://scenes/maps/test_world.tscn
+res://entities/player/player.tscn
 res://assets/bullet/bullets/test_bullet.tscn
 res://entities/player/player.gd
-res://static/number_formatting.gd
-res://entities/player/HUD.gd
-res://assets/datas/arm_data.gd
-res://static/themes/hud_theme.tres
+res://default_bus_layout.tres

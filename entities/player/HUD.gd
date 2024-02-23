@@ -9,8 +9,14 @@ extends Control
 
 @onready var crosshair = %Crosshair
 
+@onready var health_label = %HealthLabel
+@onready var health_bar = %HealthBar
+@onready var damage_bar = %DamageBar
+@onready var damage_timer = %DamageTimer
+
 @onready var temperature_label = %TemperatureLabel
 @onready var temp_anim_player = %TempAnimationPlayer
+
 
 @export var player : Player
 
@@ -20,11 +26,16 @@ extends Control
 @export var crosshair_length : int = 7
 @export var crosshair_width : int = 2
 @export var crosshair_lerp_speed : float = 10
-
-var arm_cleared : bool = true
-
 var new_crosshair_pos : Vector2
 var crosshair_pos_lerp_speed : float = 5
+
+@export_group("Health")
+@export var healthy_color : Color = Color.GREEN
+@export var damaged_color : Color = Color.RED
+@export var health_lerp_speed : float = 10
+var old_health : float
+
+var arm_cleared : bool = true
 
 
 func _ready():
@@ -50,20 +61,38 @@ func _process(delta):
 	#Temperature
 	temperature()
 	
+	#Health
+	health(delta)
+	
+
+
+func health(delta):
+	var health_normalized = player.health / player.max_health
+	
+	health_label.text = "Health: %s" % [player.health]
+	health_bar.value = lerp(health_bar.value, health_normalized * 100, health_lerp_speed * delta)
+	health_bar.self_modulate = damaged_color.lerp(healthy_color, health_normalized)
+	
+	if player.health < old_health:
+		damage_timer.start()
+	
+	if damage_timer.get_time_left() <= 0:
+			damage_bar.value = lerp(damage_bar.value, health_normalized * 100, health_lerp_speed * delta)
+	
+	old_health = player.health
 
 
 func temperature():
 	temperature_label.text = NumberFormatting.temperature(floor(player.arm_temp))
 	
-	temperature_label.self_modulate = \
-	Color(1, 1 - player.arm_temp / player.max_arm_temp, 1 - player.arm_temp / player.max_arm_temp) \
+	temperature_label.self_modulate = Color.WHITE.lerp(Color.RED, player.arm_temp / player.max_arm_temp) \
 	if not player.is_overheated else Color.WHITE
 	
-
 	if player.is_overheated:
 		temp_anim_player.play("overheated")
 	else:
 		temp_anim_player.play("RESET")
+	
 
 
 func crosshair_positioning(delta):

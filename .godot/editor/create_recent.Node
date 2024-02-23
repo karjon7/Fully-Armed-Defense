@@ -1,3 +1,6 @@
+AudioStreamPlayer
+Node
+Timer
 AnimationPlayer
 ProgressBar
 VBoxContainer
@@ -10,5 +13,3 @@ OmniLight3D
 MeshInstance3D
 CollisionShape3D
 StaticBody3D
-Line2D
-Control

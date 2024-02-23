@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=45 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="Resource" uid="uid://bxiy65ocexvna" path="res://assets/arms/arm_datas/test_arm.tres" id="2_of7qa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://static/debug/debug_hud.gd" id="3_iccx7"]
 [ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="4_efegj"]
 [ext_resource type="Script" path="res://entities/player/HUD.gd" id="4_ob7ph"]
+[ext_resource type="AudioStream" uid="uid://cns2y172111gn" path="res://assets/audio/player/heat_warning.wav" id="4_x05se"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcr0c"]
 shading_mode = 0
@@ -600,21 +601,13 @@ nodes/Shoot/position = Vector2(-80, 80)
 nodes/output/position = Vector2(400, 100)
 node_connections = [&"Grounded", 0, &"Walk Blend", &"Grounded", 1, &"Animation", &"Melee", 0, &"Shoot", &"Melee", 1, &"Animation 6", &"Recoil State", 0, &"Animation 2", &"Recoil State", 1, &"Animation 4", &"Recoil State", 2, &"Animation 3", &"Recoil State", 3, &"Animation 5", &"Shoot", 0, &"Grounded", &"Shoot", 1, &"Recoil State", &"output", 0, &"Melee"]
 
-[sub_resource type="Animation" id="Animation_wc5v5"]
-resource_name = "overheated"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%TemperatureLabel:theme_override_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj4v0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6puww"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feplt"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_op5sw"]
 length = 0.001
@@ -629,6 +622,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wc5v5"]
+resource_name = "overheated"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%TemperatureLabel:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ylt3"]
@@ -697,11 +706,11 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0206849, -0.356157, 0.712956, 0.60367)
+bones/6/rotation = Quaternion(-0.032162, -0.369652, 0.706053, 0.603168)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.294677, -0.581667, -0.103965, 0.751013)
+bones/7/rotation = Quaternion(0.320838, -0.567657, -0.138029, 0.745505)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
@@ -713,7 +722,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0547944, 0.0134219, 0.998408, 0.99659, -0.0625197, -0.0538542, 0.0616973, 0.997954, -0.016802, -0.335644, -0.154107, 0.175601)
+transform = Transform3D(0.0477335, 0.00449014, 0.99885, 0.99884, -0.00656822, -0.0477036, 0.00634643, 0.999968, -0.00479856, -0.338078, -0.163545, 0.167803)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -756,15 +765,25 @@ parameters/Shoot/internal_active = false
 parameters/Shoot/request = 0
 "parameters/Walk Blend/blend_position" = 0.0
 
-[node name="FireRateTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="FireRateTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 process_callback = 0
 one_shot = true
 
-[node name="OverheatTimer" type="Timer" parent="."]
+[node name="OverheatTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 process_callback = 0
 one_shot = true
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="OverheatAlarm" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("4_x05se")
+volume_db = -15.0
+bus = &"HUD SFX"
 
 [node name="HUD" type="Control" parent="." node_paths=PackedStringArray("player")]
 layout_mode = 3
@@ -777,6 +796,7 @@ mouse_filter = 2
 theme = ExtResource("4_efegj")
 script = ExtResource("4_ob7ph")
 player = NodePath("..")
+health_lerp_speed = 5.0
 
 [node name="Crosshairs" type="Control" parent="HUD"]
 layout_mode = 1
@@ -861,6 +881,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="HealthLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer/LeftSide/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 20
@@ -868,7 +889,33 @@ text = "HEALTH"
 vertical_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/HBoxContainer/LeftSide/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_qj4v0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6puww")
+value = 100.0
+show_percentage = false
+
+[node name="DamageBar" type="ProgressBar" parent="HUD/MarginContainer/HBoxContainer/LeftSide/MarginContainer2/VBoxContainer/HealthBar"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_qj4v0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_feplt")
+value = 100.0
+show_percentage = false
+
+[node name="DamageTimer" type="Timer" parent="HUD/MarginContainer/HBoxContainer/LeftSide/MarginContainer2/VBoxContainer/HealthBar"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [node name="Center" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -938,17 +985,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "FPS: 000"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [connection signal="text_submitted" from="DebugHUD/LineEdit" to="DebugHUD" method="_on_line_edit_text_submitted"]
 

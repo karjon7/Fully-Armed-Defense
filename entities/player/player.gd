@@ -15,10 +15,14 @@ class_name Player
 #Anims
 @onready var animation_tree = %AnimationTree
 
+#Audio
+@onready var overheat_alarm = %OverheatAlarm
 
 #Health
 @export_group("Health")
 @export var invincible : bool = false
+@export var max_health : float = 100
+var health : float = max_health : set = set_health
 
 #Money
 @export_group("Money")
@@ -130,7 +134,10 @@ func _unhandled_input(event):
 	
 	
 	if Input.is_action_just_pressed("secondary_fire"):
-		pass
+		health -= 10
+	
+	if Input.is_action_just_pressed("debug"):
+		health += 10
 
 
 func _physics_process(delta):
@@ -148,6 +155,10 @@ func _physics_process(delta):
 	handle_temperature(delta)
 	handle_camera(delta)
 	handle_movement(delta)
+
+
+func set_health(value):
+	health = clamp(value, 0, max_health)
 
 
 func shoot_bullets():
@@ -191,7 +202,7 @@ func shoot_bullets():
 func handle_shooting():
 	#Requirments
 	if not arm_data: return #Arm data actually exist 
-	if not can_shoot: return #Not allowed to shoot
+	if not can_shoot: return #Allowed to shoot
 	if is_overheated: return
 	if fire_rate_timer.get_time_left() > 0: return
 	if overheat_timer.get_time_left() > 0: return
@@ -226,13 +237,24 @@ func handle_arms(delta):
 
 
 func handle_temperature(delta):
-	if overheat_timer.get_time_left() > 0: return
 	if arm_temp <= base_arm_temp: is_overheated = false
 	
-	arm_temp = max(arm_temp - heat_loss_rate_per_sec / 60, base_arm_temp)
+	#Audio
+	if not overheat_alarm.playing and arm_temp / max_arm_temp > 0.75 \
+	and (not is_overheated or not overheat_timer.is_stopped()):
+		
+		overheat_alarm.pitch_scale = arm_temp / max_arm_temp
+		
+		get_tree().create_timer( (1 - arm_temp / max_arm_temp) / 0.5 )\
+		.timeout.connect(func():if not overheat_alarm.playing: overheat_alarm.play())
+		
+		print(1 - (arm_temp / max_arm_temp))
 	
-	if arm_temp < max_arm_temp: return
+	arm_temp = max(arm_temp - heat_loss_rate_per_sec / 60, base_arm_temp) \
+	if overheat_timer.time_left <= 0 else arm_temp
 	
+	
+	if arm_temp < max_arm_temp or is_overheated: return #Return if not overheated
 	is_overheated = true
 	arm_temp = max_arm_temp
 	overheat_timer.start(OVERHEAT_TIME)
