@@ -10,6 +10,7 @@ class_name Player
 @onready var fire_point = %FirePoint
 @onready var arm_clearance = %ArmClearance
 @onready var fire_rate_timer = %FireRateTimer
+@onready var overheat_timer = %OverheatTimer
 
 #Anims
 @onready var animation_tree = %AnimationTree
@@ -44,6 +45,14 @@ const MAX_CAMERA_TILT_DEGREES = 2.5
 @export_group("Arms")
 @export var can_shoot : bool = true
 @export var arm_data : ArmData 
+
+@export_subgroup("Heat")
+var is_overheated : bool = false
+var arm_temp : float = 20
+@export var base_arm_temp : float = 20
+@export var max_arm_temp : float = 1500
+@export var heat_loss_rate_per_sec : float = 250
+const OVERHEAT_TIME : float = 3
 
 @export_subgroup("Arm Settings")
 @export_range(1, 3, 0.1) var arm_tilt_amount : float = 2
@@ -134,9 +143,9 @@ func _physics_process(delta):
 	fire_point.rotation = Vector3(0, 0, 0) if view_cast.global_position.distance_to(hit_point) < 1.5 else fire_point.rotation
 	can_shoot = !arm_clearance.has_overlapping_bodies()
 	
-	
 	handle_shooting()
 	handle_arms(delta)
+	handle_temperature(delta)
 	handle_camera(delta)
 	handle_movement(delta)
 
@@ -151,6 +160,9 @@ func shoot_bullets():
 	
 	#Instancing Bullet
 	var bullet : Bullet = arm_data.shoot_scene.instantiate()
+	
+	#Constant Player Assignment
+	arm_temp += arm_data.heat_per_shot
 	
 	#General Shot Assignment
 	bullet.color = arm_data.light_color
@@ -180,7 +192,9 @@ func handle_shooting():
 	#Requirments
 	if not arm_data: return #Arm data actually exist 
 	if not can_shoot: return #Not allowed to shoot
+	if is_overheated: return
 	if fire_rate_timer.get_time_left() > 0: return
+	if overheat_timer.get_time_left() > 0: return
 	
 	view_cast.target_position = Vector3(0, 0, -arm_data.bullet_range)
 	
@@ -209,6 +223,19 @@ func handle_arms(delta):
 	
 	arm_model.rotation_degrees.x = -sway_y
 	arm_model.rotation_degrees.y = sway_x - 180
+
+
+func handle_temperature(delta):
+	if overheat_timer.get_time_left() > 0: return
+	if arm_temp <= base_arm_temp: is_overheated = false
+	
+	arm_temp = max(arm_temp - heat_loss_rate_per_sec / 60, base_arm_temp)
+	
+	if arm_temp < max_arm_temp: return
+	
+	is_overheated = true
+	arm_temp = max_arm_temp
+	overheat_timer.start(OVERHEAT_TIME)
 
 
 func handle_camera(delta):

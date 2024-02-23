@@ -6,6 +6,7 @@ class_name ArmData
 @export var is_semi : bool = false
 @export var light_color : Color = Color.GOLD
 @export_range(0, 1, 0.01) var light_energy : float = 0.25
+@export_range(0, 1000, 1, "or_greater") var heat_per_shot : int = 50
 @export_range(1, 1000, 1, "suffix:per min", "or_greater") var shots_per_min : int = 500
 @export_enum("Light Recoil", "Medium Recoil", "Heavy Recoil", "Laser Recoil") var recoil_type : String = "Light Recoil"
 @export_enum("Bullets", "Shells", "Grenades", "Laser") var shooting_type = "Bullets"

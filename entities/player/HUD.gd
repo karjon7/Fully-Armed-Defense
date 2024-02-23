@@ -9,6 +9,8 @@ extends Control
 
 @onready var crosshair = %Crosshair
 
+@onready var temperature_label = %TemperatureLabel
+@onready var temp_anim_player = %TempAnimationPlayer
 
 @export var player : Player
 
@@ -33,24 +35,7 @@ func _ready():
 func _process(delta):
 	#Crosshair Aiming
 	check_clearance()
-	
-	var target_point : Vector3 = view_cast.get_target_position()
-	var point_collision : Vector3 = view_cast.get_collision_point() if view_cast.is_colliding() else view_cast.to_global(target_point)
-	
-	fire_cast.look_at(fire_cast.to_local(point_collision))
-	fire_cast.set_target_position(fire_cast.to_local(point_collision))
-	#FIXME: move to player.gdfor clearity ^
-	
-	var unprojected_view_cast : Vector2 = camera.unproject_position(view_cast.get_collision_point() \
-	if view_cast.is_colliding() else view_cast.to_global(view_cast.get_target_position()))
-	var unprojected_fire_cast : Vector2 = camera.unproject_position(fire_cast.get_collision_point() \
-	if fire_cast.is_colliding() else fire_cast.to_global(fire_cast.get_target_position()))
-	
-	new_crosshair_pos = unprojected_fire_cast if fire_cast.is_colliding() and arm_cleared \
-	and unprojected_fire_cast.distance_to(unprojected_view_cast) > 10 and not player.sprinting else unprojected_view_cast
-	
-	crosshair.modulate = Color.WHITE if arm_cleared else Color.RED
-	crosshair.position = crosshair.position.lerp(new_crosshair_pos - crosshair.size / 2, crosshair_pos_lerp_speed * delta)
+	crosshair_positioning(delta)
 	
 	#Crosshair Styling
 	crosshair_style(delta)
@@ -62,6 +47,43 @@ func _process(delta):
 	crosshair_spacing = 0 if not arm_cleared else 7
 	crosshair_length = 10 if not arm_cleared else 7
 	
+	#Temperature
+	temperature()
+	
+
+
+func temperature():
+	temperature_label.text = NumberFormatting.temperature(floor(player.arm_temp))
+	
+	temperature_label.self_modulate = \
+	Color(1, 1 - player.arm_temp / player.max_arm_temp, 1 - player.arm_temp / player.max_arm_temp) \
+	if not player.is_overheated else Color.WHITE
+	
+
+	if player.is_overheated:
+		temp_anim_player.play("overheated")
+	else:
+		temp_anim_player.play("RESET")
+
+
+func crosshair_positioning(delta):
+	var target_point : Vector3 = view_cast.get_target_position()
+	var point_collision : Vector3 = view_cast.get_collision_point() if view_cast.is_colliding() else view_cast.to_global(target_point)
+	
+	fire_cast.look_at(fire_cast.to_local(point_collision))
+	fire_cast.set_target_position(fire_cast.to_local(point_collision))
+	#FIXME: move to player.gd for clearity ^
+	
+	var unprojected_view_cast : Vector2 = camera.unproject_position(view_cast.get_collision_point() \
+	if view_cast.is_colliding() else view_cast.to_global(view_cast.get_target_position()))
+	var unprojected_fire_cast : Vector2 = camera.unproject_position(fire_cast.get_collision_point() \
+	if fire_cast.is_colliding() else fire_cast.to_global(fire_cast.get_target_position()))
+	
+	new_crosshair_pos = unprojected_fire_cast if fire_cast.is_colliding() and arm_cleared \
+	and unprojected_fire_cast.distance_to(unprojected_view_cast) > 10 and not player.sprinting else unprojected_view_cast
+	
+	crosshair.modulate = Color.WHITE if arm_cleared else Color.RED
+	crosshair.position = crosshair.position.lerp(new_crosshair_pos - crosshair.size / 2, crosshair_pos_lerp_speed * delta)
 
 
 func crosshair_style(delta):

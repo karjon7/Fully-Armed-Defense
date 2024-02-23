@@ -36,7 +36,6 @@ mesh = SubResource("TubeTrailMesh_6tcq1")
 shape = SubResource("SphereShape3D_747li")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-visible = false
 light_color = Color(1, 0.854902, 0, 1)
 light_energy = 0.25
 shadow_enabled = true
