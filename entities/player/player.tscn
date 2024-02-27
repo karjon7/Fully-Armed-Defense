@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=51 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="Resource" uid="uid://bxiy65ocexvna" path="res://assets/arms/arm_datas/test_arm.tres" id="2_of7qa"]
@@ -7,6 +7,8 @@
 [ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="4_efegj"]
 [ext_resource type="Script" path="res://entities/player/HUD.gd" id="4_ob7ph"]
 [ext_resource type="AudioStream" uid="uid://cns2y172111gn" path="res://assets/audio/player/heat_warning.wav" id="4_x05se"]
+[ext_resource type="Shader" uid="uid://dy8ots0vv4xa4" path="res://shaders/crosshair_shader.tres" id="7_o3qtr"]
+[ext_resource type="Shader" uid="uid://bsw3aeno4tdlk" path="res://entities/player/test.tres" id="9_sioc0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcr0c"]
 shading_mode = 0
@@ -601,6 +603,14 @@ nodes/Shoot/position = Vector2(-80, 80)
 nodes/output/position = Vector2(400, 100)
 node_connections = [&"Grounded", 0, &"Walk Blend", &"Grounded", 1, &"Animation", &"Melee", 0, &"Shoot", &"Melee", 1, &"Animation 6", &"Recoil State", 0, &"Animation 2", &"Recoil State", 1, &"Animation 4", &"Recoil State", 2, &"Animation 3", &"Recoil State", 3, &"Animation 5", &"Shoot", 0, &"Grounded", &"Shoot", 1, &"Recoil State", &"output", 0, &"Melee"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2megr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t47jx"]
+shader = ExtResource("7_o3qtr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ne8c"]
+shader = ExtResource("7_o3qtr")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj4v0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6puww"]
@@ -614,7 +624,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%TemperatureLabel:theme_override_colors/font_color")
+tracks/0/path = NodePath("TemperatureLabel:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -630,7 +640,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%TemperatureLabel:theme_override_colors/font_color")
+tracks/0/path = NodePath("TemperatureLabel:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -645,6 +655,9 @@ _data = {
 "RESET": SubResource("Animation_op5sw"),
 "overheated": SubResource("Animation_wc5v5")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jttif"]
+shader = ExtResource("9_sioc0")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -690,6 +703,7 @@ shape = SubResource("BoxShape3D_xlr05")
 [node name="ViewCast" type="RayCast3D" parent="Camera3D"]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -100)
+collision_mask = 5
 debug_shape_custom_color = Color(0, 0, 0, 0)
 debug_shape_thickness = 1
 
@@ -706,11 +720,11 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.032162, -0.369652, 0.706053, 0.603168)
+bones/6/rotation = Quaternion(-0.0376397, -0.376051, 0.702666, 0.602851)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.320838, -0.567657, -0.138029, 0.745505)
+bones/7/rotation = Quaternion(0.333113, -0.560542, -0.154216, 0.742325)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
@@ -722,7 +736,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0477335, 0.00449014, 0.99885, 0.99884, -0.00656822, -0.0477036, 0.00634643, 0.999968, -0.00479856, -0.338078, -0.163545, 0.167803)
+transform = Transform3D(0.0449259, -0.000103123, 0.99899, 0.998786, 0.0202043, -0.0449146, -0.0201792, 0.999796, 0.00101068, -0.339183, -0.167959, 0.163952)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -786,6 +800,7 @@ volume_db = -15.0
 bus = &"HUD SFX"
 
 [node name="HUD" type="Control" parent="." node_paths=PackedStringArray("player")]
+material = SubResource("ShaderMaterial_2megr")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -820,6 +835,7 @@ grow_vertical = 2
 
 [node name="Line2D" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_t47jx")
 points = PackedVector2Array(-7, 0, -10, 0)
 width = 2.0
 begin_cap_mode = 2
@@ -827,6 +843,7 @@ end_cap_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_6ne8c")
 points = PackedVector2Array(7, 0, 10, 0)
 width = 2.0
 begin_cap_mode = 2
@@ -834,6 +851,7 @@ end_cap_mode = 2
 
 [node name="Line2D3" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_6ne8c")
 points = PackedVector2Array(0, -7, 0, -10)
 width = 2.0
 begin_cap_mode = 2
@@ -841,6 +859,7 @@ end_cap_mode = 2
 
 [node name="Line2D4" type="Line2D" parent="HUD/Crosshairs/Crosshair"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_6ne8c")
 points = PackedVector2Array(0, 7, 0, 10)
 width = 2.0
 begin_cap_mode = 2
@@ -985,6 +1004,18 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "FPS: 000"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jttif")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="text_submitted" from="DebugHUD/LineEdit" to="DebugHUD" method="_on_line_edit_text_submitted"]
 

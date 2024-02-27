@@ -1,16 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://88jofn3wg3ti"]
+[gd_scene load_steps=5 format=3 uid="uid://88jofn3wg3ti"]
 
 [ext_resource type="Environment" uid="uid://ut2egjcueayn" path="res://static/environment.tres" id="1_fhicf"]
 [ext_resource type="PackedScene" uid="uid://mtithp0nddiq" path="res://assets/maps/test_world.tscn" id="1_lp1b1"]
 [ext_resource type="PackedScene" uid="uid://cbl63n3ikl8eq" path="res://entities/player/player.tscn" id="2_owhq4"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ndf1c"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rc27"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_m25hw"]
-material = SubResource("StandardMaterial3D_3rc27")
+[ext_resource type="PackedScene" uid="uid://ce5p148xnruub" path="res://entities/enemies/basic enemy/basic_enemy.tscn" id="4_qsqq1"]
 
 [node name="TestWorld" type="Node3D"]
 
@@ -47,11 +40,5 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0324144, 1.90735e-06, -0.0926883)
 mouse_sensitivity = 0.07
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -17)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_ndf1c")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_m25hw")
+[node name="BasicEnemy" parent="." instance=ExtResource("4_qsqq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -17.5)

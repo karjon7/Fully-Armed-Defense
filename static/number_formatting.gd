@@ -3,7 +3,7 @@ extends Node
 var metric = true
 
 
-func temperature(value : int) -> String:
+func temperature(value : float) -> String:
 	
 	value = (value * 9 / 5) + 32 if not metric else value
 	

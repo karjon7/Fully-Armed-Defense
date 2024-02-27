@@ -1,10 +1,12 @@
+res://entities/enemies/basic enemy
+res://shaders
+res://static/save_load_data
 res://static/themes
 res://static
 res://assets/arms/arm_datas
 res://
 res://entities/player
 res://static/debug
-res://shaders
 res://assets/maps
 res://assets
 res://scenes/maps

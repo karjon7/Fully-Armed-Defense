@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce5p148xnruub"]
+
+[ext_resource type="Script" path="res://entities/enemies/basic enemy/basic_enemy.gd" id="1_l4kll"]
+[ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="2_kuw77"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dna2"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xg48x"]
+material = SubResource("StandardMaterial3D_4dna2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5c5q"]
+
+[node name="BasicEnemy" type="CharacterBody3D" node_paths=PackedStringArray("hit_label", "label_timer") groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_l4kll")
+hit_label = NodePath("Label")
+label_timer = NodePath("Label/Timer")
+label_pos_lerp_speed = 20.0
+label_time = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xg48x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_q5c5q")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 20.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_kuw77")
+theme_override_constants/outline_size = 5
+text = "damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Timer" type="Timer" parent="Label"]
+one_shot = true

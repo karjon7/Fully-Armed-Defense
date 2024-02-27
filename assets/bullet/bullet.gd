@@ -20,6 +20,7 @@ class_name Bullet
 
 var bullet_speed : float = 50
 var bullet_damage : float = 0
+var bullet_knockback : float = 0
 
 var bullet_fly_direction : Vector3
 var prev_pos : Vector3 = Vector3()
@@ -38,6 +39,7 @@ var min_bounce_angle : float = 45
 
 var pierce_left : int = 3
 var can_pierce : bool = false
+
 
 var color : Color = Color.GOLD
 var energy : float = 0.25
@@ -84,7 +86,7 @@ func _physics_process(delta):
 		new_pos = result.position if not result.collider.is_in_group("Enemy") else new_pos
 		
 		if result.collider.has_method("damage"):
-			result.collider.damage(bullet_damage)
+			result.collider.damage(bullet_damage, result.position, bullet_fly_direction, bullet_knockback)
 		
 		detect_surface(result)
 		
@@ -95,9 +97,10 @@ func _physics_process(delta):
 				bullet_fly_direction = bullet_fly_direction.bounce(result.normal)
 				bounces_left -= 1
 				look_at(global_transform.origin - bullet_fly_direction, Vector3(1, 1, 0))
-				#FIXME spawn_sound_at_position()
+				#FIXME: spawn_sound_at_position()
 			else:
 				destroy()
+		
 		#Pierce
 		elif result.collider.is_in_group("Enemy") and can_pierce:
 			if pierce_left > 0:
@@ -105,7 +108,8 @@ func _physics_process(delta):
 			else:
 				destroy()
 		
-		else: #Didnt pierce or bounce
+		#Didnt pierce or bounce
+		else: 
 			destroy()
 	
 	#

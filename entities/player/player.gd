@@ -161,6 +161,12 @@ func set_health(value):
 	health = clamp(value, 0, max_health)
 
 
+func damage(damage_value : float, hit_pos : Vector3, bullet_direction : Vector3):
+	health -= damage_value
+	
+	print("player_hit")
+
+
 func shoot_bullets():
 	#Anims
 	var anim_shoot_node : AnimationNode = animation_tree.get_tree_root().get_node("Shoot")
@@ -180,12 +186,13 @@ func shoot_bullets():
 	bullet.energy = arm_data.light_energy
 	
 	#Bullet Specific Assignment
+	bullet.bullet_speed = arm_data.bullet_speed
 	bullet.bullet_damage = arm_data.bullet_damage
+	bullet.bullet_knockback = arm_data.bullet_knockback
 	bullet.max_distance = arm_data.bullet_range
 	bullet.pierce_left = arm_data.bullet_pierce
 	bullet.bounces_left = arm_data.bullet_bounces
 	bullet.min_bounce_angle = arm_data.min_bounce_angle
-	bullet.bullet_speed = arm_data.bullet_speed
 	
 	#Player Bullet Constants
 	bullet.can_bounce = true
@@ -243,12 +250,8 @@ func handle_temperature(delta):
 	if not overheat_alarm.playing and arm_temp / max_arm_temp > 0.75 \
 	and (not is_overheated or not overheat_timer.is_stopped()):
 		
-		overheat_alarm.pitch_scale = arm_temp / max_arm_temp
-		
 		get_tree().create_timer( (1 - arm_temp / max_arm_temp) / 0.5 )\
 		.timeout.connect(func():if not overheat_alarm.playing: overheat_alarm.play())
-		
-		print(1 - (arm_temp / max_arm_temp))
 	
 	arm_temp = max(arm_temp - heat_loss_rate_per_sec / 60, base_arm_temp) \
 	if overheat_timer.time_left <= 0 else arm_temp

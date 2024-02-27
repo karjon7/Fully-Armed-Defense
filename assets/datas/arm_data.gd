@@ -18,12 +18,13 @@ class_name ArmData
 var times_upgraded : int = 0
 
 @export_group("Bullets Settings")
+@export_range(0, 1000, 1) var bullet_speed : float = 50
 @export_range(0, 100, 0.1, "or_greater") var bullet_damage : float = 0
+@export_range(0, 10, 1) var bullet_knockback : float = 0
 @export_range(0, 100, 0.5, "or_greater", "suffix:m") var bullet_range : float = 100
 @export_range(0, 10, 1, "or_greater") var bullet_pierce : int = 0
 @export_range(0, 10, 1, "or_greater") var bullet_bounces : int = 0
 @export_range(0, 45, 0.5) var min_bounce_angle : float = 45
-@export_range(0, 1000, 1) var bullet_speed : float = 50
 
 @export_group("Shells Settings")
 
