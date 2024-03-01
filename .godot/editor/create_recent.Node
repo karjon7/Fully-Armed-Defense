@@ -1,5 +1,7 @@
-AudioStreamPlayer3D
+CollisionShape3D
 MeshInstance3D
+RigidBody3D
+AudioStreamPlayer3D
 ColorRect
 VBoxContainer
 Label
@@ -9,6 +11,4 @@ VisibleOnScreenNotifier2D
 Timer
 CanvasLayer
 Enemy
-CollisionShape3D
 CharacterBody3D
-Button

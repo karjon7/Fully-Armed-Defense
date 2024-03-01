@@ -5,6 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://cp647iu4xvxwu" path="res://assets/audio/bullet/flyby_audio/smallflyby2.wav" id="3_vca06"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vmnhs"]
+playback_mode = 1
+random_pitch = 2.0
 streams_count = 2
 stream_0/stream = ExtResource("2_ymqdt")
 stream_0/weight = 1.0
@@ -26,7 +28,7 @@ material = SubResource("StandardMaterial3D_ueju8")
 curve = SubResource("Curve_7mgbk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_747li"]
-radius = 2.0
+radius = 1.0
 
 [node name="TestBullet" type="Node3D" node_paths=PackedStringArray("mesh", "flyby_detection", "light")]
 script = ExtResource("1_8xsn5")

@@ -208,10 +208,14 @@ func shoot_bullets():
 	var sound_player = AudioStreamPlayer3D.new()
 	fire_point.add_child(sound_player)
 	sound_player.stream = arm_data.shoot_sound
+	sound_player.volume_db -= 25
 	sound_player.play()
 	
 	#Setup Timer
 	fire_rate_timer.start(60.0 / arm_data.shots_per_min)
+	
+	await sound_player.finished
+	sound_player.queue_free()
 
 
 func handle_shooting():

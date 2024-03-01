@@ -94,6 +94,10 @@ func _physics_process(delta):
 			
 			result.collider.damage(bullet_damage, result.position, bullet_fly_direction, bullet_knockback)
 		
+		if result.collider is CharacterBody3D:
+			result.collider.velocity += bullet_fly_direction * bullet_knockback
+			print("velocity added" + str(bullet_knockback))
+		
 		detect_surface(result)
 		
 		#Bounce
@@ -140,9 +144,13 @@ func detect_surface(result : Dictionary):
 func spawn_sound_at_position(_owner : Node, _position : Vector3, sound : AudioStream):
 	var sound_player = AudioStreamPlayer3D.new()
 	_owner.add_child(sound_player)
+	sound_player.global_position = _position
 	sound_player.stream = sound
-	sound_player.pitch_scale = randf_range(0.8, 1.2)
+	sound_player.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_PHYSICS_STEP
 	sound_player.play()
+	
+	await sound_player.finished
+	sound_player.queue_free()
 
 
 func spawn_bullet_hole_at_position(result : Dictionary, hole : PackedScene):
@@ -155,6 +163,6 @@ func spawn_particle_at_position(result : Dictionary, particlescene : PackedScene
 
 func flyby_detection_body_entered(body : Node3D):
 	if not body is Player: return
-	if not is_hit: return
+	if not is_hit and player: return #player bullet hasn't ricocheted hit
 	
 	spawn_sound_at_position(get_tree().current_scene, global_position, sound_bullet_flyby)

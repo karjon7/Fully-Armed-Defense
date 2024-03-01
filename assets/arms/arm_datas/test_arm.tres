@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/datas/arm_data.gd" id="1_71j30"]
 [ext_resource type="PackedScene" uid="uid://1npkpeywkw07" path="res://assets/bullet/bullets/test_bullet.tscn" id="1_iae1b"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jf8en"]
+[ext_resource type="AudioStream" uid="uid://bc4ib7xhoy0a5" path="res://assets/audio/shots/smgshot1.wav" id="3_5hikx"]
 
 [resource]
 script = ExtResource("1_71j30")
@@ -13,14 +12,14 @@ is_semi = false
 light_color = Color(1, 0.843137, 0, 1)
 light_energy = 0.25
 heat_per_shot = 50
-shots_per_min = 500
+shots_per_min = 1000
 recoil_type = "Light Recoil"
 shooting_type = "Bullets"
 shoot_scene = ExtResource("1_iae1b")
-shoot_sound = SubResource("AudioStreamRandomizer_jf8en")
+shoot_sound = ExtResource("3_5hikx")
 bullet_speed = 50.0
 bullet_damage = 15.0
-bullet_knockback = 0.0
+bullet_knockback = 1.0
 bullet_range = 100.0
 bullet_pierce = 6
 bullet_bounces = 20
