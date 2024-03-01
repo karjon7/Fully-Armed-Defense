@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=52 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="Resource" uid="uid://bxiy65ocexvna" path="res://assets/arms/arm_datas/test_arm.tres" id="2_of7qa"]
@@ -7,8 +7,9 @@
 [ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="4_efegj"]
 [ext_resource type="Script" path="res://entities/player/HUD.gd" id="4_ob7ph"]
 [ext_resource type="AudioStream" uid="uid://cns2y172111gn" path="res://assets/audio/player/heat_warning.wav" id="4_x05se"]
+[ext_resource type="AudioStream" uid="uid://crdr2s1r2jrxx" path="res://assets/audio/player/overheated.wav" id="5_axd05"]
+[ext_resource type="AudioStream" uid="uid://c81ruuvyiittr" path="res://assets/audio/player/cooling.mp3" id="6_1bunc"]
 [ext_resource type="Shader" uid="uid://dy8ots0vv4xa4" path="res://shaders/crosshair_shader.tres" id="7_o3qtr"]
-[ext_resource type="Shader" uid="uid://bsw3aeno4tdlk" path="res://entities/player/test.tres" id="9_sioc0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcr0c"]
 shading_mode = 0
@@ -624,7 +625,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TemperatureLabel:theme_override_colors/font_color")
+tracks/0/path = NodePath("VBoxContainer/TemperatureLabel:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -640,7 +641,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TemperatureLabel:theme_override_colors/font_color")
+tracks/0/path = NodePath("VBoxContainer/TemperatureLabel:theme_override_colors/font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -657,7 +658,6 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jttif"]
-shader = ExtResource("9_sioc0")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -720,11 +720,11 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0376397, -0.376051, 0.702666, 0.602851)
+bones/6/rotation = Quaternion(-0.0238806, -0.359927, 0.71106, 0.603553)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.333113, -0.560542, -0.154216, 0.742325)
+bones/7/rotation = Quaternion(0.302016, -0.57789, -0.113463, 0.749637)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
@@ -736,7 +736,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0449259, -0.000103123, 0.99899, 0.998786, 0.0202043, -0.0449146, -0.0201792, 0.999796, 0.00101068, -0.339183, -0.167959, 0.163952)
+transform = Transform3D(0.0526729, 0.0110355, 0.998551, 0.997536, -0.0469786, -0.0521001, 0.0463356, 0.998835, -0.0134829, -0.336338, -0.15676, 0.173467)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -796,7 +796,19 @@ one_shot = true
 [node name="OverheatAlarm" type="AudioStreamPlayer" parent="Audio"]
 unique_name_in_owner = true
 stream = ExtResource("4_x05se")
-volume_db = -15.0
+volume_db = -20.0
+bus = &"HUD SFX"
+
+[node name="Overheated" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("5_axd05")
+bus = &"HUD SFX"
+
+[node name="ArmCooling" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = ExtResource("6_1bunc")
+volume_db = -80.0
+autoplay = true
 bus = &"HUD SFX"
 
 [node name="HUD" type="Control" parent="." node_paths=PackedStringArray("player")]
@@ -958,7 +970,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TemperatureLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer/RightSide/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer/RightSide/MarginContainer"]
+layout_mode = 2
+
+[node name="TemperatureLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer/RightSide/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)

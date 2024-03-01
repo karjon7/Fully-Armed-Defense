@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="ArmData" load_steps=3 format=3 uid="uid://bxiy65ocexvna"]
+[gd_resource type="Resource" script_class="ArmData" load_steps=4 format=3 uid="uid://bxiy65ocexvna"]
 
 [ext_resource type="Script" path="res://assets/datas/arm_data.gd" id="1_71j30"]
 [ext_resource type="PackedScene" uid="uid://1npkpeywkw07" path="res://assets/bullet/bullets/test_bullet.tscn" id="1_iae1b"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jf8en"]
 
 [resource]
 script = ExtResource("1_71j30")
@@ -15,10 +17,11 @@ shots_per_min = 500
 recoil_type = "Light Recoil"
 shooting_type = "Bullets"
 shoot_scene = ExtResource("1_iae1b")
+shoot_sound = SubResource("AudioStreamRandomizer_jf8en")
 bullet_speed = 50.0
 bullet_damage = 15.0
 bullet_knockback = 0.0
 bullet_range = 100.0
-bullet_pierce = 0
+bullet_pierce = 6
 bullet_bounces = 20
 min_bounce_angle = 0.0

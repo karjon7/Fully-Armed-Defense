@@ -16,7 +16,9 @@ class_name Player
 @onready var animation_tree = %AnimationTree
 
 #Audio
-@onready var overheat_alarm = %OverheatAlarm
+@onready var overheat_alarm_audio = %OverheatAlarm
+@onready var overheated_audio = %Overheated
+@onready var arm_cooling_audio = %ArmCooling
 
 #Health
 @export_group("Health")
@@ -202,6 +204,12 @@ func shoot_bullets():
 	fire_point.add_child(bullet)
 	bullet.top_level = true
 	
+	#Audio
+	var sound_player = AudioStreamPlayer3D.new()
+	fire_point.add_child(sound_player)
+	sound_player.stream = arm_data.shoot_sound
+	sound_player.play()
+	
 	#Setup Timer
 	fire_rate_timer.start(60.0 / arm_data.shots_per_min)
 
@@ -247,11 +255,14 @@ func handle_temperature(delta):
 	if arm_temp <= base_arm_temp: is_overheated = false
 	
 	#Audio
-	if not overheat_alarm.playing and arm_temp / max_arm_temp > 0.75 \
-	and (not is_overheated or not overheat_timer.is_stopped()):
+	arm_cooling_audio.pitch_scale = remap(arm_temp, base_arm_temp, max_arm_temp, 1, 4)
+	arm_cooling_audio.volume_db = remap(arm_temp, base_arm_temp, max_arm_temp, -40, 0) - 10
+	
+	if not overheat_alarm_audio.playing and arm_temp / max_arm_temp > 0.75 \
+		and (not is_overheated or not overheat_timer.is_stopped()):
 		
 		get_tree().create_timer( (1 - arm_temp / max_arm_temp) / 0.5 )\
-		.timeout.connect(func():if not overheat_alarm.playing: overheat_alarm.play())
+		.timeout.connect(func():if not overheat_alarm_audio.playing: overheat_alarm_audio.play())
 	
 	arm_temp = max(arm_temp - heat_loss_rate_per_sec / 60, base_arm_temp) \
 	if overheat_timer.time_left <= 0 else arm_temp
@@ -261,6 +272,8 @@ func handle_temperature(delta):
 	is_overheated = true
 	arm_temp = max_arm_temp
 	overheat_timer.start(OVERHEAT_TIME)
+	overheated_audio.pitch_scale = randf_range(0.8, 1.2)
+	overheated_audio.play()
 
 
 func handle_camera(delta):

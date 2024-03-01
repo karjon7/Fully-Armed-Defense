@@ -47,7 +47,7 @@ var energy : float = 0.25
 var life_time : float = 30
 
 
-var player : CharacterBody3D
+var player : Player
 
 
 func _ready():
@@ -64,6 +64,9 @@ func _ready():
 	mesh.mesh.surface_get_material(0).albedo_color = color * 100
 	
 	flyby_detection.body_entered.connect(flyby_detection_body_entered)
+	flyby_detection.collision_layer = 0
+	flyby_detection.collision_mask = pow(2, 2 - 1)
+	
 	get_tree().create_timer(life_time).timeout.connect(destroy)
 
 
@@ -86,6 +89,9 @@ func _physics_process(delta):
 		new_pos = result.position if not result.collider.is_in_group("Enemy") else new_pos
 		
 		if result.collider.has_method("damage"):
+			if result.collider.is_in_group("Enemy") and not result.collider.is_dead:
+				player.money += bullet_damage
+			
 			result.collider.damage(bullet_damage, result.position, bullet_fly_direction, bullet_knockback)
 		
 		detect_surface(result)
@@ -103,10 +109,11 @@ func _physics_process(delta):
 		
 		#Pierce
 		elif result.collider.is_in_group("Enemy") and can_pierce:
-			if pierce_left > 0:
-				pierce_left -= 1
-			else:
-				destroy()
+			var enemy : Enemy = result.collider
+			
+			if pierce_left <= 0 and not enemy.is_dead: destroy()
+			
+			pierce_left -= 1 if not enemy.is_dead else 0
 		
 		#Didnt pierce or bounce
 		else: 
@@ -130,8 +137,12 @@ func detect_surface(result : Dictionary):
 	pass
 
 
-func spawn_sound_at_position(owner : Node, positiuon : Vector3, sound : AudioStream):
-	pass
+func spawn_sound_at_position(_owner : Node, _position : Vector3, sound : AudioStream):
+	var sound_player = AudioStreamPlayer3D.new()
+	_owner.add_child(sound_player)
+	sound_player.stream = sound
+	sound_player.pitch_scale = randf_range(0.8, 1.2)
+	sound_player.play()
 
 
 func spawn_bullet_hole_at_position(result : Dictionary, hole : PackedScene):
@@ -143,4 +154,7 @@ func spawn_particle_at_position(result : Dictionary, particlescene : PackedScene
 
 
 func flyby_detection_body_entered(body : Node3D):
-	pass
+	if not body is Player: return
+	if not is_hit: return
+	
+	spawn_sound_at_position(get_tree().current_scene, global_position, sound_bullet_flyby)

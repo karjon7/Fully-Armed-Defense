@@ -2,15 +2,12 @@ res://entities/player/player.tscn
 res://static/save_load_data/save_load.gd
 res://static/environment.tres
 res://assets/arms/arm_datas/test_arm.tres
-res://shaders/glitch.gdshader
 res://shaders/crosshair_shader.tres
-res://scenes/maps/test_world.tscn
+res://shaders/hurt_shader.tres
+res://shaders/glitch.gdshader
+res://shaders/frosted_glass.tres
+res://scenes/maps/test_world/test_world.tscn
 res://assets/bullet/bullets/test_bullet.tscn
-res://entities/player/test.tres
-res://entities/player/HUD.gd
 res://entities/enemies/basic enemy/basic_enemy.tscn
-res://entities/enemies/basic enemy/basic_enemy.gd
 res://assets/bullet/bullet.gd
 res://entities/player/player.gd
-res://entities/enemies/enemy.gd
-res://assets/datas/arm_data.gd

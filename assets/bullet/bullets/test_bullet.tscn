@@ -1,6 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://1npkpeywkw07"]
+[gd_scene load_steps=9 format=3 uid="uid://1npkpeywkw07"]
 
 [ext_resource type="Script" path="res://assets/bullet/bullet.gd" id="1_8xsn5"]
+[ext_resource type="AudioStream" uid="uid://7bcofr7wewfw" path="res://assets/audio/bullet/flyby_audio/smallflyby1.wav" id="2_ymqdt"]
+[ext_resource type="AudioStream" uid="uid://cp647iu4xvxwu" path="res://assets/audio/bullet/flyby_audio/smallflyby2.wav" id="3_vca06"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vmnhs"]
+streams_count = 2
+stream_0/stream = ExtResource("2_ymqdt")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_vca06")
+stream_1/weight = 1.0
 
 [sub_resource type="Curve" id="Curve_7mgbk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.598901, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.884615, 0.0659341), 0.0, 0.0, 0, 0, Vector2(1, 0.021978), 0.0, 0.0, 0, 0]
@@ -17,13 +26,14 @@ material = SubResource("StandardMaterial3D_ueju8")
 curve = SubResource("Curve_7mgbk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_747li"]
-radius = 1.0
+radius = 2.0
 
 [node name="TestBullet" type="Node3D" node_paths=PackedStringArray("mesh", "flyby_detection", "light")]
 script = ExtResource("1_8xsn5")
 mesh = NodePath("Test")
 flyby_detection = NodePath("Area3D")
 light = NodePath("OmniLight3D")
+sound_bullet_flyby = SubResource("AudioStreamRandomizer_vmnhs")
 
 [node name="Test" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)

@@ -31,6 +31,7 @@ var crosshair_pos_lerp_speed : float = 5
 
 @export_group("Health")
 @export var healthy_color : Color = Color.GREEN
+@export var moderate_color : Color = Color.ORANGE
 @export var damaged_color : Color = Color.RED
 @export var health_lerp_speed : float = 10
 var old_health : float
@@ -71,13 +72,16 @@ func health(delta):
 	
 	health_label.text = "Health: %s" % [player.health]
 	health_bar.value = lerp(health_bar.value, health_normalized * 100, health_lerp_speed * delta)
-	health_bar.self_modulate = damaged_color.lerp(healthy_color, health_normalized)
+	health_bar.self_modulate = moderate_color.lerp(healthy_color, \
+		remap(health_normalized, 0.5, 1, 0, 1)) \
+	if health_normalized >= 0.5 else damaged_color.lerp(moderate_color, \
+		remap(health_normalized, 0, 0.5, 0, 1))
 	
 	if player.health < old_health:
 		damage_timer.start()
 	
 	if damage_timer.get_time_left() <= 0:
-			damage_bar.value = lerp(damage_bar.value, health_normalized * 100, health_lerp_speed * delta)
+			damage_bar.value = lerp(damage_bar.value, health_bar.value, health_lerp_speed * delta)
 	
 	old_health = player.health
 

@@ -16,7 +16,7 @@ collision_layer = 4
 script = ExtResource("1_l4kll")
 hit_label = NodePath("Label")
 label_timer = NodePath("Label/Timer")
-label_pos_lerp_speed = 20.0
+label_pos_lerp_speed = 25.0
 label_time = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
