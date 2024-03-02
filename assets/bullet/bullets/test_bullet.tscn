@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://1npkpeywkw07"]
+[gd_scene load_steps=34 format=3 uid="uid://1npkpeywkw07"]
 
 [ext_resource type="Script" path="res://assets/bullet/bullet.gd" id="1_8xsn5"]
 [ext_resource type="AudioStream" uid="uid://dobqyws28knwd" path="res://assets/audio/bullet/hit_audio/enemy_hit1.wav" id="2_2hrg4"]
+[ext_resource type="PackedScene" uid="uid://c3opt4qrcld2n" path="res://assets/arms/arm_particles/impact/test_impact.tscn" id="2_gmnx6"]
 [ext_resource type="AudioStream" uid="uid://vt32502emrni" path="res://assets/audio/bullet/hit_audio/generic_hit1.wav" id="2_jbfaj"]
 [ext_resource type="AudioStream" uid="uid://7bcofr7wewfw" path="res://assets/audio/bullet/flyby_audio/small_flyby1.wav" id="2_s50bs"]
 [ext_resource type="AudioStream" uid="uid://dyxd2ws8rljfj" path="res://assets/audio/bullet/hit_audio/generic_hit2.wav" id="3_6jxsb"]
@@ -95,7 +96,6 @@ point_count = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ueju8"]
 shading_mode = 0
-albedo_color = Color(1, 0.854902, 0, 1)
 disable_receive_shadows = true
 use_particle_trails = true
 
@@ -110,6 +110,7 @@ script = ExtResource("1_8xsn5")
 mesh = NodePath("Test")
 flyby_detection = NodePath("Area3D")
 light = NodePath("OmniLight3D")
+particle_bullet_hit = ExtResource("2_gmnx6")
 sound_bullet_hit = SubResource("AudioStreamRandomizer_dxpln")
 sound_bullet_enemy_hit = SubResource("AudioStreamRandomizer_fnkio")
 sound_bullet_flyby = SubResource("AudioStreamRandomizer_vmnhs")

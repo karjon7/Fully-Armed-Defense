@@ -1,6 +1,10 @@
+GPUParticles3D
+Node3D
+MeshInstance3D
+ArmParticles
+Bullet
 CollisionShape3D
 Area3D
-MeshInstance3D
 RigidBody3D
 AudioStreamPlayer3D
 ColorRect
@@ -8,7 +12,3 @@ VBoxContainer
 Label
 AudioStreamPlayer
 NavigationRegion3D
-VisibleOnScreenNotifier2D
-Timer
-CanvasLayer
-Enemy

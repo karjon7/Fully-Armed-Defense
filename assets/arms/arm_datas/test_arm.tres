@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="ArmData" load_steps=4 format=3 uid="uid://bxiy65ocexvna"]
+[gd_resource type="Resource" script_class="ArmData" load_steps=5 format=3 uid="uid://bxiy65ocexvna"]
 
 [ext_resource type="Script" path="res://assets/datas/arm_data.gd" id="1_71j30"]
 [ext_resource type="PackedScene" uid="uid://1npkpeywkw07" path="res://assets/bullet/bullets/test_bullet.tscn" id="1_iae1b"]
-[ext_resource type="AudioStream" uid="uid://bc4ib7xhoy0a5" path="res://assets/audio/bullet/shots_audio/small_shot1.wav" id="3_mqqgg"]
+[ext_resource type="PackedScene" uid="uid://bvaejd3lmi1jl" path="res://assets/arms/arm_particles/shooting/test_particles.tscn" id="2_uwh5q"]
+[ext_resource type="AudioStream" uid="uid://dr3tefv7rdar7" path="res://assets/audio/bullet/shots_audio/energy_shot1.wav" id="4_e6ku4"]
 
 [resource]
 script = ExtResource("1_71j30")
 build_name = "Test Arms"
-description = "For testing puposed only."
+description = "For testing puposes only."
 is_semi = false
 light_color = Color(1, 0.843137, 0, 1)
 light_energy = 0.25
@@ -16,11 +17,12 @@ shots_per_min = 1000
 recoil_type = "Light Recoil"
 shooting_type = "Bullets"
 shoot_scene = ExtResource("1_iae1b")
-shoot_sound = ExtResource("3_mqqgg")
-bullet_speed = 75.0
-bullet_damage = 1.0
+shoot_particles_scene = ExtResource("2_uwh5q")
+shoot_sound = ExtResource("4_e6ku4")
+bullet_speed = 50.0
+bullet_damage = 12.0
 bullet_knockback = 1.0
 bullet_range = 100.0
 bullet_pierce = 5
-bullet_bounces = 0
+bullet_bounces = 5
 min_bounce_angle = 0.0

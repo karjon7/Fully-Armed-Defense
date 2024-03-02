@@ -11,6 +11,7 @@ class_name Bullet
 
 @export_group("Particle")
 @export var particle_bullet_hit : PackedScene
+@export var particle_bullet_enemy_hit : PackedScene
 
 @export_group("Sound")
 @export var sound_bullet_hit : AudioStream
@@ -92,24 +93,25 @@ func _physics_process(delta):
 			if result.collider.is_in_group("Enemy") and not result.collider.is_dead:
 				player.money += bullet_damage
 				spawn_sound_at_position(result.collider, result.position, sound_bullet_enemy_hit, -10)
-				print("hit enemy")
 			
 			result.collider.damage(bullet_damage, result.position, bullet_fly_direction, bullet_knockback)
 		
+		#FIXME
 		if result.collider is CharacterBody3D:
 			result.collider.velocity += bullet_fly_direction * bullet_knockback
-			print("velocity added" + str(bullet_knockback))
 		
 		spawn_sound_at_position(result.collider, result.position, sound_bullet_hit)
+		spawn_particle_at_position(result, particle_bullet_hit)
 		
 		#Bounce
 		if not result.collider.is_in_group("Enemy") and can_bounce:
 			if bullet_fly_direction.angle_to(result.normal) >= deg_to_rad(min_bounce_angle) \
 			and bounces_left > 0 and total_distance > 0.75:
+				disable_flyby_detect = false
 				bullet_fly_direction = bullet_fly_direction.bounce(result.normal)
 				bounces_left -= 1
 				look_at(global_transform.origin - bullet_fly_direction, Vector3(1, 1, 0))
-				spawn_sound_at_position(result.collider, result.position, sound_bullet_ricochet, -15)
+				spawn_sound_at_position(result.collider, result.position, sound_bullet_ricochet, -10)
 			else:
 				destroy()
 		
@@ -141,16 +143,19 @@ func destroy():
 
 func spawn_sound_at_position(_owner : Node, _position : Vector3, sound : AudioStream, volume_db : float = 0):
 	var sound_player = AudioStreamPlayer3D.new()
+	
 	_owner.add_child(sound_player)
+	
 	sound_player.global_position = _position
 	sound_player.stream = sound
 	sound_player.volume_db = volume_db
+	sound_player.max_distance = 20
 	sound_player.set_bus("Bullet SFX")
-	sound_player.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_PHYSICS_STEP
+	sound_player.top_level = true
 	sound_player.play()
 	
-	await sound_player.finished
-	sound_player.queue_free()
+	sound_player.finished.connect(func(): sound_player.queue_free())
+	
 
 
 func spawn_bullet_hole_at_position(result : Dictionary, hole : PackedScene):
@@ -158,11 +163,20 @@ func spawn_bullet_hole_at_position(result : Dictionary, hole : PackedScene):
 
 
 func spawn_particle_at_position(result : Dictionary, particlescene : PackedScene):
-	pass
+	var particle : ArmParticles = particlescene.instantiate()
+	
+	result.collider.add_child(particle)
+	particle.top_level = true
+	particle.global_position = result.position
+	#particle.global_rotation = result.normal 
+	particle.look_at(result.position + result.normal, Vector3(1,1,0))
+	particle.color = color
+	
+	particle.emit_particles()
 
 
 func flyby_detection_body_entered(body : Node3D):
 	if not body is Player: return
-	if not is_hit and player: return #player bullet hasn't ricocheted hit
+	if disable_flyby_detect: return #player bullet hasn't ricocheted hit
 	
 	spawn_sound_at_position(get_tree().current_scene, global_position, sound_bullet_flyby)

@@ -55,7 +55,7 @@ const MAX_CAMERA_TILT_DEGREES = 2.5
 @export_subgroup("Heat")
 var is_overheated : bool = false
 var arm_temp : float = 20
-@export var can_overheat : bool = true
+@export var can_overheat : bool = false
 @export var base_arm_temp : float = 20
 @export var max_arm_temp : float = 1500
 @export var heat_loss_rate_per_sec : float = 250
@@ -178,8 +178,9 @@ func shoot_bullets():
 	animation_tree.set("parameters/Recoil State/transition_request", arm_data.recoil_type)
 	animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
-	#Instancing Bullet
+	#Instancing Bullet and Particles
 	var bullet : Bullet = arm_data.shoot_scene.instantiate()
+	var particles : ArmParticles = arm_data.shoot_particles_scene.instantiate()
 	
 	#Constant Player Assignment
 	if can_overheat: arm_temp += arm_data.heat_per_shot
@@ -205,19 +206,25 @@ func shoot_bullets():
 	fire_point.add_child(bullet)
 	bullet.top_level = true
 	
+	fire_point.add_child(particles)
+	particles.color = arm_data.light_color
+	particles.emit_particles()
+	
 	#Audio
 	var sound_player = AudioStreamPlayer3D.new()
+	
 	fire_point.add_child(sound_player)
+	
 	sound_player.stream = arm_data.shoot_sound
 	sound_player.pitch_scale = remap(arm_temp, base_arm_temp, max_arm_temp, 1, 1.1)
 	sound_player.set_bus("Bullet SFX")
 	sound_player.play()
 	
+	sound_player.finished.connect(func(): sound_player.queue_free())
+	
 	#Setup Timer
 	fire_rate_timer.start(60.0 / arm_data.shots_per_min)
 	
-	await sound_player.finished
-	sound_player.queue_free()
 
 
 func handle_shooting():
@@ -264,11 +271,8 @@ func handle_temperature(delta):
 	arm_cooling_audio.pitch_scale = remap(arm_temp, base_arm_temp, max_arm_temp, 1, 4)
 	arm_cooling_audio.volume_db = remap(arm_temp, base_arm_temp, max_arm_temp, -40, 0) - 10
 	
-	if not overheat_alarm_audio.playing and arm_temp / max_arm_temp > 0.75 \
-		and (not is_overheated or not overheat_timer.is_stopped()):
-		
-		get_tree().create_timer( (1 - arm_temp / max_arm_temp) / 0.5 )\
-		.timeout.connect(func():if not overheat_alarm_audio.playing: overheat_alarm_audio.play())
+	overheat_alarm_audio.volume_db = remap(arm_temp, base_arm_temp, max_arm_temp, -50, 0) - 20
+	if is_overheated and not overheat_alarm_audio.playing: overheat_alarm_audio.play()
 	
 	arm_temp = max(arm_temp - heat_loss_rate_per_sec / 60, base_arm_temp) \
 	if overheat_timer.time_left <= 0 else arm_temp
