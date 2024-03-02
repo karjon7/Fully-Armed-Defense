@@ -14,6 +14,7 @@ class_name Bullet
 
 @export_group("Sound")
 @export var sound_bullet_hit : AudioStream
+@export var sound_bullet_enemy_hit : AudioStream
 @export var sound_bullet_flyby : AudioStream
 @export var sound_bullet_ricochet : AudioStream
 
@@ -76,7 +77,6 @@ func _physics_process(delta):
 	
 	global_transform.origin = new_pos
 	
-	
 	#Cast ray from prev to new pos
 	var query = PhysicsRayQueryParameters3D.create(prev_pos, new_pos)
 	
@@ -91,6 +91,8 @@ func _physics_process(delta):
 		if result.collider.has_method("damage"):
 			if result.collider.is_in_group("Enemy") and not result.collider.is_dead:
 				player.money += bullet_damage
+				spawn_sound_at_position(result.collider, result.position, sound_bullet_enemy_hit, -10)
+				print("hit enemy")
 			
 			result.collider.damage(bullet_damage, result.position, bullet_fly_direction, bullet_knockback)
 		
@@ -98,7 +100,7 @@ func _physics_process(delta):
 			result.collider.velocity += bullet_fly_direction * bullet_knockback
 			print("velocity added" + str(bullet_knockback))
 		
-		detect_surface(result)
+		spawn_sound_at_position(result.collider, result.position, sound_bullet_hit)
 		
 		#Bounce
 		if not result.collider.is_in_group("Enemy") and can_bounce:
@@ -107,7 +109,7 @@ func _physics_process(delta):
 				bullet_fly_direction = bullet_fly_direction.bounce(result.normal)
 				bounces_left -= 1
 				look_at(global_transform.origin - bullet_fly_direction, Vector3(1, 1, 0))
-				#FIXME: spawn_sound_at_position()
+				spawn_sound_at_position(result.collider, result.position, sound_bullet_ricochet, -15)
 			else:
 				destroy()
 		
@@ -137,15 +139,13 @@ func destroy():
 	queue_free()
 
 
-func detect_surface(result : Dictionary):
-	pass
-
-
-func spawn_sound_at_position(_owner : Node, _position : Vector3, sound : AudioStream):
+func spawn_sound_at_position(_owner : Node, _position : Vector3, sound : AudioStream, volume_db : float = 0):
 	var sound_player = AudioStreamPlayer3D.new()
 	_owner.add_child(sound_player)
 	sound_player.global_position = _position
 	sound_player.stream = sound
+	sound_player.volume_db = volume_db
+	sound_player.set_bus("Bullet SFX")
 	sound_player.doppler_tracking = AudioStreamPlayer3D.DOPPLER_TRACKING_PHYSICS_STEP
 	sound_player.play()
 	

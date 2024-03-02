@@ -1,17 +1,93 @@
-[gd_scene load_steps=9 format=3 uid="uid://1npkpeywkw07"]
+[gd_scene load_steps=33 format=3 uid="uid://1npkpeywkw07"]
 
 [ext_resource type="Script" path="res://assets/bullet/bullet.gd" id="1_8xsn5"]
-[ext_resource type="AudioStream" uid="uid://7bcofr7wewfw" path="res://assets/audio/bullet/flyby_audio/smallflyby1.wav" id="2_ymqdt"]
-[ext_resource type="AudioStream" uid="uid://cp647iu4xvxwu" path="res://assets/audio/bullet/flyby_audio/smallflyby2.wav" id="3_vca06"]
+[ext_resource type="AudioStream" uid="uid://dobqyws28knwd" path="res://assets/audio/bullet/hit_audio/enemy_hit1.wav" id="2_2hrg4"]
+[ext_resource type="AudioStream" uid="uid://vt32502emrni" path="res://assets/audio/bullet/hit_audio/generic_hit1.wav" id="2_jbfaj"]
+[ext_resource type="AudioStream" uid="uid://7bcofr7wewfw" path="res://assets/audio/bullet/flyby_audio/small_flyby1.wav" id="2_s50bs"]
+[ext_resource type="AudioStream" uid="uid://dyxd2ws8rljfj" path="res://assets/audio/bullet/hit_audio/generic_hit2.wav" id="3_6jxsb"]
+[ext_resource type="AudioStream" uid="uid://cp647iu4xvxwu" path="res://assets/audio/bullet/flyby_audio/small_flyby2.wav" id="3_l4b4f"]
+[ext_resource type="AudioStream" uid="uid://4k40w8ppmhr6" path="res://assets/audio/bullet/hit_audio/enemy_hit2.wav" id="3_u1dcl"]
+[ext_resource type="AudioStream" uid="uid://utfkjxrbh6wu" path="res://assets/audio/bullet/hit_audio/enemy_hit3.wav" id="4_3w6b0"]
+[ext_resource type="AudioStream" uid="uid://dt7dfn4jofjl8" path="res://assets/audio/bullet/hit_audio/generic_hit3.wav" id="4_vy2a1"]
+[ext_resource type="AudioStream" uid="uid://cvq7h024puexp" path="res://assets/audio/bullet/recochet_audio/generic_ricochet1.wav" id="5_0tih4"]
+[ext_resource type="AudioStream" uid="uid://cx21rmt8ghssy" path="res://assets/audio/bullet/hit_audio/generic_hit4.wav" id="5_aol5j"]
+[ext_resource type="AudioStream" uid="uid://uystxwv2dyo" path="res://assets/audio/bullet/hit_audio/enemy_hit4.wav" id="5_nmxdv"]
+[ext_resource type="AudioStream" uid="uid://dnx57a7lignqr" path="res://assets/audio/bullet/recochet_audio/generic_ricochet2.wav" id="6_7o1cl"]
+[ext_resource type="AudioStream" uid="uid://b7jt3cbwo40hl" path="res://assets/audio/bullet/hit_audio/enemy_hit5.wav" id="6_p4rk2"]
+[ext_resource type="AudioStream" uid="uid://b3yvvdej63n2h" path="res://assets/audio/bullet/hit_audio/generic_hit5.wav" id="6_ynf7q"]
+[ext_resource type="AudioStream" uid="uid://b6ufj1uugn22" path="res://assets/audio/bullet/hit_audio/generic_hit6.wav" id="7_52wsc"]
+[ext_resource type="AudioStream" uid="uid://wjoqc4vfp0md" path="res://assets/audio/bullet/hit_audio/enemy_hit6.wav" id="7_dely2"]
+[ext_resource type="AudioStream" uid="uid://dkvgv2cpmlq7q" path="res://assets/audio/bullet/recochet_audio/generic_ricochet3.wav" id="7_m6i1x"]
+[ext_resource type="AudioStream" uid="uid://chh1xsows3xvk" path="res://assets/audio/bullet/hit_audio/enemy_hit7.wav" id="8_7jir5"]
+[ext_resource type="AudioStream" uid="uid://dqwssjschqdmv" path="res://assets/audio/bullet/hit_audio/generic_hit7.wav" id="8_7w05g"]
+[ext_resource type="AudioStream" uid="uid://crlqn6sllw71w" path="res://assets/audio/bullet/hit_audio/generic_hit8.wav" id="9_0hby2"]
+[ext_resource type="AudioStream" uid="uid://1wy2gk2gvh6g" path="res://assets/audio/bullet/hit_audio/enemy_hit8.wav" id="9_2vyyd"]
+[ext_resource type="AudioStream" uid="uid://b20vg36ygp6t2" path="res://assets/audio/bullet/hit_audio/enemy_hit9.wav" id="10_nyjkk"]
+[ext_resource type="AudioStream" uid="uid://bebkwuwcamwlc" path="res://assets/audio/bullet/hit_audio/generic_hit9.wav" id="10_py3ql"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dxpln"]
+random_pitch = 1.5
+streams_count = 9
+stream_0/stream = ExtResource("2_jbfaj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_6jxsb")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_vy2a1")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_aol5j")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("6_ynf7q")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("7_52wsc")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("8_7w05g")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("9_0hby2")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("10_py3ql")
+stream_8/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fnkio"]
+random_pitch = 1.5
+streams_count = 9
+stream_0/stream = ExtResource("2_2hrg4")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_u1dcl")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("4_3w6b0")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("5_nmxdv")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("6_p4rk2")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("7_dely2")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("8_7jir5")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("9_2vyyd")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("10_nyjkk")
+stream_8/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vmnhs"]
 playback_mode = 1
-random_pitch = 2.0
+random_pitch = 1.5
 streams_count = 2
-stream_0/stream = ExtResource("2_ymqdt")
+stream_0/stream = ExtResource("2_s50bs")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("3_vca06")
+stream_1/stream = ExtResource("3_l4b4f")
 stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bmh7d"]
+playback_mode = 1
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("5_0tih4")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_7o1cl")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_m6i1x")
+stream_2/weight = 1.0
 
 [sub_resource type="Curve" id="Curve_7mgbk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.598901, 0.032967), 0.0, 0.0, 0, 0, Vector2(0.884615, 0.0659341), 0.0, 0.0, 0, 0, Vector2(1, 0.021978), 0.0, 0.0, 0, 0]
@@ -28,14 +104,16 @@ material = SubResource("StandardMaterial3D_ueju8")
 curve = SubResource("Curve_7mgbk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_747li"]
-radius = 1.0
 
 [node name="TestBullet" type="Node3D" node_paths=PackedStringArray("mesh", "flyby_detection", "light")]
 script = ExtResource("1_8xsn5")
 mesh = NodePath("Test")
 flyby_detection = NodePath("Area3D")
 light = NodePath("OmniLight3D")
+sound_bullet_hit = SubResource("AudioStreamRandomizer_dxpln")
+sound_bullet_enemy_hit = SubResource("AudioStreamRandomizer_fnkio")
 sound_bullet_flyby = SubResource("AudioStreamRandomizer_vmnhs")
+sound_bullet_ricochet = SubResource("AudioStreamRandomizer_bmh7d")
 
 [node name="Test" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)

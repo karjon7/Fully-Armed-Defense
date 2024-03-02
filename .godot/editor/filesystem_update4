@@ -11,3 +11,5 @@ res://assets/bullet/bullets/test_bullet.tscn
 res://entities/enemies/basic enemy/basic_enemy.tscn
 res://assets/bullet/bullet.gd
 res://entities/player/player.gd
+res://assets/maps/test_world.tscn
+res://static/default_bus_layout.tres

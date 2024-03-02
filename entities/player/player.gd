@@ -55,6 +55,7 @@ const MAX_CAMERA_TILT_DEGREES = 2.5
 @export_subgroup("Heat")
 var is_overheated : bool = false
 var arm_temp : float = 20
+@export var can_overheat : bool = true
 @export var base_arm_temp : float = 20
 @export var max_arm_temp : float = 1500
 @export var heat_loss_rate_per_sec : float = 250
@@ -181,7 +182,7 @@ func shoot_bullets():
 	var bullet : Bullet = arm_data.shoot_scene.instantiate()
 	
 	#Constant Player Assignment
-	arm_temp += arm_data.heat_per_shot
+	if can_overheat: arm_temp += arm_data.heat_per_shot
 	
 	#General Shot Assignment
 	bullet.color = arm_data.light_color
@@ -208,7 +209,8 @@ func shoot_bullets():
 	var sound_player = AudioStreamPlayer3D.new()
 	fire_point.add_child(sound_player)
 	sound_player.stream = arm_data.shoot_sound
-	sound_player.volume_db -= 25
+	sound_player.pitch_scale = remap(arm_temp, base_arm_temp, max_arm_temp, 1, 1.1)
+	sound_player.set_bus("Bullet SFX")
 	sound_player.play()
 	
 	#Setup Timer

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cp647iu4xvxwu"
-path="res://.godot/imported/smallflyby2.wav-f2d1ced6db2759b5e5fa65ca2f0f9016.sample"
+path="res://.godot/imported/small_flyby2.wav-003ec9d5d125724d76a5e9f299bbe0aa.sample"
 
 [deps]
 
-source_file="res://assets/audio/bullet/flyby_audio/smallflyby2.wav"
-dest_files=["res://.godot/imported/smallflyby2.wav-f2d1ced6db2759b5e5fa65ca2f0f9016.sample"]
+source_file="res://assets/audio/bullet/flyby_audio/small_flyby2.wav"
+dest_files=["res://.godot/imported/small_flyby2.wav-003ec9d5d125724d76a5e9f299bbe0aa.sample"]
 
 [params]
 
