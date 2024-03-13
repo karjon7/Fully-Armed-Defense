@@ -1,8 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://c3opt4qrcld2n"]
+[gd_scene load_steps=34 format=3 uid="uid://c6ovpwfhicihk"]
 
-[ext_resource type="Script" path="res://assets/arms/arm_particles/arm_particles.gd" id="1_8cq8y"]
-[ext_resource type="Texture2D" uid="uid://tg25vt8cmg77" path="res://assets/images/particles/Flare01.png" id="2_0ne2q"]
-[ext_resource type="Texture2D" uid="uid://dq2lmkvsurri7" path="res://assets/images/particles/Flare00.PNG" id="3_jnlgu"]
+[ext_resource type="Script" path="res://assets/arms/arm_particles/arm_particles.gd" id="1_lgpaw"]
+[ext_resource type="Texture2D" uid="uid://tg25vt8cmg77" path="res://assets/images/particles/Flare01.png" id="2_cgmqi"]
+[ext_resource type="Texture2D" uid="uid://dq2lmkvsurri7" path="res://assets/images/particles/Flare00.PNG" id="3_wa58m"]
 
 [sub_resource type="Curve" id="Curve_l042x"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -33,7 +33,8 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_0ne2q")
+albedo_color = Color(3, 0, 0, 1)
+albedo_texture = ExtResource("2_cgmqi")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -71,7 +72,8 @@ transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_jnlgu")
+albedo_color = Color(3, 0, 0, 1)
+albedo_texture = ExtResource("3_wa58m")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -120,16 +122,17 @@ alpha_curve = SubResource("CurveTexture_kpgr8")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rwsa3"]
 load_path = "res://.godot/imported/Flare00.PNG-e9c1be795898b4dafcd2aec2eda21942.s3tc.ctex"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl8dm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hfqk"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
+albedo_color = Color(3, 0, 0, 1)
 albedo_texture = SubResource("CompressedTexture2D_rwsa3")
 billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_1qao4"]
-material = SubResource("StandardMaterial3D_kl8dm")
+material = SubResource("StandardMaterial3D_8hfqk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_42qac"]
 particle_flag_align_y = true
@@ -141,6 +144,18 @@ scale_min = 0.01
 scale_max = 0.01
 scale_curve = SubResource("CurveXYZTexture_gxyh0")
 alpha_curve = SubResource("CurveTexture_kpgr8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kl8dm"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_rwsa3")
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ufyxg"]
+material = SubResource("StandardMaterial3D_kl8dm")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qlmia"]
 load_path = "res://.godot/imported/Flare00.PNG-e9c1be795898b4dafcd2aec2eda21942.s3tc.ctex"
@@ -156,9 +171,9 @@ billboard_keep_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_3di2d"]
 material = SubResource("StandardMaterial3D_gu5c2")
 
-[node name="TestImpact" type="Node3D" node_paths=PackedStringArray("dont_color")]
-script = ExtResource("1_8cq8y")
-dont_color = [NodePath("Flare"), NodePath("Debris"), NodePath("Sparks")]
+[node name="EnemyImpact" type="Node3D" node_paths=PackedStringArray("dont_color")]
+script = ExtResource("1_lgpaw")
+dont_color = [NodePath("Flare"), NodePath("Debris"), NodePath("Sparks"), NodePath("SmallSparks")]
 
 [node name="Flare" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.125)
@@ -182,7 +197,7 @@ draw_pass_1 = SubResource("QuadMesh_1wapq")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 10
+amount = 15
 lifetime = 0.15
 one_shot = true
 explosiveness = 1.0
@@ -196,7 +211,7 @@ lifetime = 0.15
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_42qac")
-draw_pass_1 = SubResource("QuadMesh_1qao4")
+draw_pass_1 = SubResource("QuadMesh_ufyxg")
 
 [node name="SparksColored" type="GPUParticles3D" parent="."]
 emitting = false

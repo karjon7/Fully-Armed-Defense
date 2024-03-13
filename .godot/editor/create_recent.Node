@@ -1,6 +1,7 @@
+MeshInstance3D
+Decal
 GPUParticles3D
 Node3D
-MeshInstance3D
 ArmParticles
 Bullet
 CollisionShape3D
@@ -11,4 +12,3 @@ ColorRect
 VBoxContainer
 Label
 AudioStreamPlayer
-NavigationRegion3D

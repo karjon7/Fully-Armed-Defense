@@ -67,7 +67,7 @@ func _ready():
 	
 	flyby_detection.body_entered.connect(flyby_detection_body_entered)
 	flyby_detection.collision_layer = 0
-	flyby_detection.collision_mask = pow(2, 2 - 1)
+	flyby_detection.collision_mask = int(pow(2, 2 - 1))
 	
 	get_tree().create_timer(life_time).timeout.connect(destroy)
 
@@ -101,7 +101,11 @@ func _physics_process(delta):
 			result.collider.velocity += bullet_fly_direction * bullet_knockback
 		
 		spawn_sound_at_position(result.collider, result.position, sound_bullet_hit)
-		spawn_particle_at_position(result, particle_bullet_hit)
+		
+		spawn_particle_at_position(result, particle_bullet_hit) \
+		if not result.collider.is_in_group("Enemy")\
+		else spawn_particle_at_position(result, particle_bullet_enemy_hit)
+		
 		
 		#Bounce
 		if not result.collider.is_in_group("Enemy") and can_bounce:

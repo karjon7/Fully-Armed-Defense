@@ -1,12 +1,13 @@
-[gd_scene load_steps=34 format=3 uid="uid://1npkpeywkw07"]
+[gd_scene load_steps=35 format=3 uid="uid://1npkpeywkw07"]
 
 [ext_resource type="Script" path="res://assets/bullet/bullet.gd" id="1_8xsn5"]
+[ext_resource type="PackedScene" uid="uid://c3opt4qrcld2n" path="res://assets/arms/arm_particles/impact/impact_particles1.tscn" id="2_0dxj2"]
 [ext_resource type="AudioStream" uid="uid://dobqyws28knwd" path="res://assets/audio/bullet/hit_audio/enemy_hit1.wav" id="2_2hrg4"]
-[ext_resource type="PackedScene" uid="uid://c3opt4qrcld2n" path="res://assets/arms/arm_particles/impact/test_impact.tscn" id="2_gmnx6"]
 [ext_resource type="AudioStream" uid="uid://vt32502emrni" path="res://assets/audio/bullet/hit_audio/generic_hit1.wav" id="2_jbfaj"]
 [ext_resource type="AudioStream" uid="uid://7bcofr7wewfw" path="res://assets/audio/bullet/flyby_audio/small_flyby1.wav" id="2_s50bs"]
 [ext_resource type="AudioStream" uid="uid://dyxd2ws8rljfj" path="res://assets/audio/bullet/hit_audio/generic_hit2.wav" id="3_6jxsb"]
 [ext_resource type="AudioStream" uid="uid://cp647iu4xvxwu" path="res://assets/audio/bullet/flyby_audio/small_flyby2.wav" id="3_l4b4f"]
+[ext_resource type="PackedScene" uid="uid://c6ovpwfhicihk" path="res://assets/arms/arm_particles/impact/enemy_impact_particles1.tscn" id="3_q707y"]
 [ext_resource type="AudioStream" uid="uid://4k40w8ppmhr6" path="res://assets/audio/bullet/hit_audio/enemy_hit2.wav" id="3_u1dcl"]
 [ext_resource type="AudioStream" uid="uid://utfkjxrbh6wu" path="res://assets/audio/bullet/hit_audio/enemy_hit3.wav" id="4_3w6b0"]
 [ext_resource type="AudioStream" uid="uid://dt7dfn4jofjl8" path="res://assets/audio/bullet/hit_audio/generic_hit3.wav" id="4_vy2a1"]
@@ -110,7 +111,8 @@ script = ExtResource("1_8xsn5")
 mesh = NodePath("Test")
 flyby_detection = NodePath("Area3D")
 light = NodePath("OmniLight3D")
-particle_bullet_hit = ExtResource("2_gmnx6")
+particle_bullet_hit = ExtResource("2_0dxj2")
+particle_bullet_enemy_hit = ExtResource("3_q707y")
 sound_bullet_hit = SubResource("AudioStreamRandomizer_dxpln")
 sound_bullet_enemy_hit = SubResource("AudioStreamRandomizer_fnkio")
 sound_bullet_flyby = SubResource("AudioStreamRandomizer_vmnhs")

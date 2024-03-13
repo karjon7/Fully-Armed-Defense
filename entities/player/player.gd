@@ -154,8 +154,8 @@ func _physics_process(delta):
 	can_shoot = !arm_clearance.has_overlapping_bodies()
 	
 	handle_shooting()
+	handle_temperature()
 	handle_arms(delta)
-	handle_temperature(delta)
 	handle_camera(delta)
 	handle_movement(delta)
 
@@ -264,7 +264,7 @@ func handle_arms(delta):
 	arm_model.rotation_degrees.y = sway_x - 180
 
 
-func handle_temperature(delta):
+func handle_temperature():
 	if arm_temp <= base_arm_temp: is_overheated = false
 	
 	#Audio
