@@ -17,6 +17,18 @@ var is_dead : bool = false
 
 var bullet_hit_pos : Vector3 = Vector3.ZERO
 
+#Movement
+@export_group("Movement")
+@export var gravity_on = true
+@export var can_move = true
+
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+const SPEED = 7.5
+const SPRINT_SPEED = 10.0
+const JUMP_VELOCITY = 4.5
+const ACCELERATION = 10.0
+const AIR_ACCELERATION = 3.0
+
 #Hit Label
 @export_group("Hit Label")
 @export var label_pos_lerp_speed : float = 15
@@ -41,6 +53,28 @@ func _process(delta):
 	handle_hit_label(delta)
 	
 	
+
+
+func _physics_process(delta):
+	handle_movement(delta)
+
+
+func handle_movement(delta):
+	var direction = Vector3.ZERO
+	
+	# Add Gravity
+	if not is_on_floor() and gravity_on:
+		velocity.y -= gravity * delta
+	
+	#Calculate Movement
+	var wish_velocity = direction * SPEED if can_move else Vector3.ZERO
+	
+	var accel = ACCELERATION if is_on_floor() else AIR_ACCELERATION
+	
+	velocity.x = velocity.lerp(wish_velocity, accel * delta).x
+	velocity.z = velocity.lerp(wish_velocity, accel * delta).z
+	
+	move_and_slide()
 
 
 func handle_hit_label(delta):
@@ -72,7 +106,7 @@ func handle_hit_label(delta):
 	hit_label.position = new_label_pos
 
 
-func damage(damage_value : float, hit_pos : Vector3, bullet_direction : Vector3, knockback_force : float):
+func damage(damage_value : float, hit_pos : Vector3, bullet_direction : Vector3):
 	if is_dead: return
 	
 	damage_taken.emit()
@@ -85,9 +119,12 @@ func damage(damage_value : float, hit_pos : Vector3, bullet_direction : Vector3,
 	
 	bullet_hit_pos = hit_pos
 	
+	
+	#Label
 	label_timer.start(label_time)
 	label_damage += new_damage 
 	show_label = true
+	
 
 
 func dead():

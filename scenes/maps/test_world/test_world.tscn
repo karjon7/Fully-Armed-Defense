@@ -58,15 +58,20 @@ can_overheat = true
 
 [node name="BasicEnemy" parent="." instance=ExtResource("5_6vxhx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -20.5)
+invincible = true
 
 [node name="BasicEnemy2" parent="." instance=ExtResource("5_6vxhx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -20.5)
+invincible = true
 
 [node name="BasicEnemy3" parent="." instance=ExtResource("5_6vxhx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -20.5)
+invincible = true
 
 [node name="BasicEnemy4" parent="." instance=ExtResource("5_6vxhx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -20.5)
+invincible = true
 
 [node name="BasicEnemy5" parent="." instance=ExtResource("5_6vxhx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -20.5)
+invincible = true

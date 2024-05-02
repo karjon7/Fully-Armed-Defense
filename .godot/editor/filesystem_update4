@@ -9,3 +9,8 @@ res://shaders/hurt_shader.tres
 res://entities/player/player.tscn
 res://assets/bullet/bullets/test_bullet.tscn
 res://entities/enemies/basic enemy/basic_enemy.tscn
+res://assets/arms/arm_particles/shooting/shooting_particles2.tscn
+res://assets/arms/arm_particles/shooting/shooting_particles1.tscn
+res://entities/enemies/enemy.gd
+res://assets/datas/arm_data.gd
+res://assets/bullet/bullet.gd

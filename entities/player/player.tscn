@@ -578,7 +578,7 @@ max_space = 2.0
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d48nq"]
-graph_offset = Vector2(-881.694, -214.794)
+graph_offset = Vector2(-528.616, 50.671)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_t5r7p")
 nodes/Animation/position = Vector2(-700, 260)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ueprh")
@@ -720,9 +720,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.044674, -0.384227, 0.698229, 0.60237)
+bones/6/rotation = Quaternion(-0.043782, -0.383193, 0.698797, 0.602436)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.348644, -0.551016, -0.174896, 0.737727)
+bones/7/rotation = Quaternion(0.34669, -0.552247, -0.172282, 0.738342)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -736,7 +736,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0418763, -0.00627434, 0.999103, 0.99765, 0.0545375, -0.0414728, -0.0542282, 0.998492, 0.00854333, -0.340548, -0.173541, 0.158886)
+transform = Transform3D(0.0422275, -0.00547609, 0.999093, 0.99786, 0.0501905, -0.0419003, -0.0499154, 0.998725, 0.00758365, -0.340378, -0.172839, 0.159536)
 bone_name = "forearm.R"
 bone_idx = 7
 

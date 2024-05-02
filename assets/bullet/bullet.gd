@@ -94,11 +94,11 @@ func _physics_process(delta):
 				player.money += bullet_damage
 				spawn_sound_at_position(result.collider, result.position, sound_bullet_enemy_hit, -10)
 			
-			result.collider.damage(bullet_damage, result.position, bullet_fly_direction, bullet_knockback)
+			result.collider.damage(bullet_damage, result.position, bullet_fly_direction)
 		
-		#FIXME
 		if result.collider is CharacterBody3D:
-			result.collider.velocity += bullet_fly_direction * bullet_knockback
+			result.collider.velocity -= bullet_fly_direction * bullet_knockback
+			print(result.collider.velocity)
 		
 		spawn_sound_at_position(result.collider, result.position, sound_bullet_hit)
 		

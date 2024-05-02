@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/datas/arm_data.gd" id="1_71j30"]
 [ext_resource type="PackedScene" uid="uid://1npkpeywkw07" path="res://assets/bullet/bullets/test_bullet.tscn" id="1_iae1b"]
-[ext_resource type="PackedScene" uid="uid://bvaejd3lmi1jl" path="res://assets/arms/arm_particles/shooting/shooting_particles2.tscn" id="2_2g3a2"]
+[ext_resource type="PackedScene" uid="uid://bvaejd3lmi1jl" path="res://assets/arms/arm_particles/shooting/bullet_shooting_particles.tscn" id="2_k3d8q"]
 [ext_resource type="AudioStream" uid="uid://dr3tefv7rdar7" path="res://assets/audio/bullet/shots_audio/energy_shot1.wav" id="4_e6ku4"]
 
 [resource]
@@ -17,11 +17,11 @@ shots_per_min = 1000
 recoil_type = "Light Recoil"
 shooting_type = "Bullets"
 shoot_scene = ExtResource("1_iae1b")
-shoot_particles_scene = ExtResource("2_2g3a2")
+shoot_particles_scene = ExtResource("2_k3d8q")
 shoot_sound = ExtResource("4_e6ku4")
 bullet_speed = 50.0
 bullet_damage = 7.0
-bullet_knockback = 1.0
+bullet_knockback = 0.0
 bullet_range = 100.0
 bullet_pierce = 5
 bullet_bounces = 5
