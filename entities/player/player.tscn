@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="Resource" uid="uid://bxiy65ocexvna" path="res://assets/arms/arm_datas/test_arm.tres" id="2_of7qa"]
 [ext_resource type="PackedScene" uid="uid://cow84b2o7oa7b" path="res://assets/models/blender/arm_model.blend" id="2_s4flv"]
-[ext_resource type="Script" path="res://static/debug/debug_hud.gd" id="3_iccx7"]
 [ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="4_efegj"]
 [ext_resource type="Script" path="res://entities/player/HUD.gd" id="4_ob7ph"]
 [ext_resource type="AudioStream" uid="uid://cns2y172111gn" path="res://assets/audio/player/heat_warning.wav" id="4_x05se"]
@@ -27,7 +26,10 @@ height = 0.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_xlr05"]
 size = Vector3(0.172, 0.356, 0.518)
 
-[sub_resource type="Animation" id="Animation_udgr1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrwvh"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_d3onh"]
 resource_name = "idle_pose"
 length = 0.0166667
 tracks/0/type = "rotation_3d"
@@ -73,7 +75,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_mgjhi"]
+[sub_resource type="Animation" id="Animation_ypack"]
 resource_name = "melee"
 length = 0.5
 tracks/0/type = "rotation_3d"
@@ -119,7 +121,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, -0.0652311, -0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_krlxn"]
+[sub_resource type="Animation" id="Animation_k07g4"]
 resource_name = "shoot_high_recoil"
 length = 0.666667
 tracks/0/type = "rotation_3d"
@@ -165,7 +167,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_a0kch"]
+[sub_resource type="Animation" id="Animation_nn2uy"]
 resource_name = "shoot_low_recoil"
 length = 0.416667
 tracks/0/type = "rotation_3d"
@@ -211,7 +213,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_uulj8"]
+[sub_resource type="Animation" id="Animation_11xmr"]
 resource_name = "shoot_med_recoil"
 length = 0.583333
 tracks/0/type = "rotation_3d"
@@ -257,7 +259,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_xsp86"]
+[sub_resource type="Animation" id="Animation_8sko5"]
 resource_name = "shoot_pose"
 length = 0.0166667
 tracks/0/type = "rotation_3d"
@@ -303,7 +305,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_5bpe3"]
+[sub_resource type="Animation" id="Animation_2wyh6"]
 resource_name = "idle_loop"
 length = 4.0
 loop_mode = 1
@@ -350,7 +352,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_wq8du"]
+[sub_resource type="Animation" id="Animation_pxusq"]
 resource_name = "run_loop"
 length = 0.666667
 loop_mode = 1
@@ -397,7 +399,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00957762, -0.0654311, -0.121378, 0.990401, 0.0333333, 1, 0.0142512, -0.0660032, -0.121068, 0.990345, 0.0666667, 1, 0.0314046, -0.0680905, -0.119906, 0.989949, 0.1, 1, 0.0567607, -0.0711407, -0.118122, 0.98882, 0.133333, 1, 0.0876096, -0.0747945, -0.115843, 0.986565, 0.166667, 1, 0.121155, -0.0786959, -0.113229, 0.98301, 0.2, 1, 0.154559, -0.0825061, -0.110483, 0.978314, 0.233333, 1, 0.185033, -0.0859158, -0.107853, 0.97301, 0.266667, 1, 0.209904, -0.0886512, -0.105616, 0.96795, 0.3, 1, 0.22664, -0.0904675, -0.104065, 0.964168, 0.333333, 1, 0.232774, -0.0911282, -0.103487, 0.962706, 0.366667, 1, 0.22664, -0.0904675, -0.104065, 0.964168, 0.4, 1, 0.209904, -0.0886512, -0.105616, 0.96795, 0.433333, 1, 0.185033, -0.0859158, -0.107853, 0.97301, 0.466667, 1, 0.154559, -0.0825061, -0.110483, 0.978314, 0.5, 1, 0.121155, -0.0786959, -0.113229, 0.98301, 0.533333, 1, 0.0876096, -0.0747945, -0.115843, 0.986565, 0.566667, 1, 0.0567607, -0.0711407, -0.118122, 0.98882, 0.6, 1, 0.0314046, -0.0680905, -0.119906, 0.98995, 0.633333, 1, 0.0142512, -0.0660032, -0.121068, 0.990345, 0.666667, 1, 0.00794585, -0.0652311, -0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_n844c"]
+[sub_resource type="Animation" id="Animation_422ir"]
 resource_name = "shoot_laser_loop"
 length = 4.0
 loop_mode = 1
@@ -444,7 +446,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.0266495, -0.0443959, -0.588323, 0.806966, 0.0333333, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 0.0666667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.1, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.133333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.166667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.2, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 0.233333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.266667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.3, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 0.333333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.366667, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 0.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.433333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.466667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.5, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 0.533333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.566667, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 0.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.633333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.666667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.7, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.733333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.766667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.8, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.833333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 0.866667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.9, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 0.933333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.966667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.03333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.06667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.1, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.13333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.16667, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 1.2, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.23333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.26667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.3, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.33333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.36667, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 1.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.43333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.46667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.5, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.53333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.56667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.63333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.66667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.7, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 1.73333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.76667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.8, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.83333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.86667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.9, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 1.93333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.96667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 2.03333, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 2.06667, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 2.1, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.13333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.16667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.2, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.23333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.26667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.3, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 2.33333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.36667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.43333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.46667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.5, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.53333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.56667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.63333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.66667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.7, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.73333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.76667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.8, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.83333, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 2.86667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.9, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 2.93333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.96667, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 3, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.03333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.06667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.1, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.13333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.16667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.2, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.23333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.26667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.3, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.33333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.36667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.43333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.46667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.5, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 3.53333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.56667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.63333, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 3.66667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.7, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.73333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.76667, 1, 0.014641, -0.0356383, -0.588919, 0.807274, 3.8, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 3.83333, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.86667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.9, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 3.93333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.96667, 1, 0.014641, -0.0356382, -0.588919, 0.807274, 4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481)
 
-[sub_resource type="Animation" id="Animation_fylyf"]
+[sub_resource type="Animation" id="Animation_gkb0j"]
 resource_name = "walk_loop"
 length = 2.0
 loop_mode = 1
@@ -491,18 +493,18 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_comw2"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ohab2"]
 _data = {
-"idle": SubResource("Animation_5bpe3"),
-"idle_pose": SubResource("Animation_udgr1"),
-"melee": SubResource("Animation_mgjhi"),
-"run": SubResource("Animation_wq8du"),
-"shoot_high_recoil": SubResource("Animation_krlxn"),
-"shoot_laser": SubResource("Animation_n844c"),
-"shoot_low_recoil": SubResource("Animation_a0kch"),
-"shoot_med_recoil": SubResource("Animation_uulj8"),
-"shoot_pose": SubResource("Animation_xsp86"),
-"walk": SubResource("Animation_fylyf")
+"idle": SubResource("Animation_2wyh6"),
+"idle_pose": SubResource("Animation_d3onh"),
+"melee": SubResource("Animation_ypack"),
+"run": SubResource("Animation_pxusq"),
+"shoot_high_recoil": SubResource("Animation_k07g4"),
+"shoot_laser": SubResource("Animation_422ir"),
+"shoot_low_recoil": SubResource("Animation_nn2uy"),
+"shoot_med_recoil": SubResource("Animation_11xmr"),
+"shoot_pose": SubResource("Animation_8sko5"),
+"walk": SubResource("Animation_gkb0j")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ueprh"]
@@ -578,7 +580,7 @@ max_space = 2.0
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d48nq"]
-graph_offset = Vector2(-528.616, 50.671)
+graph_offset = Vector2(-478.218, 45.2356)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_t5r7p")
 nodes/Animation/position = Vector2(-700, 260)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ueprh")
@@ -700,12 +702,28 @@ collision_mask = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00510305, 0.0563759, -0.221807)
 shape = SubResource("BoxShape3D_xlr05")
 
+[node name="MeleeBox" type="Area3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+collision_layer = 2
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/MeleeBox"]
+shape = SubResource("BoxShape3D_rrwvh")
+
 [node name="ViewCast" type="RayCast3D" parent="Camera3D"]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -100)
 collision_mask = 5
+hit_from_inside = true
 debug_shape_custom_color = Color(0, 0, 0, 0)
 debug_shape_thickness = 1
+
+[node name="InteractReach" type="RayCast3D" parent="Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -3)
+collision_mask = 8
 
 [node name="arm_model" parent="Camera3D" instance=ExtResource("2_s4flv")]
 unique_name_in_owner = true
@@ -720,9 +738,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.043782, -0.383193, 0.698797, 0.602436)
+bones/6/rotation = Quaternion(-0.0406938, -0.379606, 0.700752, 0.602652)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.34669, -0.552247, -0.172282, 0.738342)
+bones/7/rotation = Quaternion(0.339889, -0.556458, -0.163212, 0.740399)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -736,7 +754,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0422275, -0.00547609, 0.999093, 0.99786, 0.0501905, -0.0419003, -0.0499154, 0.998725, 0.00758365, -0.340378, -0.172839, 0.159536)
+transform = Transform3D(0.0435237, -0.00274684, 0.999049, 0.99844, 0.0351226, -0.0434005, -0.0349699, 0.999379, 0.00427124, -0.339783, -0.170395, 0.161769)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -761,7 +779,7 @@ autoplay = "idle"
 unique_name_in_owner = true
 root_node = NodePath("%arm_model")
 libraries = {
-"": SubResource("AnimationLibrary_comw2")
+"": SubResource("AnimationLibrary_ohab2")
 }
 tree_root = SubResource("AnimationNodeBlendTree_d48nq")
 anim_player = NodePath("../Camera3D/arm_model/AnimationPlayer")
@@ -772,7 +790,7 @@ parameters/Melee/active = false
 parameters/Melee/internal_active = false
 parameters/Melee/request = 0
 "parameters/Recoil State/current_state" = "Light Recoil"
-"parameters/Recoil State/transition_request" = "Light Recoil"
+"parameters/Recoil State/transition_request" = ""
 "parameters/Recoil State/current_index" = 0
 parameters/Shoot/active = false
 parameters/Shoot/internal_active = false
@@ -954,6 +972,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
+[node name="InteractLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer/Center"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Press E to interact"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="RightSide" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -977,6 +1003,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 50
 text = "TEMP"
 horizontal_alignment = 2
@@ -987,37 +1014,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_1ylt3")
 }
-
-[node name="DebugHUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("3_iccx7")
-metadata/_edit_lock_ = true
-
-[node name="LineEdit" type="LineEdit" parent="DebugHUD"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -31.0
-grow_horizontal = 2
-grow_vertical = 0
-placeholder_text = "Enter command here"
-
-[node name="Label" type="Label" parent="DebugHUD"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "FPS: 000"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -1031,6 +1027,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="text_submitted" from="DebugHUD/LineEdit" to="DebugHUD" method="_on_line_edit_text_submitted"]
+[connection signal="body_entered" from="Camera3D/MeleeBox" to="." method="melee"]
 
 [editable path="Camera3D/arm_model"]

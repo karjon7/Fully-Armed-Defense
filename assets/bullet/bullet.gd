@@ -19,6 +19,9 @@ class_name Bullet
 @export var sound_bullet_flyby : AudioStream
 @export var sound_bullet_ricochet : AudioStream
 
+@export_group("Collision")
+@export_flags_3d_physics var collide_with
+
 
 var bullet_speed : float = 50
 var bullet_damage : float = 0
@@ -79,7 +82,7 @@ func _physics_process(delta):
 	global_transform.origin = new_pos
 	
 	#Cast ray from prev to new pos
-	var query = PhysicsRayQueryParameters3D.create(prev_pos, new_pos)
+	var query = PhysicsRayQueryParameters3D.create(prev_pos, new_pos, collide_with)
 	
 	query.exclude = [self] if not player else [self, player]
 	
@@ -98,7 +101,8 @@ func _physics_process(delta):
 		
 		if result.collider is CharacterBody3D:
 			result.collider.velocity -= bullet_fly_direction * bullet_knockback
-			print(result.collider.velocity)
+		elif result.collider is RigidBody3D:
+			result.collider.linear_velocity -= bullet_fly_direction * bullet_knockback
 		
 		spawn_sound_at_position(result.collider, result.position, sound_bullet_hit)
 		

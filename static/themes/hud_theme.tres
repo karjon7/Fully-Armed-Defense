@@ -5,6 +5,6 @@
 [resource]
 default_font = ExtResource("1_ljx65")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
-Label/constants/outline_size = 10
+Label/constants/outline_size = 5
 ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
 ProgressBar/constants/outline_size = 5

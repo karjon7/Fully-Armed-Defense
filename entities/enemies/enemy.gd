@@ -23,9 +23,7 @@ var bullet_hit_pos : Vector3 = Vector3.ZERO
 @export var can_move = true
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-const SPEED = 7.5
-const SPRINT_SPEED = 10.0
-const JUMP_VELOCITY = 4.5
+@export var speed = 7.5
 const ACCELERATION = 10.0
 const AIR_ACCELERATION = 3.0
 
@@ -67,7 +65,7 @@ func handle_movement(delta):
 		velocity.y -= gravity * delta
 	
 	#Calculate Movement
-	var wish_velocity = direction * SPEED if can_move else Vector3.ZERO
+	var wish_velocity = direction * speed if can_move else Vector3.ZERO
 	
 	var accel = ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	

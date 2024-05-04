@@ -5,6 +5,7 @@ extends Control
 @onready var view_cast = %ViewCast
 @onready var fire_cast = %FireCast
 @onready var fire_point = %FirePoint
+@onready var interact_reach = %InteractReach
 @onready var arm_clearance = %ArmClearance
 
 @onready var crosshair = %Crosshair
@@ -17,6 +18,7 @@ extends Control
 @onready var temperature_label = %TemperatureLabel
 @onready var temp_anim_player = %TempAnimationPlayer
 
+@onready var interact_label = %InteractLabel
 
 @export var player : Player
 
@@ -64,6 +66,19 @@ func _process(delta):
 	
 	#Health
 	health(delta)
+	
+	#Interacting
+	interacting()
+
+
+func interacting():
+	interact_label.visible = interact_reach.is_colliding()
+	if not interact_reach.is_colliding(): return
+	
+	var interactable : Interactable = interact_reach.get_collider()
+	
+	interact_label.text = interactable.interact_message if interactable.can_interact \
+	else interactable.cant_interact_message
 	
 
 

@@ -117,6 +117,7 @@ sound_bullet_hit = SubResource("AudioStreamRandomizer_dxpln")
 sound_bullet_enemy_hit = SubResource("AudioStreamRandomizer_fnkio")
 sound_bullet_flyby = SubResource("AudioStreamRandomizer_vmnhs")
 sound_bullet_ricochet = SubResource("AudioStreamRandomizer_bmh7d")
+collide_with = 7
 
 [node name="Test" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)

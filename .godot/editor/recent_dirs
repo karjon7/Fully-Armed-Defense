@@ -1,14 +1,15 @@
+res://assets/interactables/workbench
+res://assets/models/blender
+res://
 res://assets/arms/arm_particles/impact
 res://assets/arms/arm_particles
 res://shaders
-res://
 res://entities/enemies/basic enemy
 res://static/save_load_data
 res://static/themes
 res://static
 res://assets/arms/arm_datas
 res://entities/player
-res://static/debug
 res://assets/maps
 res://assets
 res://scenes/maps

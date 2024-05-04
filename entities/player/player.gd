@@ -8,6 +8,8 @@ class_name Player
 #Shooting
 @onready var view_cast = %ViewCast
 @onready var fire_point = %FirePoint
+@onready var interact_reach = %InteractReach
+@onready var melee_box = %MeleeBox
 @onready var arm_clearance = %ArmClearance
 @onready var fire_rate_timer = %FireRateTimer
 @onready var overheat_timer = %OverheatTimer
@@ -20,6 +22,11 @@ class_name Player
 @onready var overheated_audio = %Overheated
 @onready var arm_cooling_audio = %ArmCooling
 
+@export var test : bool = false : 
+	set(value):
+		test = value
+		print(value)
+
 #Health
 @export_group("Health")
 @export var invincible : bool = false
@@ -28,7 +35,7 @@ var health : float = max_health : set = set_health
 
 #Money
 @export_group("Money")
-@export var money : float = 0.0
+@export var money : int = 0
 
 #Camera
 @export_group("Camera")
@@ -50,6 +57,7 @@ const MAX_CAMERA_TILT_DEGREES = 2.5
 #Arms
 @export_group("Arms")
 @export var can_shoot : bool = true
+var shot_clear = true
 @export var arm_data : ArmData 
 
 @export_subgroup("Heat")
@@ -125,6 +133,14 @@ func _unhandled_input(event):
 		animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
 	
 	
+	if Input.is_action_just_pressed("interact"):
+		if not interact_reach.is_colliding(): return
+		
+		var interactable : Interactable = interact_reach.get_collider()
+		
+		interactable.interact()
+	
+	
 	if Input.is_action_just_pressed("melee"):
 		if animation_tree.get("parameters/Melee/active"): return
 		
@@ -151,13 +167,14 @@ func _physics_process(delta):
 	
 	fire_point.look_at(hit_point)
 	fire_point.rotation = Vector3(0, 0, 0) if view_cast.global_position.distance_to(hit_point) < 1.5 else fire_point.rotation
-	can_shoot = !arm_clearance.has_overlapping_bodies()
+	shot_clear = !arm_clearance.has_overlapping_bodies()
 	
 	handle_shooting()
-	handle_temperature()
 	handle_arms(delta)
+	handle_temperature()
 	handle_camera(delta)
 	handle_movement(delta)
+	#print(melee_box.monitoring)
 
 
 func set_health(value):
@@ -168,6 +185,10 @@ func damage(damage_value : float, hit_pos : Vector3, bullet_direction : Vector3)
 	health -= damage_value
 	
 	print("player_hit")
+
+
+func melee(body: Node3D):
+	print("meleed")
 
 
 func shoot_bullets():
@@ -231,6 +252,7 @@ func handle_shooting():
 	#Requirments
 	if not arm_data: return #Arm data actually exist 
 	if not can_shoot: return #Allowed to shoot
+	if not shot_clear: return #Not clear to shoot
 	if is_overheated: return
 	if fire_rate_timer.get_time_left() > 0: return
 	if overheat_timer.get_time_left() > 0: return
