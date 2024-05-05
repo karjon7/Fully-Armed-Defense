@@ -1,22 +1,23 @@
 [gd_scene load_steps=6 format=3 uid="uid://b8ddi102xaunv"]
 
 [ext_resource type="Script" path="res://assets/interactables/workshop/workshop.gd" id="1_g7r3d"]
+[ext_resource type="Theme" uid="uid://lw1w3xipifap" path="res://static/themes/workshop_theme.tres" id="2_khkfg"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_meyxa"]
 data = PackedVector3Array(-1.5, 0.5, 0.5, 1.5, 0.5, 0.5, -1.5, -0.5, 0.5, 1.5, 0.5, 0.5, 1.5, -0.5, 0.5, -1.5, -0.5, 0.5, 1.5, 0.5, -0.5, -1.5, 0.5, -0.5, 1.5, -0.5, -0.5, -1.5, 0.5, -0.5, -1.5, -0.5, -0.5, 1.5, -0.5, -0.5, 1.5, 0.5, 0.5, 1.5, 0.5, -0.5, 1.5, -0.5, 0.5, 1.5, 0.5, -0.5, 1.5, -0.5, -0.5, 1.5, -0.5, 0.5, -1.5, 0.5, -0.5, -1.5, 0.5, 0.5, -1.5, -0.5, -0.5, -1.5, 0.5, 0.5, -1.5, -0.5, 0.5, -1.5, -0.5, -0.5, 1.5, 0.5, 0.5, -1.5, 0.5, 0.5, 1.5, 0.5, -0.5, -1.5, 0.5, 0.5, -1.5, 0.5, -0.5, 1.5, 0.5, -0.5, -1.5, -0.5, 0.5, 1.5, -0.5, 0.5, -1.5, -0.5, -0.5, 1.5, -0.5, 0.5, 1.5, -0.5, -0.5, -1.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwm34"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vh370"]
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3s6lp"]
 bg_color = Color(0, 0, 0, 0.5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_3cv0l"]
-
 [node name="Workshop" type="StaticBody3D"]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_g7r3d")
+global_upgrades = null
+type_upgrades = null
 
 [node name="InteractCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -24,7 +25,7 @@ shape = SubResource("ConcavePolygonShape3D_meyxa")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-material_override = SubResource("StandardMaterial3D_cwm34")
+material_override = SubResource("StandardMaterial3D_vh370")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -40,13 +41,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, 0, 0)
 size = Vector3(0.1, 1, 1)
 
 [node name="WorkshopHUD" type="Control" parent="."]
-visible = false
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_khkfg")
 
 [node name="PanelContainer" type="PanelContainer" parent="WorkshopHUD"]
 layout_mode = 1
@@ -66,32 +68,87 @@ theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="HBoxContainer" type="HBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 25
-
-[node name="ColorRect" type="ColorRect" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect2" type="ColorRect" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect3" type="ColorRect" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="Label" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 75)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-text = "E to exit"
-label_settings = SubResource("LabelSettings_3cv0l")
+text = "Upgrades"
+vertical_alignment = 1
+
+[node name="GlobalUpgradesContainer" type="HBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/GlobalUpgradesContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "TEST"
+
+[node name="Button2" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/GlobalUpgradesContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "TEST"
+
+[node name="Button3" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/GlobalUpgradesContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+text = "TEST"
+
+[node name="Label2" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Type Specific Upgrades"
+vertical_alignment = 1
+
+[node name="TypeUpgradesContainer" type="HBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/TypeUpgradesContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_pressed = true
+text = "TEST"
+
+[node name="Button2" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/TypeUpgradesContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_pressed = true
+text = "TEST"
+
+[node name="Button3" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/TypeUpgradesContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_pressed = true
+text = "TEST"
+
+[node name="Label3" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+text = "Press E to exit"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -738,9 +738,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0406938, -0.379606, 0.700752, 0.602652)
+bones/6/rotation = Quaternion(-0.0467356, -0.386615, 0.69691, 0.602214)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.339889, -0.556458, -0.163212, 0.740399)
+bones/7/rotation = Quaternion(0.353143, -0.548143, -0.18093, 0.73627)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -754,7 +754,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0435237, -0.00274684, 0.999049, 0.99844, 0.0351226, -0.0434005, -0.0349699, 0.999379, 0.00427124, -0.339783, -0.170395, 0.161769)
+transform = Transform3D(0.0411039, -0.00813521, 0.999122, 0.997091, 0.0645763, -0.0404945, -0.0641901, 0.99788, 0.0107658, -0.340936, -0.175158, 0.157375)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -830,6 +830,7 @@ autoplay = true
 bus = &"HUD SFX"
 
 [node name="HUD" type="Control" parent="." node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_2megr")
 layout_mode = 3
 anchors_preset = 15

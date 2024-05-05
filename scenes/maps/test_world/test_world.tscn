@@ -39,15 +39,24 @@ navigation_mesh = SubResource("NavigationMesh_3a57q")
 
 [node name="WorkshopHolder" type="Node" parent="."]
 
-[node name="Workshop" parent="WorkshopHolder" instance=ExtResource("6_eofya")]
+[node name="Workshop" parent="WorkshopHolder" node_paths=PackedStringArray("player") instance=ExtResource("6_eofya")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 2, 0)
+player = NodePath("../../Player")
+global_upgrades = null
+type_upgrades = null
 can_interact = false
 
-[node name="Workshop2" parent="WorkshopHolder" instance=ExtResource("6_eofya")]
+[node name="Workshop2" parent="WorkshopHolder" node_paths=PackedStringArray("player") instance=ExtResource("6_eofya")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 2, 4)
+player = NodePath("../../Player")
+global_upgrades = null
+type_upgrades = null
 
-[node name="Workshop3" parent="WorkshopHolder" instance=ExtResource("6_eofya")]
+[node name="Workshop3" parent="WorkshopHolder" node_paths=PackedStringArray("player") instance=ExtResource("6_eofya")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 2, -4)
+player = NodePath("../../Player")
+global_upgrades = null
+type_upgrades = null
 
 [node name="Player" parent="." instance=ExtResource("4_xfc15")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0324144, 1.90735e-06, -0.0926883)

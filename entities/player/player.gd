@@ -1,6 +1,9 @@
 extends CharacterBody3D
 class_name Player
 
+#Hud
+@onready var hud : Control = %HUD
+
 #View
 @onready var camera = %Camera3D
 @onready var arm_model = %arm_model
