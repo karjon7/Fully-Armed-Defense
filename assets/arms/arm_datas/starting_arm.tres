@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ArmData" load_steps=5 format=3 uid="uid://e8m5rw0nqfdx"]
+
+[ext_resource type="Script" path="res://assets/arms/arm_datas/arm_data.gd" id="1_3uwxy"]
+[ext_resource type="PackedScene" uid="uid://bvaejd3lmi1jl" path="res://assets/arms/arm_particles/shooting/bullet_shooting_particles.tscn" id="2_02c1v"]
+[ext_resource type="PackedScene" uid="uid://1npkpeywkw07" path="res://assets/bullet/bullets/test_bullet.tscn" id="3_rgv5h"]
+[ext_resource type="AudioStream" uid="uid://dr3tefv7rdar7" path="res://assets/audio/bullet/shots_audio/energy_shot1.wav" id="4_0815j"]
+
+[resource]
+script = ExtResource("1_3uwxy")
+build_name = "Starting Arm"
+description = ""
+is_auto = false
+light_color = Color(1, 0.843137, 0, 1)
+light_energy = 0.0
+heat_per_shot = 100
+shots_per_min = 300
+recoil_type = "Light Recoil"
+shooting_type = 0
+shoot_scene = ExtResource("3_rgv5h")
+shoot_particles_scene = ExtResource("2_02c1v")
+shoot_sound = ExtResource("4_0815j")
+bullet_speed = 50.0
+bullet_damage = 5.0
+bullet_knockback = 0.0
+bullet_range = 50.0
+bullet_pierce = 0
+bullet_bounces = 0
+min_bounce_angle = 45.0

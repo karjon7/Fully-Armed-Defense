@@ -1,7 +1,6 @@
-[gd_scene load_steps=52 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=51 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
-[ext_resource type="Resource" uid="uid://bxiy65ocexvna" path="res://assets/arms/arm_datas/test_arm.tres" id="2_of7qa"]
 [ext_resource type="PackedScene" uid="uid://cow84b2o7oa7b" path="res://assets/models/blender/arm_model.blend" id="2_s4flv"]
 [ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="4_efegj"]
 [ext_resource type="Script" path="res://entities/player/HUD.gd" id="4_ob7ph"]
@@ -665,8 +664,8 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_6x15j")
+money = 1000
 fov_multiplier = 0.5
-arm_data = ExtResource("2_of7qa")
 arm_tilt_amount = 3.0
 arm_offset_amount = 1.5
 arm_sway_amount = 0.15
@@ -738,9 +737,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0467356, -0.386615, 0.69691, 0.602214)
+bones/6/rotation = Quaternion(-0.0241995, -0.360303, 0.71087, 0.60354)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.353143, -0.548143, -0.18093, 0.73627)
+bones/7/rotation = Quaternion(0.302746, -0.577508, -0.11441, 0.749493)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -754,7 +753,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0411039, -0.00813521, 0.999122, 0.997091, 0.0645763, -0.0404945, -0.0641901, 0.99788, 0.0107658, -0.340936, -0.175158, 0.157375)
+transform = Transform3D(0.0524677, 0.010793, 0.998564, 0.997617, -0.0454254, -0.0519268, 0.0447999, 0.998909, -0.0131506, -0.336406, -0.157023, 0.173252)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -929,6 +928,14 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer/LeftSide/MarginContainer2"]
 layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer/LeftSide/MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 20
+text = "MONEY"
+vertical_alignment = 1
 
 [node name="HealthLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer/LeftSide/MarginContainer2/VBoxContainer"]
 unique_name_in_owner = true

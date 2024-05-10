@@ -1,13 +1,16 @@
-res://assets/interactables/workshop/workshop.tscn
-res://static/save_load_data/save_load.gd
+res://scenes/maps/test_world/test_world.tscn
 res://static/environment.tres
 res://assets/arms/arm_datas/test_arm.tres
 res://shaders/crosshair_shader.tres
+res://static/themes/workshop_theme.tres
+res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres
+res://shaders/blur_shader.tres
 res://shaders/glitch.gdshader
 res://shaders/frosted_glass.tres
 res://shaders/hurt_shader.tres
-res://assets/interactables/workshop/workshop.gd
-res://scenes/maps/test_world/test_world.tscn
 res://entities/player/player.tscn
 res://entities/enemies/basic enemy/basic_enemy.tscn
-res://static/themes/workshop_theme.tres
+res://assets/interactables/workshop/workshop.tscn
+res://assets/interactables/workshop/workshop.gd
+res://entities/player/player.gd
+res://assets/arms/arm_datas/starting_arm.tres

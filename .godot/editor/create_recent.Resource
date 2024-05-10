@@ -1,2 +1,4 @@
-Resource
 ArmData
+BulletUpgradeData
+GlobalUpgradeData
+Resource

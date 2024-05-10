@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BulletUpgradeData" load_steps=2 format=3 uid="uid://j1qscpufj4su"]
+
+[ext_resource type="Script" path="res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd" id="1_n6ly8"]
+
+[resource]
+script = ExtResource("1_n6ly8")
+stat_upgrading = 4
+upgrade_name = "Bullet Pierce Upgrade"
+upgrade_description = ""
+upgrade_max = 1e+06
+upgrade_increment = 1.0
+max_reached = false

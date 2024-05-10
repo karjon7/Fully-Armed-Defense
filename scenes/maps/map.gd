@@ -32,6 +32,7 @@ func _ready():
 	#Holders Check
 	assert(workshop_holder, "No Workshops")
 	
+	
 	#
 	change_workshop()
 

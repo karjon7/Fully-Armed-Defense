@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BulletUpgradeData" load_steps=2 format=3 uid="uid://18glrq6p04a5"]
+
+[ext_resource type="Script" path="res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd" id="1_i53h6"]
+
+[resource]
+script = ExtResource("1_i53h6")
+stat_upgrading = 3
+upgrade_name = "Bullet Range Upgrade"
+upgrade_description = ""
+upgrade_max = 500.0
+upgrade_increment = 10.0
+disabled = false

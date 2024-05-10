@@ -264,10 +264,10 @@ func handle_shooting():
 	
 	#Firing
 	#Semi auto firing
-	if arm_data.is_semi and Input.is_action_just_pressed("primary_fire"): shoot_bullets()
+	if not arm_data.is_auto and Input.is_action_just_pressed("primary_fire"): shoot_bullets()
 	
 	#Auto firing
-	if not arm_data.is_semi and Input.is_action_pressed("primary_fire"): shoot_bullets()
+	if arm_data.is_auto and Input.is_action_pressed("primary_fire"): shoot_bullets()
 
 
 func handle_arms(delta):

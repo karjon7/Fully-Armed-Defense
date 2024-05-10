@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GlobalUpgradeData" load_steps=2 format=3 uid="uid://cfcg4r8mhbfal"]
+
+[ext_resource type="Script" path="res://assets/interactables/workshop/workshop_upgrades/datas/global_upgrades_data.gd" id="1_sp5so"]
+
+[resource]
+script = ExtResource("1_sp5so")
+stat_upgrading = 1
+upgrade_name = "Fire Rate Upgrade"
+upgrade_description = ""
+upgrade_max = 2000.0
+upgrade_increment = 50.0

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BulletUpgradeData" load_steps=2 format=3 uid="uid://cbxm0l7ggpl1u"]
+
+[ext_resource type="Script" path="res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd" id="1_s8d6f"]
+
+[resource]
+script = ExtResource("1_s8d6f")
+stat_upgrading = 5
+upgrade_name = "Bullet Ricochet Upgrade"
+upgrade_description = ""
+upgrade_max = 1e+06
+upgrade_increment = 1.0
+max_reached = false

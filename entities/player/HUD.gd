@@ -10,6 +10,8 @@ extends Control
 
 @onready var crosshair = %Crosshair
 
+@onready var money_label = %MoneyLabel
+
 @onready var health_label = %HealthLabel
 @onready var health_bar = %HealthBar
 @onready var damage_bar = %DamageBar
@@ -64,6 +66,9 @@ func _process(delta):
 	#Temperature
 	temperature()
 	
+	#Money
+	money()
+	
 	#Health
 	health(delta)
 	
@@ -80,6 +85,10 @@ func interacting():
 	interact_label.text = interactable.interact_message if interactable.can_interact \
 	else interactable.cant_interact_message
 	
+
+
+func money():
+	money_label.text = "Money: %s" % [player.money]
 
 
 func health(delta):

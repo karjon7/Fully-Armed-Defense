@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BulletUpgradeData" load_steps=2 format=3 uid="uid://2l7gf1e5dsjm"]
+
+[ext_resource type="Script" path="res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd" id="1_d4u15"]
+
+[resource]
+script = ExtResource("1_d4u15")
+stat_upgrading = "Speed"
+upgrade_name = "Bullet Speed Upgrade"
+upgrade_description = ""
+upgrade_max = 250.0
+upgrade_increment = 10.0
