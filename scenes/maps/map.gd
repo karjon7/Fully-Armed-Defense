@@ -44,7 +44,6 @@ func new_round():
 func roll_workshop():
 	var x = randi_range(0, max(max_workshop_chance - rounds_since_new_workshop, 0))
 	rounds_since_new_workshop += 1
-	prints(x, rounds_since_new_workshop)
 	
 	if x == 0: change_workshop() 
 	

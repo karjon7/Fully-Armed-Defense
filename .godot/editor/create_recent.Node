@@ -1,3 +1,6 @@
+Marker3D
+SkeletonIK3D
+HBoxContainer
 Label
 CenterContainer
 Panel
@@ -9,6 +12,4 @@ ColorRect
 TextureRect
 Sprite2D
 Button
-HBoxContainer
 VBoxContainer
-Node

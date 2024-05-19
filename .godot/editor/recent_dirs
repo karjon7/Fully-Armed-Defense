@@ -1,3 +1,4 @@
+res://entities/enemies/basic enemy
 res://assets/arms/arm_datas
 res://shaders
 res://assets/interactables/workshop/workshop_upgrades/bullets
@@ -7,7 +8,6 @@ res://assets/models/blender
 res://
 res://assets/arms/arm_particles/impact
 res://assets/arms/arm_particles
-res://entities/enemies/basic enemy
 res://static
 res://entities/player
 res://assets/maps

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="PackedScene" uid="uid://cow84b2o7oa7b" path="res://assets/models/blender/arm_model.blend" id="2_s4flv"]
 [ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="4_efegj"]
-[ext_resource type="Script" path="res://entities/player/HUD.gd" id="4_ob7ph"]
+[ext_resource type="Script" path="res://entities/player/hud.gd" id="4_ob7ph"]
 [ext_resource type="AudioStream" uid="uid://cns2y172111gn" path="res://assets/audio/player/heat_warning.wav" id="4_x05se"]
 [ext_resource type="AudioStream" uid="uid://crdr2s1r2jrxx" path="res://assets/audio/player/overheated.wav" id="5_axd05"]
 [ext_resource type="AudioStream" uid="uid://c81ruuvyiittr" path="res://assets/audio/player/cooling.mp3" id="6_1bunc"]
@@ -737,23 +737,23 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0241995, -0.360303, 0.71087, 0.60354)
+bones/6/rotation = Quaternion(-0.0448109, -0.384386, 0.698142, 0.60236)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.302746, -0.577508, -0.11441, 0.749493)
+bones/7/rotation = Quaternion(0.348944, -0.550826, -0.175298, 0.737631)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
 cast_shadow = 0
 
 [node name="LeftHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="1"]
-transform = Transform3D(-0.679633, 0.610085, -0.407302, -0.732025, -0.599877, 0.322936, -0.0473124, 0.517633, 0.854294, 0.500692, -0.561294, 0.0985894)
+transform = Transform3D(-0.679634, 0.610085, -0.407301, -0.732024, -0.599877, 0.322936, -0.0473122, 0.517632, 0.854294, 0.500692, -0.561295, 0.0985892)
 bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0524677, 0.010793, 0.998564, 0.997617, -0.0454254, -0.0519268, 0.0447999, 0.998909, -0.0131506, -0.336406, -0.157023, 0.173252)
+transform = Transform3D(0.0418238, -0.00639611, 0.999105, 0.997616, 0.0552053, -0.041408, -0.054891, 0.998455, 0.0086897, -0.340574, -0.173649, 0.158786)
 bone_name = "forearm.R"
 bone_idx = 7
 

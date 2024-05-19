@@ -6,6 +6,8 @@ extends Interactable
 @onready var workshop_hud = %WorkshopHUD
 
 #HUD
+@onready var money_label = %MoneyLabel
+
 @onready var global_upgrade_button_1 = %GlobalUpgradeButton1
 @onready var global_upgrade_button_2 = %GlobalUpgradeButton2
 @onready var global_upgrade_button_3 = %GlobalUpgradeButton3
@@ -66,6 +68,8 @@ func _process(delta):
 	mesh.material_override.albedo_color = Color.GREEN if can_interact else Color.RED
 	
 	if Engine.is_editor_hint(): return
+	
+	money_label.text = "Money: %s" % [player.money]
 	
 	purchase_button.disabled = player.money < final_price or final_price == 0
 	
