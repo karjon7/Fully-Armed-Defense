@@ -1,8 +1,11 @@
 extends CharacterBody3D
 class_name Player
 
-#Hud
+#UI
 @onready var hud : Control = %HUD
+@onready var menu_overlay = %MenuOverlay
+@onready var pause_menu = %PauseMenu
+@onready var debug_ui = %DebugUI
 
 #View
 @onready var camera = %Camera3D
@@ -29,6 +32,10 @@ class_name Player
 	set(value):
 		test = value
 		print(value)
+
+#UI
+@export var menu_open : bool = false : set = _set_menu_overlay
+
 
 #Health
 @export_group("Health")
@@ -86,6 +93,7 @@ const SWAY_SMOOTHNESS = 6
 @export_group("Movement")
 @export var gravity_on = true
 @export var can_move = true
+@export var can_jump = true
 
 var spawn_point : Vector3
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -108,10 +116,16 @@ var anim_walk_blend : float = 0
 
 
 func _ready():
+	Debug.player = self
+	
 	spawn_point = position
 	camera_base_fov = camera.fov
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	hud.show()
+	pause_menu.hide()
+	debug_ui.hide()
+	menu_open = false
+	
 
 
 func _unhandled_input(event):
@@ -149,17 +163,6 @@ func _unhandled_input(event):
 		
 		animation_tree.set("parameters/Melee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
-	
-	if Input.is_action_just_pressed("quit"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
-		can_look = true if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED else false
-	
-	
-	if Input.is_action_just_pressed("secondary_fire"):
-		health -= 10
-	
-	if Input.is_action_just_pressed("debug"):
-		health += 10
 
 
 func _physics_process(delta):
@@ -178,6 +181,19 @@ func _physics_process(delta):
 	handle_camera(delta)
 	handle_movement(delta)
 	#print(melee_box.monitoring)
+
+
+func _set_menu_overlay(value):
+	menu_open = value
+	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if menu_open else Input.MOUSE_MODE_CAPTURED
+	menu_overlay.visible = menu_open
+	hud.visible = !menu_open
+	
+	can_look = !menu_open
+	can_shoot = !menu_open
+	can_move = !menu_open
+	can_jump = !menu_open
 
 
 func set_health(value):
@@ -349,7 +365,7 @@ func handle_movement(delta):
 		velocity.y -= gravity * delta
 	
 	# Handle Jump
-	if Input.is_action_just_pressed("jump") and is_on_floor(): 
+	if Input.is_action_just_pressed("jump") and is_on_floor() and can_jump: 
 		velocity.y = JUMP_VELOCITY
 		#Little horizontal boost when jumping
 		velocity.x *= 1.1

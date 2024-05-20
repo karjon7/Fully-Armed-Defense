@@ -28,7 +28,6 @@ agent_max_climb = 0.05
 
 [node name="TestWorld" type="Node3D" node_paths=PackedStringArray("nav_region", "workshop_holder")]
 script = ExtResource("1_0bq1n")
-new_round_button = true
 nav_region = NodePath("NavigationRegion3D")
 workshop_holder = NodePath("WorkshopHolder")
 
@@ -45,6 +44,7 @@ shadow_enabled = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_3a57q")
+metadata/_edit_lock_ = true
 
 [node name="test_world" parent="NavigationRegion3D" instance=ExtResource("3_pt6i5")]
 

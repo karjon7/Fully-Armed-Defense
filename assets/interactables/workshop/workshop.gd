@@ -3,7 +3,7 @@
 extends Interactable
 
 @onready var mesh = $CSGCombiner3D
-@onready var workshop_hud = %WorkshopHUD
+@onready var workshop_ui = %WorkshopUI
 
 #HUD
 @onready var money_label = %MoneyLabel
@@ -57,7 +57,7 @@ func _ready():
 	if not Engine.is_editor_hint(): assert(player)
 	
 	menu_opened = false
-	workshop_hud.visible = menu_opened
+	workshop_ui.visible = menu_opened
 	
 	mesh.material_override = StandardMaterial3D.new()
 	roll_upgrades()
@@ -88,16 +88,9 @@ func _physics_process(delta):
 
 
 func interact():
-	menu_opened = !menu_opened
+	player.menu_open = true
+	workshop_ui.show()
 	
-	workshop_hud.visible = menu_opened
-	
-	#Player stuff
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if menu_opened else Input.MOUSE_MODE_CAPTURED
-	player.can_shoot = !menu_opened
-	player.can_look = !menu_opened
-	player.can_move = !menu_opened
-	player.hud.visible = !menu_opened
 
 
 func calculate_final_price():
@@ -105,7 +98,7 @@ func calculate_final_price():
 	var ty_selected = true if type_upgrade_selected else false
 	
 	var multiplier : float = remap(float(gl_selected) + float(ty_selected), 0.0, 2.0, 0.0, 1.0)
-	final_price = purchase_price * multiplier
+	final_price = int(purchase_price * multiplier)
 
 
 #FIXME:Lowkey yandere dev typa code, def could of done this better but i wanna get this done, i can fix it later
@@ -254,10 +247,10 @@ func bullet_upgrade_check():
 func apply_global_upgrade():
 	match global_upgrade_selected.stat_upgrading:
 		GlobalUpgradeData.STATS.HEAT:
-			player.arm_data.heat_per_shot -= global_upgrade_selected.upgrade_increment
+			player.arm_data.heat_per_shot -= int(global_upgrade_selected.upgrade_increment)
 		
 		GlobalUpgradeData.STATS.FIRERATE:
-			player.arm_data.shots_per_min += global_upgrade_selected.upgrade_increment
+			player.arm_data.shots_per_min += int(global_upgrade_selected.upgrade_increment)
 		
 		GlobalUpgradeData.STATS.AUTO:
 			player.arm_data.is_auto = bool(global_upgrade_selected.upgrade_increment)
@@ -269,7 +262,7 @@ func apply_bullet_upgrade():
 	
 	match selected.stat_upgrading:
 			BulletUpgradeData.STATS.BOUNCES:
-				player.arm_data.bullet_bounces += selected.upgrade_increment
+				player.arm_data.bullet_bounces += int(selected.upgrade_increment)
 			
 			BulletUpgradeData.STATS.BOUNCE_ANGLE:
 				player.arm_data.min_bounce_angle -= selected.upgrade_increment
@@ -281,7 +274,7 @@ func apply_bullet_upgrade():
 				player.arm_data.bullet_knockback += selected.upgrade_increment
 			
 			BulletUpgradeData.STATS.PIERCE:
-				player.arm_data.bullet_bounces += selected.upgrade_increment
+				player.arm_data.bullet_pierce += int(selected.upgrade_increment)
 			
 			BulletUpgradeData.STATS.RANGE:
 				player.arm_data.bullet_range += selected.upgrade_increment
@@ -346,7 +339,8 @@ func _on_type_upgrade_button_3_toggled(toggled_on):
 
 
 func _on_exit_button_pressed():
-	interact()
+	player.menu_open = false
+	workshop_ui.hide()
 
 
 func _on_purchase_button_pressed():

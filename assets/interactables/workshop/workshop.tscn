@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8ddi102xaunv"]
+[gd_scene load_steps=17 format=3 uid="uid://b8ddi102xaunv"]
 
 [ext_resource type="Script" path="res://assets/interactables/workshop/workshop.gd" id="1_g7r3d"]
 [ext_resource type="Resource" uid="uid://bwyrmuav1e2f5" path="res://assets/interactables/workshop/workshop_upgrades/global/auto_upgrade.tres" id="2_bnml4"]
@@ -11,19 +11,13 @@
 [ext_resource type="Resource" uid="uid://j1qscpufj4su" path="res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres" id="8_myn45"]
 [ext_resource type="Resource" uid="uid://18glrq6p04a5" path="res://assets/interactables/workshop/workshop_upgrades/bullets/range.tres" id="9_hn1n4"]
 [ext_resource type="Resource" uid="uid://2l7gf1e5dsjm" path="res://assets/interactables/workshop/workshop_upgrades/bullets/speed.tres" id="10_tc3sa"]
-[ext_resource type="Shader" uid="uid://b315ugke0qjad" path="res://shaders/blur_shader.tres" id="11_wlvm0"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_meyxa"]
 data = PackedVector3Array(-1.5, 0.5, 0.5, 1.5, 0.5, 0.5, -1.5, -0.5, 0.5, 1.5, 0.5, 0.5, 1.5, -0.5, 0.5, -1.5, -0.5, 0.5, 1.5, 0.5, -0.5, -1.5, 0.5, -0.5, 1.5, -0.5, -0.5, -1.5, 0.5, -0.5, -1.5, -0.5, -0.5, 1.5, -0.5, -0.5, 1.5, 0.5, 0.5, 1.5, 0.5, -0.5, 1.5, -0.5, 0.5, 1.5, 0.5, -0.5, 1.5, -0.5, -0.5, 1.5, -0.5, 0.5, -1.5, 0.5, -0.5, -1.5, 0.5, 0.5, -1.5, -0.5, -0.5, -1.5, 0.5, 0.5, -1.5, -0.5, 0.5, -1.5, -0.5, -0.5, 1.5, 0.5, 0.5, -1.5, 0.5, 0.5, 1.5, 0.5, -0.5, -1.5, 0.5, 0.5, -1.5, 0.5, -0.5, 1.5, 0.5, -0.5, -1.5, -0.5, 0.5, 1.5, -0.5, 0.5, -1.5, -0.5, -0.5, 1.5, -0.5, 0.5, 1.5, -0.5, -0.5, -1.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ccec4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8rpr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehx62"]
-shader = ExtResource("11_wlvm0")
-shader_parameter/FloatParameter = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3s6lp"]
-bg_color = Color(0, 0, 0, 0.501961)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3mr1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aoqna"]
 bg_color = Color(0.2, 0.2, 0.2, 0.8)
@@ -50,7 +44,7 @@ shape = SubResource("ConcavePolygonShape3D_meyxa")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-material_override = SubResource("StandardMaterial3D_ccec4")
+material_override = SubResource("StandardMaterial3D_w8rpr")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -69,48 +63,42 @@ size = Vector3(0.1, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.45)
 size = Vector3(3, 0.5, 0.1)
 
-[node name="WorkshopHUD" type="ColorRect" parent="."]
+[node name="WorkshopUI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+layer = 2
 visible = false
-material = SubResource("ShaderMaterial_ehx62")
+
+[node name="PanelContainer" type="PanelContainer" parent="WorkshopUI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_khkfg")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l3mr1")
 
-[node name="PanelContainer" type="PanelContainer" parent="WorkshopHUD"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3s6lp")
-
-[node name="MarginContainer" type="MarginContainer" parent="WorkshopHUD/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WorkshopUI/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="WorkshopUI/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 2
 text = "Upgrades"
 vertical_alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="MoneyLabel" type="Label" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -118,15 +106,15 @@ size_flags_horizontal = 10
 text = "MONEY"
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GlobalUpgradesContainer" type="HBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="GlobalUpgradesContainer" type="HBoxContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GlobalUpgradeButton1" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer"]
+[node name="GlobalUpgradeButton1" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -136,7 +124,7 @@ mouse_default_cursor_shape = 2
 toggle_mode = true
 text = "UPGRADE 1"
 
-[node name="GlobalUpgradeButton2" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer"]
+[node name="GlobalUpgradeButton2" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -146,7 +134,7 @@ mouse_default_cursor_shape = 2
 toggle_mode = true
 text = "UPGRADE 2"
 
-[node name="GlobalUpgradeButton3" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer"]
+[node name="GlobalUpgradeButton3" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -156,12 +144,12 @@ mouse_default_cursor_shape = 2
 toggle_mode = true
 text = "UPGRADE 3"
 
-[node name="GlobalInputBlocker" type="Panel" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="GlobalInputBlocker" type="Panel" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aoqna")
 
-[node name="CenterContainer" type="CenterContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalInputBlocker"]
+[node name="CenterContainer" type="CenterContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalInputBlocker"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,28 +157,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalInputBlocker/CenterContainer"]
+[node name="Label" type="Label" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalInputBlocker/CenterContainer"]
 layout_mode = 2
 text = "Upgrade Chosen"
 label_settings = SubResource("LabelSettings_cmw0n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Type Specific Upgrades"
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TypeUpgradesContainer" type="HBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="TypeUpgradesContainer" type="HBoxContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TypeUpgradeButton1" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer"]
+[node name="TypeUpgradeButton1" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -201,7 +189,7 @@ toggle_mode = true
 text = "TYPE UPGRADE 1
 "
 
-[node name="TypeUpgradeButton2" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer"]
+[node name="TypeUpgradeButton2" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -212,7 +200,7 @@ toggle_mode = true
 text = "TYPE UPGRADE 2
 "
 
-[node name="TypeUpgradeButton3" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer"]
+[node name="TypeUpgradeButton3" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -223,12 +211,12 @@ toggle_mode = true
 text = "TYPE UPGRADE 3
 "
 
-[node name="TypeInputBlocker" type="Panel" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="TypeInputBlocker" type="Panel" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aoqna")
 
-[node name="CenterContainer" type="CenterContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeInputBlocker"]
+[node name="CenterContainer" type="CenterContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeInputBlocker"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -236,19 +224,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeInputBlocker/CenterContainer"]
+[node name="Label" type="Label" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeInputBlocker/CenterContainer"]
 layout_mode = 2
 text = "Upgrade Chosen"
 label_settings = SubResource("LabelSettings_cmw0n")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 alignment = 1
 
-[node name="ExitButton" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -256,7 +244,7 @@ size_flags_horizontal = 6
 focus_mode = 0
 text = "Exit"
 
-[node name="PurchaseButton" type="Button" parent="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="PurchaseButton" type="Button" parent="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -264,11 +252,11 @@ size_flags_horizontal = 6
 focus_mode = 0
 text = "Purchase Upgrades (PRICE)"
 
-[connection signal="toggled" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer/GlobalUpgradeButton1" to="." method="_on_global_upgrade_button_1_toggled"]
-[connection signal="toggled" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer/GlobalUpgradeButton2" to="." method="_on_global_upgrade_button_2_toggled"]
-[connection signal="toggled" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer/GlobalUpgradeButton3" to="." method="_on_global_upgrade_button_3_toggled"]
-[connection signal="toggled" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer/TypeUpgradeButton1" to="." method="_on_type_upgrade_button_1_toggled"]
-[connection signal="toggled" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer/TypeUpgradeButton2" to="." method="_on_type_upgrade_button_2_toggled"]
-[connection signal="toggled" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer/TypeUpgradeButton3" to="." method="_on_type_upgrade_button_3_toggled"]
-[connection signal="pressed" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="WorkshopHUD/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]
+[connection signal="toggled" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer/GlobalUpgradeButton1" to="." method="_on_global_upgrade_button_1_toggled"]
+[connection signal="toggled" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer/GlobalUpgradeButton2" to="." method="_on_global_upgrade_button_2_toggled"]
+[connection signal="toggled" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/GlobalUpgradesContainer/GlobalUpgradeButton3" to="." method="_on_global_upgrade_button_3_toggled"]
+[connection signal="toggled" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer/TypeUpgradeButton1" to="." method="_on_type_upgrade_button_1_toggled"]
+[connection signal="toggled" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer/TypeUpgradeButton2" to="." method="_on_type_upgrade_button_2_toggled"]
+[connection signal="toggled" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/TypeUpgradesContainer/TypeUpgradeButton3" to="." method="_on_type_upgrade_button_3_toggled"]
+[connection signal="pressed" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="WorkshopUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PurchaseButton" to="." method="_on_purchase_button_pressed"]

@@ -1,10 +1,10 @@
 extends Node
 class_name Map
 
-@export var new_round_button : bool = false :
+@export var new_wave_button : bool = false :
 	set(value):
-		new_round_button = false
-		new_round()
+		new_wave_button = false
+		new_wave()
 
 @export_group("Required Nodes")
 
@@ -17,7 +17,12 @@ class_name Map
 
 @export_group("Workshop")
 @export var max_workshop_chance : int = 20
-var rounds_since_new_workshop : int = 0
+var waves_since_new_workshop : int = 0
+
+
+@export_group("Wave")
+@export var intermission : bool = false
+@export var wave : int = 0
 
 
 func _ready():
@@ -37,13 +42,13 @@ func _ready():
 	change_workshop()
 
 
-func new_round():
+func new_wave():
 	roll_workshop()
 
 
 func roll_workshop():
-	var x = randi_range(0, max(max_workshop_chance - rounds_since_new_workshop, 0))
-	rounds_since_new_workshop += 1
+	var x = randi_range(0, max(max_workshop_chance - waves_since_new_workshop, 0))
+	waves_since_new_workshop += 1
 	
 	if x == 0: change_workshop() 
 	
@@ -75,4 +80,4 @@ func change_workshop():
 		if new_workshop != old_workshop: break
 	
 	new_workshop.can_interact = true
-	rounds_since_new_workshop = 0
+	waves_since_new_workshop = 0

@@ -22,11 +22,13 @@ buses/default_bus_layout="res://static/default_bus_layout.tres"
 [autoload]
 
 NumberFormatting="*res://static/number_formatting.gd"
+Debug="*res://static/debug.gd"
 
 [display]
 
 window/size/viewport_width=750
 window/size/viewport_height=500
+window/size/mode=2
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"

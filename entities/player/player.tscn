@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=55 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="PackedScene" uid="uid://cow84b2o7oa7b" path="res://assets/models/blender/arm_model.blend" id="2_s4flv"]
@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://crdr2s1r2jrxx" path="res://assets/audio/player/overheated.wav" id="5_axd05"]
 [ext_resource type="AudioStream" uid="uid://c81ruuvyiittr" path="res://assets/audio/player/cooling.mp3" id="6_1bunc"]
 [ext_resource type="Shader" uid="uid://dy8ots0vv4xa4" path="res://shaders/crosshair_shader.tres" id="7_o3qtr"]
+[ext_resource type="Shader" uid="uid://b315ugke0qjad" path="res://shaders/blur_shader.tres" id="9_elw07"]
+[ext_resource type="Theme" uid="uid://d1td73sjwwkdp" path="res://static/themes/pause_theme.tres" id="10_dvj6t"]
+[ext_resource type="Script" path="res://entities/player/pause_menu.gd" id="11_ckfkn"]
+[ext_resource type="Script" path="res://entities/player/debug_ui.gd" id="12_li32v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcr0c"]
 shading_mode = 0
@@ -658,7 +662,9 @@ _data = {
 "overheated": SubResource("Animation_wc5v5")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jttif"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdh1j"]
+shader = ExtResource("9_elw07")
+shader_parameter/FloatParameter = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
@@ -737,23 +743,23 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0448109, -0.384386, 0.698142, 0.60236)
+bones/6/rotation = Quaternion(-0.0476328, -0.387653, 0.696333, 0.602144)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.348944, -0.550826, -0.175298, 0.737631)
+bones/7/rotation = Quaternion(0.355093, -0.546882, -0.183551, 0.735621)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
 cast_shadow = 0
 
 [node name="LeftHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="1"]
-transform = Transform3D(-0.679634, 0.610085, -0.407301, -0.732024, -0.599877, 0.322936, -0.0473122, 0.517632, 0.854294, 0.500692, -0.561295, 0.0985892)
+transform = Transform3D(-0.679633, 0.610085, -0.407302, -0.732025, -0.599877, 0.322936, -0.0473124, 0.517633, 0.854294, 0.500692, -0.561294, 0.0985894)
 bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0418238, -0.00639611, 0.999105, 0.997616, 0.0552053, -0.041408, -0.054891, 0.998455, 0.0086897, -0.340574, -0.173649, 0.158786)
+transform = Transform3D(0.040785, -0.0089526, 0.999128, 0.996815, 0.0689403, -0.0400728, -0.0685213, 0.997581, 0.0117358, -0.341103, -0.175859, 0.156714)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -1023,18 +1029,128 @@ libraries = {
 "": SubResource("AnimationLibrary_1ylt3")
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+[node name="MenuOverlay" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_jttif")
+[node name="BG" type="ColorRect" parent="MenuOverlay"]
+material = SubResource("ShaderMaterial_rdh1j")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+
+[node name="Darken" type="ColorRect" parent="MenuOverlay/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 250.0
+grow_vertical = 2
+theme = ExtResource("10_dvj6t")
+script = ExtResource("11_ckfkn")
+player = NodePath("../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="ReturnToGameButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to Game"
+alignment = 0
+
+[node name="PauseGameButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pause Game"
+alignment = 0
+
+[node name="RequestEVACButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Request EVAC"
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+alignment = 0
+
+[node name="ExitGameButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+alignment = 0
+
+[node name="DebugUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_li32v")
+player = NodePath("../..")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DebugUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DebugUI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/DebugUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/DebugUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="body_entered" from="Camera3D/MeleeBox" to="." method="melee"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ReturnToGameButton" to="CanvasLayer/PauseMenu" method="return_to_game"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/PauseGameButton" to="CanvasLayer/PauseMenu" method="pause"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/RequestEVACButton" to="CanvasLayer/PauseMenu" method="request_evac"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/OptionsButton" to="CanvasLayer/PauseMenu" method="options"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ExitGameButton" to="CanvasLayer/PauseMenu" method="exit"]
+[connection signal="text_submitted" from="CanvasLayer/DebugUI/MarginContainer/VBoxContainer/LineEdit" to="CanvasLayer/DebugUI" method="_on_line_edit_text_submitted"]
 
 [editable path="Camera3D/arm_model"]
