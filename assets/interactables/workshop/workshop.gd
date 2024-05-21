@@ -69,7 +69,7 @@ func _process(delta):
 	
 	if Engine.is_editor_hint(): return
 	
-	money_label.text = "Money: %s" % [player.money]
+	money_label.text = "Money: $%s" % [NumberFormatting.notate(player.money)]
 	
 	purchase_button.disabled = player.money < final_price or final_price == 0
 	

@@ -28,6 +28,9 @@ class_name Player
 @onready var overheated_audio = %Overheated
 @onready var arm_cooling_audio = %ArmCooling
 
+@onready var money_transaction = %MoneyTransaction
+
+
 @export var test : bool = false : 
 	set(value):
 		test = value
@@ -40,12 +43,17 @@ class_name Player
 #Health
 @export_group("Health")
 @export var invincible : bool = false
+@export var hidden : bool = false
 @export var max_health : float = 100
 var health : float = max_health : set = set_health
 
 #Money
 @export_group("Money")
-@export var money : int = 0
+@export var money : int = 0 :
+	set(value):
+		if value < money: money_transaction.play()
+		
+		money = value
 
 #Camera
 @export_group("Camera")
@@ -92,6 +100,8 @@ const SWAY_SMOOTHNESS = 6
 #Movement
 @export_group("Movement")
 @export var gravity_on = true
+@export var flying = false
+@export var can_no_clip = false
 @export var can_move = true
 @export var can_jump = true
 
@@ -200,6 +210,11 @@ func set_health(value):
 	health = clamp(value, 0, max_health)
 
 
+func deposit_money(value : int):
+	money += value
+	money_transaction.play()
+
+
 func damage(damage_value : float, hit_pos : Vector3, bullet_direction : Vector3):
 	health -= damage_value
 	
@@ -216,6 +231,7 @@ func shoot_bullets():
 	
 	anim_shoot_node.filter_enabled = true #false only for laser recoil
 	animation_tree.set("parameters/Recoil State/transition_request", arm_data.recoil_type)
+	animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	#Instancing Bullet and Particles
@@ -353,6 +369,10 @@ func handle_camera(delta):
 	
 	#
 	camera_input = Vector2.ZERO
+
+
+func handle_flying(delta):
+	pass
 
 
 func handle_movement(delta):

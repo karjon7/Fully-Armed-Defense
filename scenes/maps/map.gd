@@ -13,6 +13,8 @@ class_name Map
 
 @export_subgroup("Holders")
 @export var workshop_holder : Node
+@export var enemy_holder : Node
+@export var enemy_spawner_holder : Node
 
 
 @export_group("Workshop")
@@ -25,7 +27,14 @@ var waves_since_new_workshop : int = 0
 @export var wave : int = 0
 
 
+@export_group("Enemies")
+@export var max_enemies_alive : int
+
+@export var basic_enemy_scene : PackedScene = preload("res://entities/enemies/basic enemy/basic_enemy.tscn")
+
+
 func _ready():
+	Debug.map = self
 	randomize()
 	
 	#Nav Check
@@ -35,23 +44,34 @@ func _ready():
 	#FIXME: nav_region.bake_navigation_mesh()
 	
 	#Holders Check
-	assert(workshop_holder, "No Workshops")
+	assert(workshop_holder, "No Workshop Holder")
+	assert(enemy_holder, "No Enemy Holder")
 	
 	
 	#
 	change_workshop()
 
 
+#Waves
+func start_intermission():
+	print("intermission started")
+	intermission = true
+
+
+
 func new_wave():
+	print("Wave: %s" % wave)
+	intermission = false
+	wave += 1
 	roll_workshop()
 
 
+#Workshop
 func roll_workshop():
 	var x = randi_range(0, max(max_workshop_chance - waves_since_new_workshop, 0))
 	waves_since_new_workshop += 1
 	
 	if x == 0: change_workshop() 
-	
 
 
 func change_workshop():
@@ -81,3 +101,18 @@ func change_workshop():
 	
 	new_workshop.can_interact = true
 	waves_since_new_workshop = 0
+
+
+#Enemies
+func spawn_enemy():
+	pass
+
+
+func enemy_killed():
+	pass
+
+
+func kill_all_enemies():
+	print("all enemies killed")
+	for enemy in enemy_holder.get_children():
+		enemy.dead()

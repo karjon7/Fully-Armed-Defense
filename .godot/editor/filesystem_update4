@@ -14,3 +14,7 @@ res://entities/enemies/basic enemy/basic_enemy.tscn
 res://assets/interactables/workshop/workshop.tscn
 res://static/debug.gd
 res://entities/player/debug_ui.gd
+res://assets/maps/map_sky.tres
+res://shaders/color_splash.tres
+res://shaders/posterization.tres
+res://shaders/outline.gdshader

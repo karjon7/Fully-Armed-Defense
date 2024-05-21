@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=63 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="PackedScene" uid="uid://cow84b2o7oa7b" path="res://assets/models/blender/arm_model.blend" id="2_s4flv"]
@@ -7,10 +7,14 @@
 [ext_resource type="AudioStream" uid="uid://cns2y172111gn" path="res://assets/audio/player/heat_warning.wav" id="4_x05se"]
 [ext_resource type="AudioStream" uid="uid://crdr2s1r2jrxx" path="res://assets/audio/player/overheated.wav" id="5_axd05"]
 [ext_resource type="AudioStream" uid="uid://c81ruuvyiittr" path="res://assets/audio/player/cooling.mp3" id="6_1bunc"]
+[ext_resource type="AudioStream" uid="uid://bumjachqow3p6" path="res://assets/audio/player/money_transaction1.wav" id="6_68mah"]
+[ext_resource type="AudioStream" uid="uid://dgjp21kqa5oau" path="res://assets/audio/player/money_transaction2.wav" id="7_hunvx"]
 [ext_resource type="Shader" uid="uid://dy8ots0vv4xa4" path="res://shaders/crosshair_shader.tres" id="7_o3qtr"]
 [ext_resource type="Shader" uid="uid://b315ugke0qjad" path="res://shaders/blur_shader.tres" id="9_elw07"]
 [ext_resource type="Theme" uid="uid://d1td73sjwwkdp" path="res://static/themes/pause_theme.tres" id="10_dvj6t"]
 [ext_resource type="Script" path="res://entities/player/pause_menu.gd" id="11_ckfkn"]
+[ext_resource type="Shader" uid="uid://decwiypxdlcbv" path="res://shaders/posterization.tres" id="11_vbbsi"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="12_5eeat"]
 [ext_resource type="Script" path="res://entities/player/debug_ui.gd" id="12_li32v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcr0c"]
@@ -25,6 +29,25 @@ height = 0.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sy8cg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_krcvk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vpru"]
+render_priority = 0
+shader = ExtResource("12_5eeat")
+shader_parameter/outlineColor = Color(0, 0, 0, 1)
+shader_parameter/depth_threshold = 0.2
+shader_parameter/normal_threshold = 0.2
+shader_parameter/normal_smoothing = 0.25
+shader_parameter/max_thickness = 1.3
+shader_parameter/min_thickness = 0.5
+shader_parameter/max_distance = 75.0
+shader_parameter/min_distance = 2.0
+shader_parameter/grazing_fresnel_power = 5.0
+shader_parameter/grazing_angle_mask_power = 1.0
+shader_parameter/grazing_angle_modulation_factor = 50.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_wbtii"]
+material = SubResource("ShaderMaterial_7vpru")
+size = Vector2(2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xlr05"]
 size = Vector3(0.172, 0.356, 0.518)
@@ -583,7 +606,6 @@ max_space = 2.0
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d48nq"]
-graph_offset = Vector2(-478.218, 45.2356)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_t5r7p")
 nodes/Animation/position = Vector2(-700, 260)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ueprh")
@@ -608,6 +630,15 @@ nodes/Shoot/position = Vector2(-80, 80)
 "nodes/Walk Blend/position" = Vector2(-700, 120)
 nodes/output/position = Vector2(400, 100)
 node_connections = [&"Grounded", 0, &"Walk Blend", &"Grounded", 1, &"Animation", &"Melee", 0, &"Shoot", &"Melee", 1, &"Animation 6", &"Recoil State", 0, &"Animation 2", &"Recoil State", 1, &"Animation 4", &"Recoil State", 2, &"Animation 3", &"Recoil State", 3, &"Animation 5", &"Shoot", 0, &"Grounded", &"Shoot", 1, &"Recoil State", &"output", 0, &"Melee"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f3p8d"]
+playback_mode = 1
+random_pitch = 1.5
+streams_count = 2
+stream_0/stream = ExtResource("6_68mah")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_hunvx")
+stream_1/weight = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2megr"]
 
@@ -662,6 +693,10 @@ _data = {
 "overheated": SubResource("Animation_wc5v5")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e16in"]
+shader = ExtResource("11_vbbsi")
+shader_parameter/steps = 64.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rdh1j"]
 shader = ExtResource("9_elw07")
 shader_parameter/FloatParameter = 1.0
@@ -696,6 +731,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 fov = 90.0
 near = 0.001
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+mesh = SubResource("QuadMesh_wbtii")
+skeleton = NodePath("../../Shaders")
 
 [node name="ArmClearance" type="Area3D" parent="Camera3D"]
 unique_name_in_owner = true
@@ -743,9 +782,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0476328, -0.387653, 0.696333, 0.602144)
+bones/6/rotation = Quaternion(-0.0430715, -0.382369, 0.699248, 0.602487)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.355093, -0.546882, -0.183551, 0.735621)
+bones/7/rotation = Quaternion(0.34513, -0.553223, -0.170198, 0.738825)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -759,7 +798,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.040785, -0.0089526, 0.999128, 0.996815, 0.0689403, -0.0400728, -0.0685213, 0.997581, 0.0117358, -0.341103, -0.175859, 0.156714)
+transform = Transform3D(0.0425151, -0.00484349, 0.999084, 0.998014, 0.0467257, -0.042243, -0.0464783, 0.998896, 0.00682047, -0.340243, -0.172278, 0.160052)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -794,9 +833,9 @@ parameters/Grounded/current_index = 0
 parameters/Melee/active = false
 parameters/Melee/internal_active = false
 parameters/Melee/request = 0
-"parameters/Recoil State/current_state" = "Light Recoil"
+"parameters/Recoil State/current_state" = "Laser Recoil"
 "parameters/Recoil State/transition_request" = ""
-"parameters/Recoil State/current_index" = 0
+"parameters/Recoil State/current_index" = 3
 parameters/Shoot/active = false
 parameters/Shoot/internal_active = false
 parameters/Shoot/request = 0
@@ -832,6 +871,11 @@ unique_name_in_owner = true
 stream = ExtResource("6_1bunc")
 volume_db = -80.0
 autoplay = true
+bus = &"HUD SFX"
+
+[node name="MoneyTransaction" type="AudioStreamPlayer" parent="Audio"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_f3p8d")
 bus = &"HUD SFX"
 
 [node name="HUD" type="Control" parent="." node_paths=PackedStringArray("player")]
@@ -1029,10 +1073,22 @@ libraries = {
 "": SubResource("AnimationLibrary_1ylt3")
 }
 
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Shaders"]
+material = SubResource("ShaderMaterial_e16in")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="MenuOverlay" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
-[node name="BG" type="ColorRect" parent="MenuOverlay"]
+[node name="MenuOverlay" type="ColorRect" parent="MenuOverlay"]
 material = SubResource("ShaderMaterial_rdh1j")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1040,7 +1096,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Darken" type="ColorRect" parent="MenuOverlay/BG"]
+[node name="Darken" type="ColorRect" parent="MenuOverlay/MenuOverlay"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1049,10 +1105,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="PauseMenu" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="PauseMenu" type="Control" parent="UI" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 process_mode = 3
 visible = false
@@ -1066,7 +1122,7 @@ theme = ExtResource("10_dvj6t")
 script = ExtResource("11_ckfkn")
 player = NodePath("../..")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1077,38 +1133,40 @@ theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="ReturnToGameButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="ReturnToGameButton" type="Button" parent="UI/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Return to Game"
 alignment = 0
 
-[node name="PauseGameButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="PauseGameButton" type="Button" parent="UI/PauseMenu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Pause Game"
 alignment = 0
 
-[node name="RequestEVACButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="RequestEVACButton" type="Button" parent="UI/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 disabled = true
 text = "Request EVAC"
 alignment = 0
 
-[node name="OptionsButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="UI/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
 alignment = 0
 
-[node name="ExitGameButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="ExitGameButton" type="Button" parent="UI/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit Game"
 alignment = 0
 
-[node name="DebugUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+[node name="DebugUI" type="Control" parent="UI" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
+process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1118,7 +1176,7 @@ grow_vertical = 2
 script = ExtResource("12_li32v")
 player = NodePath("../..")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DebugUI"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/DebugUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1130,27 +1188,27 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DebugUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DebugUI/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/DebugUI/MarginContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/DebugUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 scroll_following = true
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/DebugUI/MarginContainer/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="UI/DebugUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="body_entered" from="Camera3D/MeleeBox" to="." method="melee"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ReturnToGameButton" to="CanvasLayer/PauseMenu" method="return_to_game"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/PauseGameButton" to="CanvasLayer/PauseMenu" method="pause"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/RequestEVACButton" to="CanvasLayer/PauseMenu" method="request_evac"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/OptionsButton" to="CanvasLayer/PauseMenu" method="options"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ExitGameButton" to="CanvasLayer/PauseMenu" method="exit"]
-[connection signal="text_submitted" from="CanvasLayer/DebugUI/MarginContainer/VBoxContainer/LineEdit" to="CanvasLayer/DebugUI" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/ReturnToGameButton" to="UI/PauseMenu" method="return_to_game"]
+[connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/PauseGameButton" to="UI/PauseMenu" method="pause"]
+[connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/RequestEVACButton" to="UI/PauseMenu" method="request_evac"]
+[connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/OptionsButton" to="UI/PauseMenu" method="options"]
+[connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/ExitGameButton" to="UI/PauseMenu" method="exit"]
+[connection signal="text_submitted" from="UI/DebugUI/MarginContainer/VBoxContainer/LineEdit" to="UI/DebugUI" method="_on_line_edit_text_submitted"]
 
 [editable path="Camera3D/arm_model"]

@@ -1,0 +1,30 @@
+[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://dls0mlbomd4kb"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_j2mmj"]
+input_name = "eyedir"
+
+[resource]
+code = "shader_type sky;
+
+
+
+void sky() {
+// Input:2
+	vec3 n_out2p0 = EYEDIR;
+
+
+// Output:0
+	COLOR = n_out2p0;
+
+
+}
+"
+graph_offset = Vector2(-153.345, 54.0455)
+mode = 3
+flags/use_half_res_pass = false
+flags/use_quarter_res_pass = false
+flags/disable_fog = false
+flags/use_debanding = false
+nodes/sky/2/node = SubResource("VisualShaderNodeInput_j2mmj")
+nodes/sky/2/position = Vector2(-40, 120)
+nodes/sky/connections = PackedInt32Array(2, 0, 0, 0)

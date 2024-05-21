@@ -38,6 +38,7 @@ var label_damage : float = 0
 
 #Signals
 signal damage_taken
+signal killed
 
 
 func _ready():
@@ -49,7 +50,6 @@ func _ready():
 
 func _process(delta):
 	handle_hit_label(delta)
-	
 	
 
 
@@ -127,6 +127,7 @@ func damage(damage_value : float, hit_pos : Vector3, bullet_direction : Vector3)
 
 func dead():
 	is_dead = true
+	killed.emit()
 	
 	await get_tree().create_timer(3).timeout
 	

@@ -1,15 +1,15 @@
+res://shaders
+res://assets/maps
 res://entities/player
 res://static/themes
 res://static
 res://entities/enemies/basic enemy
 res://assets/arms/arm_datas
-res://shaders
 res://assets/interactables/workshop/workshop_upgrades/bullets
 res://assets/interactables/workshop/workshop_upgrades/global
 res://assets/models/blender
 res://
 res://assets/arms/arm_particles/impact
 res://assets/arms/arm_particles
-res://assets/maps
 res://assets
 res://scenes/maps

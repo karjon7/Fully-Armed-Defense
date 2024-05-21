@@ -88,7 +88,7 @@ func interacting():
 
 
 func money():
-	money_label.text = "Money: %s" % [player.money]
+	money_label.text = "Money: $%s" % [NumberFormatting.compact_notate(player.money)]
 
 
 func health(delta):
