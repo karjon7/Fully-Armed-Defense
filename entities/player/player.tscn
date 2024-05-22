@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cbl63n3ikl8eq"]
+[gd_scene load_steps=60 format=3 uid="uid://cbl63n3ikl8eq"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_6x15j"]
 [ext_resource type="PackedScene" uid="uid://cow84b2o7oa7b" path="res://assets/models/blender/arm_model.blend" id="2_s4flv"]
@@ -14,7 +14,6 @@
 [ext_resource type="Theme" uid="uid://d1td73sjwwkdp" path="res://static/themes/pause_theme.tres" id="10_dvj6t"]
 [ext_resource type="Script" path="res://entities/player/pause_menu.gd" id="11_ckfkn"]
 [ext_resource type="Shader" uid="uid://decwiypxdlcbv" path="res://shaders/posterization.tres" id="11_vbbsi"]
-[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="12_5eeat"]
 [ext_resource type="Script" path="res://entities/player/debug_ui.gd" id="12_li32v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcr0c"]
@@ -29,25 +28,6 @@ height = 0.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sy8cg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_krcvk"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vpru"]
-render_priority = 0
-shader = ExtResource("12_5eeat")
-shader_parameter/outlineColor = Color(0, 0, 0, 1)
-shader_parameter/depth_threshold = 0.2
-shader_parameter/normal_threshold = 0.2
-shader_parameter/normal_smoothing = 0.25
-shader_parameter/max_thickness = 1.3
-shader_parameter/min_thickness = 0.5
-shader_parameter/max_distance = 75.0
-shader_parameter/min_distance = 2.0
-shader_parameter/grazing_fresnel_power = 5.0
-shader_parameter/grazing_angle_mask_power = 1.0
-shader_parameter/grazing_angle_modulation_factor = 50.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_wbtii"]
-material = SubResource("ShaderMaterial_7vpru")
-size = Vector2(2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xlr05"]
 size = Vector3(0.172, 0.356, 0.518)
@@ -732,10 +712,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 fov = 90.0
 near = 0.001
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
-mesh = SubResource("QuadMesh_wbtii")
-skeleton = NodePath("../../Shaders")
-
 [node name="ArmClearance" type="Area3D" parent="Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336223, -0.156321, -0.173823)
@@ -782,11 +758,11 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0430715, -0.382369, 0.699248, 0.602487)
+bones/6/rotation = Quaternion(-0.0481849, -0.388291, 0.695977, 0.6021)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.34513, -0.553223, -0.170198, 0.738825)
+bones/7/rotation = Quaternion(0.356291, -0.546102, -0.185162, 0.735217)
 bones/7/scale = Vector3(1, 1, 1)
-bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
+bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587598, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
@@ -798,7 +774,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0425151, -0.00484349, 0.999084, 0.998014, 0.0467257, -0.042243, -0.0464783, 0.998896, 0.00682047, -0.340243, -0.172278, 0.160052)
+transform = Transform3D(0.040594, -0.00945723, 0.999131, 0.996637, 0.0716243, -0.0398147, -0.0711855, 0.997387, 0.0123329, -0.341206, -0.17629, 0.156306)
 bone_name = "forearm.R"
 bone_idx = 7
 
