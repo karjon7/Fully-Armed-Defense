@@ -1,12 +1,10 @@
+@tool
 extends Node
 class_name Map
 
-@export var new_wave_button : bool = false :
-	set(value):
-		new_wave_button = false
-		new_wave()
-
 @export_group("Required Nodes")
+
+@export var player : Player
 
 @export_subgroup("Navigation")
 @export var nav_region : NavigationRegion3D
@@ -17,14 +15,34 @@ class_name Map
 @export var enemy_spawner_holder : Node
 
 
-@export_group("Workshop")
-@export var max_workshop_chance : int = 20
-var waves_since_new_workshop : int = 0
+@export_group("Weather")
+var current_weather_particles : GPUParticles3D 
+enum WEATHER {RAIN, SNOW}
+@export var weather_on : bool = true :
+	set(value):
+		if not current_weather_particles: return
+		
+		weather_on = value
+		current_weather_particles.emitting = weather_on
+@export var weather : WEATHER : set = set_weather
+@export_range(0.0, 1.0, 0.01) var percipitation_ratio : float = 0.5 : 
+	set(value):
+		percipitation_ratio = value
+		
+		if current_weather_particles: current_weather_particles.amount_ratio = percipitation_ratio
+@export var snow_particles : GPUParticles3D
+@export var rain_particles : GPUParticles3D
+@export var particles_height_map : GPUParticlesCollisionHeightField3D
 
 
 @export_group("Wave")
 @export var intermission : bool = false
 @export var wave : int = 0
+
+
+@export_group("Workshop")
+@export var max_workshop_chance : int = 20
+var waves_since_new_workshop : int = 0
 
 
 @export_group("Enemies")
@@ -34,8 +52,11 @@ var waves_since_new_workshop : int = 0
 
 
 func _ready():
-	Debug.map = self
+	if not Engine.is_editor_hint(): Debug.map = self
 	randomize()
+	
+	#Player Check
+	assert(player, "No Player")
 	
 	#Nav Check
 	assert(nav_region, "No Nav Region")
@@ -46,17 +67,48 @@ func _ready():
 	#Holders Check
 	assert(workshop_holder, "No Workshop Holder")
 	assert(enemy_holder, "No Enemy Holder")
+	assert(enemy_spawner_holder, "No Enemy Spawners Holder")
 	
 	
-	#
+	#Weather
+	assert(particles_height_map, "No Height Map for particles")
+	current_weather_particles = snow_particles 
+	
+	weather_on = weather
+	percipitation_ratio = percipitation_ratio
+	weather = weather
+	
+	#Workshop
 	change_workshop()
+
+
+func _process(delta):
+	if current_weather_particles: current_weather_particles.position = \
+		Vector3(player.position.x, current_weather_particles.position.y, player.position.z)
+
+
+#Weather
+func set_weather(value : WEATHER):
+	if not rain_particles or not snow_particles: return
+	weather = value
+	
+	if current_weather_particles: current_weather_particles.emitting = false
+	match weather:
+		WEATHER.RAIN:
+			assert(rain_particles, "No Rain Particles")
+			current_weather_particles = rain_particles
+		
+		WEATHER.SNOW:
+			assert(snow_particles, "No Snow Particles")
+			current_weather_particles = snow_particles
+	
+	current_weather_particles.emitting = weather_on
 
 
 #Waves
 func start_intermission():
 	print("intermission started")
 	intermission = true
-
 
 
 func new_wave():

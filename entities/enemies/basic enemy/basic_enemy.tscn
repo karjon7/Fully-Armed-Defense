@@ -47,6 +47,7 @@ bones/16/rotation = Quaternion(0.00847839, 0.707056, 0.707056, 0.00847839)
 bones/17/rotation = Quaternion(-5.33851e-08, 0.707107, -0.707107, 5.33851e-08)
 
 [node name="Cube" parent="basic_enemy/Armature/Skeleton3D" index="0"]
+layers = 4
 surface_material_override/0 = SubResource("StandardMaterial3D_4dna2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

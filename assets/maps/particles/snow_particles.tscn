@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://depmw6u6yon33"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kx1n5"]
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_box_extents = Vector3(100, 0.1, 100)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cqu7"]
+shading_mode = 0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7py6i"]
+material = SubResource("StandardMaterial3D_6cqu7")
+size = Vector2(0.1, 0.1)
+
+[node name="SnowParticles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+cast_shadow = 0
+amount = 100000
+lifetime = 10.0
+visibility_aabb = AABB(-31, -23, -31, 62, 25, 62)
+process_material = SubResource("ParticleProcessMaterial_kx1n5")
+draw_pass_1 = SubResource("QuadMesh_7py6i")

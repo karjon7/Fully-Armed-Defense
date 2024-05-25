@@ -10,6 +10,8 @@ extends Control
 
 @onready var crosshair = %Crosshair
 
+@onready var fps_label = %FPSLabel
+
 @onready var money_label = %MoneyLabel
 
 @onready var health_label = %HealthLabel
@@ -49,6 +51,8 @@ func _ready():
 
 #FIXME
 func _process(delta):
+	fps_label.text = "FPS: %s" % Engine.get_frames_per_second() if Debug.debug_on else ""
+	
 	#Crosshair Aiming
 	check_clearance()
 	crosshair_positioning(delta)

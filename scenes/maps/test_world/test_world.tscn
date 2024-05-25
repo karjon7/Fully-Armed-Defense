@@ -1,14 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://88jofn3wg3ti"]
+[gd_scene load_steps=24 format=3 uid="uid://88jofn3wg3ti"]
 
 [ext_resource type="Script" path="res://scenes/maps/test_world/test_world.gd" id="1_0bq1n"]
 [ext_resource type="Environment" uid="uid://ut2egjcueayn" path="res://static/environment.tres" id="2_oq6pp"]
-[ext_resource type="PackedScene" uid="uid://mtithp0nddiq" path="res://assets/maps/test_world.tscn" id="3_pt6i5"]
+[ext_resource type="PackedScene" uid="uid://8ioqheo6psbv" path="res://assets/models/blender/maps/test_world.blend" id="3_dderg"]
+[ext_resource type="Texture2D" uid="uid://b3jvvgdhbuu27" path="res://assets/addons/kenney_prototype_textures/orange/texture_01.png" id="4_ty0kb"]
 [ext_resource type="PackedScene" uid="uid://cbl63n3ikl8eq" path="res://entities/player/player.tscn" id="4_xfc15"]
 [ext_resource type="PackedScene" uid="uid://ce5p148xnruub" path="res://entities/enemies/basic enemy/basic_enemy.tscn" id="5_6vxhx"]
 [ext_resource type="Resource" uid="uid://dms2xqwyceelm" path="res://assets/interactables/workshop/workshop_upgrades/global/heat_upgrade.tres" id="5_038gp"]
+[ext_resource type="Texture2D" uid="uid://c8ys4gnjf3cui" path="res://assets/addons/kenney_prototype_textures/dark/texture_06.png" id="5_xqv5a"]
 [ext_resource type="Resource" uid="uid://cfcg4r8mhbfal" path="res://assets/interactables/workshop/workshop_upgrades/global/firerate_upgrade.tres" id="6_ab6qo"]
 [ext_resource type="PackedScene" uid="uid://b8ddi102xaunv" path="res://assets/interactables/workshop/workshop.tscn" id="6_eofya"]
+[ext_resource type="PackedScene" uid="uid://depmw6u6yon33" path="res://assets/maps/particles/snow_particles.tscn" id="6_wr7yx"]
 [ext_resource type="Resource" uid="uid://croyflljatyha" path="res://assets/interactables/workshop/workshop_upgrades/bullets/damage.tres" id="7_a436j"]
+[ext_resource type="PackedScene" uid="uid://d0qq448ljxk88" path="res://assets/maps/particles/rain_particles.tscn" id="7_xgueo"]
 [ext_resource type="Resource" uid="uid://cbxm0l7ggpl1u" path="res://assets/interactables/workshop/workshop_upgrades/bullets/bounces.tres" id="8_8fuyv"]
 [ext_resource type="Resource" uid="uid://j1qscpufj4su" path="res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres" id="9_5b4fc"]
 [ext_resource type="Resource" uid="uid://18glrq6p04a5" path="res://assets/interactables/workshop/workshop_upgrades/bullets/range.tres" id="10_7avc3"]
@@ -26,14 +30,27 @@ cell_height = 0.05
 agent_height = 2.0
 agent_max_climb = 0.05
 
-[node name="TestWorld" type="Node3D" node_paths=PackedStringArray("nav_region", "workshop_holder", "enemy_holder", "enemy_spawner_holder")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78ibb"]
+albedo_texture = ExtResource("4_ty0kb")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dctlx"]
+albedo_texture = ExtResource("5_xqv5a")
+uv1_triplanar = true
+
+[node name="TestWorld" type="Node" node_paths=PackedStringArray("player", "nav_region", "workshop_holder", "enemy_holder", "enemy_spawner_holder", "snow_particles", "rain_particles", "particles_height_map")]
 script = ExtResource("1_0bq1n")
+player = NodePath("Player")
 nav_region = NodePath("NavigationRegion3D")
 workshop_holder = NodePath("WorkshopHolder")
 enemy_holder = NodePath("EnemyHolder")
 enemy_spawner_holder = NodePath("EnemySpawnerHolder")
+percipitation_ratio = 1.0
+snow_particles = NodePath("Weather/SnowParticles")
+rain_particles = NodePath("Weather/RainParticles")
+particles_height_map = NodePath("Weather/GPUParticlesCollisionHeightField3D")
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" type="Node" parent="."]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
@@ -48,7 +65,26 @@ shadow_enabled = true
 navigation_mesh = SubResource("NavigationMesh_3a57q")
 metadata/_edit_lock_ = true
 
-[node name="test_world" parent="NavigationRegion3D" instance=ExtResource("3_pt6i5")]
+[node name="test_world" parent="NavigationRegion3D" instance=ExtResource("3_dderg")]
+
+[node name="World " parent="NavigationRegion3D/test_world" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_78ibb")
+surface_material_override/1 = SubResource("StandardMaterial3D_dctlx")
+
+[node name="Weather" type="Node" parent="."]
+
+[node name="SnowParticles" parent="Weather" instance=ExtResource("6_wr7yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0324144, 25, -0.0926883)
+emitting = false
+
+[node name="RainParticles" parent="Weather" instance=ExtResource("7_xgueo")]
+
+[node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="Weather"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+cull_mask = 4294967289
+size = Vector3(60, 15, 60)
+update_mode = 1
+follow_camera_enabled = true
 
 [node name="WorkshopHolder" type="Node" parent="."]
 
@@ -69,7 +105,6 @@ global_upgrade_1 = ExtResource("6_ab6qo")
 type_upgrade_1 = ExtResource("10_7avc3")
 type_upgrade_2 = ExtResource("10_7avc3")
 type_upgrade_3 = ExtResource("11_ln4wy")
-can_interact = false
 
 [node name="Workshop3" parent="WorkshopHolder" node_paths=PackedStringArray("player") instance=ExtResource("6_eofya")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 2, -4)
