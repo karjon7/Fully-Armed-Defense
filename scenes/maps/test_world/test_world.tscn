@@ -105,3 +105,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0324144, 1.90735e-06, -0.09
 mouse_sensitivity = 0.07
 arm_data = ExtResource("15_wbu6e")
 can_overheat = true
+
+[editable path="NavigationRegion3D/test_world"]

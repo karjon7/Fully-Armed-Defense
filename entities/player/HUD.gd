@@ -88,7 +88,10 @@ func interacting():
 
 
 func money():
-	money_label.text = "Money: $%s" % [NumberFormatting.compact_notate(player.money)]
+	var money_text = NumberFormatting.notate(player.money) \
+		if player.money < 1000000 else NumberFormatting.compact_notate(player.money)
+	
+	money_label.text = "Money: $%s" % [money_text]
 
 
 func health(delta):

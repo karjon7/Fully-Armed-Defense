@@ -1,3 +1,7 @@
+GPUParticlesCollisionHeightField3D
+GPUParticles3D
+GPUParticlesCollisionSDF3D
+SpotLight3D
 MeshInstance3D
 CanvasLayer
 ColorRect
@@ -9,6 +13,3 @@ AudioStreamPlayer
 Button
 Control
 MarginContainer
-LineEdit
-RichTextLabel
-PanelContainer

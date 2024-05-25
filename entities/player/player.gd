@@ -36,8 +36,11 @@ class_name Player
 		test = value
 		print(value)
 
+
 #UI
+@export_group("UI")
 @export var menu_open : bool = false : set = _set_menu_overlay
+@export var menu_tween_speed : float = 0.5
 
 
 #Health
@@ -196,8 +199,11 @@ func _physics_process(delta):
 func _set_menu_overlay(value):
 	menu_open = value
 	
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(menu_overlay.material, "shader_parameter/effect_amount", float(menu_open), menu_tween_speed)
+	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if menu_open else Input.MOUSE_MODE_CAPTURED
-	menu_overlay.visible = menu_open
+	#menu_overlay.visible = menu_open
 	hud.visible = !menu_open
 	
 	can_look = !menu_open

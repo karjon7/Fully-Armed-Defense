@@ -1,11 +1,18 @@
-res://entities/player/player.tscn
+res://entities/enemies/basic enemy/basic_enemy.tscn
 res://static/themes/workshop_theme.tres
 res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres
 res://shaders/crosshair_shader.tres
-res://shaders/frosted_glass.tres
 res://shaders/blur_shader.tres
-res://assets/maps/map_sky.tres
-res://shaders/posterization.tres
 res://static/themes/pause_theme.tres
-res://entities/enemies/basic enemy/basic_enemy.tscn
+res://shaders/posterization.tres
+res://static/environment.tres
+res://assets/arms/arm_datas/starting_arm.tres
+res://shaders/frosted_glass.tres
+res://assets/maps/map_sky.tres
 res://assets/interactables/workshop/workshop.tscn
+res://entities/player/player.tscn
+res://assets/maps/test_world.tscn
+res://scenes/maps/test_world/test_world.tscn
+res://entities/player/hud.gd
+res://entities/player/player.gd
+res://shaders/menu_overlay_shader.tres
