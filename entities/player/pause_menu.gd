@@ -34,3 +34,7 @@ func options():
 
 func exit():
 	get_tree().quit()
+
+
+func meta_clicked(meta: Variant):
+	OS.shell_open(meta)
