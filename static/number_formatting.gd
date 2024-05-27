@@ -47,9 +47,8 @@ func compact_notate(value : float, digits := 3, abbriviate := true) -> String:
 	lookup.reverse()
 	
 	var abs_value = abs(value)
-	var notation = lookup.slice(0).filter(func(notation): return abs_value >= notation.value)[0] if value != 0 else 0
+	var notation = lookup.slice(0).filter(func(_notation): return abs_value >= _notation.value)[0] if value != 0 else 0
 	
-	var string_spaces = 8 if abs_value >= 1e3 else 4
 	digits = digits if abs_value >= 1e3 else 0
 	
 	var format_string = "%.*f%s" if abbriviate else "%.*f %s"

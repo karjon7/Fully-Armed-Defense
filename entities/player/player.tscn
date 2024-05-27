@@ -759,9 +759,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0424647, -0.381664, 0.699633, 0.60253)
+bones/6/rotation = Quaternion(-0.0448391, -0.384418, 0.698124, 0.602358)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.343796, -0.554054, -0.168417, 0.739233)
+bones/7/rotation = Quaternion(0.349005, -0.550787, -0.17538, 0.737612)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -776,7 +776,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0427656, -0.00430498, 0.999076, 0.998136, 0.0437664, -0.0425366, -0.0435427, 0.999032, 0.0061686, -0.340126, -0.171799, 0.160492)
+transform = Transform3D(0.0418124, -0.00642238, 0.999105, 0.997609, 0.0553421, -0.041394, -0.0550267, 0.998447, 0.00872102, -0.340579, -0.173671, 0.158765)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -1153,7 +1153,7 @@ custom_minimum_size = Vector2(10, 25)
 layout_mode = 2
 size_flags_vertical = 8
 bbcode_enabled = true
-text = "Found a bug? Open an issue on the [color=Royalblue][url=https://github.com/karjon7/Fully-Armed-Defense/issues]Github Repository[/url][/color]!"
+text = "Found a bug? Open an issue about it on the [color=Royalblue][url=https://github.com/karjon7/Fully-Armed-Defense/issues]Github Repository[/url][/color]!"
 
 [node name="DebugUI" type="Control" parent="UI" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true

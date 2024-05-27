@@ -16,22 +16,13 @@ class_name Map
 
 
 @export_group("Weather")
-var current_weather_particles : GPUParticles3D 
-enum WEATHER {RAIN, SNOW}
-@export var weather_on : bool = true :
-	set(value):
-		if not current_weather_particles: return
-		
-		weather_on = value
-		current_weather_particles.emitting = weather_on
+enum WEATHER {CLEAR, RAIN, SNOW}
+
 @export var weather : WEATHER : set = set_weather
-@export_range(0.0, 1.0, 0.01) var percipitation_ratio : float = 0.5 : 
-	set(value):
-		percipitation_ratio = value
-		
-		if current_weather_particles: current_weather_particles.amount_ratio = percipitation_ratio
-@export var snow_particles : GPUParticles3D
+@export_range(0.0, 1.0, 0.01) var precipitation_ratio : float = 1 : set = set_precipitation
+@export var precipitation_tween_speed : float = 3.0
 @export var rain_particles : GPUParticles3D
+@export var snow_particles : GPUParticles3D
 @export var particles_height_map : GPUParticlesCollisionHeightField3D
 
 
@@ -72,10 +63,8 @@ func _ready():
 	
 	#Weather
 	assert(particles_height_map, "No Height Map for particles")
-	current_weather_particles = snow_particles 
 	
-	weather_on = weather
-	percipitation_ratio = percipitation_ratio
+	precipitation_ratio = precipitation_ratio
 	weather = weather
 	
 	#Workshop
@@ -83,26 +72,42 @@ func _ready():
 
 
 func _process(delta):
-	if current_weather_particles: current_weather_particles.position = \
-		Vector3(player.position.x, current_weather_particles.position.y, player.position.z)
+	rain_particles.position = Vector3(player.position.x, rain_particles.position.y, player.position.z)
+	snow_particles.position = Vector3(player.position.x, snow_particles.position.y, player.position.z)
 
 
 #Weather
+func set_precipitation(value : float):
+		precipitation_ratio = value
+		
+		if not rain_particles or not snow_particles: return
+		
+		var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		
+		tween.tween_property(rain_particles, "amount_ratio", precipitation_ratio, precipitation_tween_speed)
+		tween.tween_property(snow_particles, "amount_ratio", precipitation_ratio, precipitation_tween_speed)
+
+
 func set_weather(value : WEATHER):
-	if not rain_particles or not snow_particles: return
 	weather = value
 	
-	if current_weather_particles: current_weather_particles.emitting = false
+	if not rain_particles or not snow_particles: return
+	
+	rain_particles.emitting = false
+	snow_particles.emitting = false
+	
 	match weather:
+		WEATHER.CLEAR:
+			pass
+		
 		WEATHER.RAIN:
 			assert(rain_particles, "No Rain Particles")
-			current_weather_particles = rain_particles
+			rain_particles.emitting = true
 		
 		WEATHER.SNOW:
 			assert(snow_particles, "No Snow Particles")
-			current_weather_particles = snow_particles
+			snow_particles.emitting = true
 	
-	current_weather_particles.emitting = weather_on
 
 
 #Waves

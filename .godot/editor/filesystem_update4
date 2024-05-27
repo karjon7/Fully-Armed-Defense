@@ -1,4 +1,4 @@
-res://scenes/maps/test_world/test_world.tscn
+res://entities/player/player.tscn
 res://static/themes/workshop_theme.tres
 res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres
 res://shaders/crosshair_shader.tres
@@ -8,9 +8,11 @@ res://shaders/posterization.tres
 res://static/environment.tres
 res://assets/arms/arm_datas/starting_arm.tres
 res://shaders/frosted_glass.tres
-res://scenes/maps/map.gd
+res://static/debug.gd
 res://entities/enemies/basic enemy/basic_enemy.tscn
 res://assets/interactables/workshop/workshop.tscn
-res://entities/player/player.tscn
-res://assets/maps/particles/snow_particles.tscn
+res://scenes/maps/test_world/test_world.tscn
+res://scenes/maps/map.gd
 res://assets/maps/particles/rain_particles.tscn
+res://static/number_formatting.gd
+res://assets/maps/particles/snow_particles.tscn

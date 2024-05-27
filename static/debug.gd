@@ -93,6 +93,16 @@ var OVERHEAT #: DebugCommand = DebugCommand.new("overheat", "Toggles whether pla
 var PERK #: DebugCommand = DebugCommand.new("perk", "Gives the player a perk.", player_grant_perk, [TYPE_INT])
 
 #NOTE:Map Commands
+var WEATHER : DebugCommand = DebugCommand.new(\
+	"weather", \
+	"Changes the weather of the map.", \
+	func(weather : int): map.set_weather(weather) ; send_debug_messege("Weather changed"), \
+	[ArgumentFormat.new("weather", TYPE_INT)])
+var WEATHER_PRECIPITATION : DebugCommand = DebugCommand.new(\
+	"weather_precipitation", \
+	"Changes the weather intensity of the map.", \
+	func(ratio_value : float): map.set_precipitation(ratio_value) ; send_debug_messege("Weather precipitation changed"), \
+	[ArgumentFormat.new("ratio_value", TYPE_FLOAT)])
 var KILL_ALL : DebugCommand = DebugCommand.new(\
 	"kill_all", \
 	"Kills all enemies on the map.", \
@@ -124,6 +134,8 @@ var command_list : Array[DebugCommand] = [
 	
 	#
 	
+	WEATHER,
+	WEATHER_PRECIPITATION,
 	KILL_ALL,
 	SKIP_WAVE,
 	FORCE_INTERMISSION,
