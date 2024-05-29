@@ -19,7 +19,7 @@ body:
 
         - **Do** have a descriptive title written above.
         - **Do not** list multiple bugs in one issue. Please open a separate issue for each bug you encounter.
-        - **Do** first check [open](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aopen+is%3Aissue) and [closed](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aissue+is%3Aclosed) issues to make sure your bug has not already been addressed.
+        - **Do** first check [open](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aopen+is%3Aissue+label%3Abug) and [closed](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aissue+label%3Abug+is%3Aclosed) issues to make sure your bug has not already been addressed.
         - **Do** ensure that any bugs found using a personal custom build also appear in the official version of the game.
         - Finally, **do** make sure this bug is replicable in the latest version of the game: it may have already been patched in a previous version.
         
