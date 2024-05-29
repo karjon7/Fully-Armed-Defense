@@ -44,7 +44,7 @@ body:
   - type: input
     attributes:
       label: System info
-      description: Specify the OS, CPU, GPU, and Memory space of your device. Information like this can be found in Task Manager.
+      description: Specify the OS, CPU, GPU, and memory space of your device. Information like this can be found in Task Manager.
       placeholder: Windows 11 - Intel Core i5-10400F - NVIDIA GeForce GTX 1650 - 8.0 GB
     validations:
       required: true
@@ -65,3 +65,10 @@ body:
         List steps to recreate the bug in detail. **If the bug is not reproducible, the issue will be closed *immediately*.**
     validations:
       required: true
+  
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Anything else we should know about your bug, leave it here.
+    validations:
+      required: false
