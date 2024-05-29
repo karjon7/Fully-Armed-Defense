@@ -1,0 +1,119 @@
+name: Feature proposal
+description: Want to see a feature added to the game? Propose it here.
+labels: ["enhancement"]
+assignees:
+  - karjon7
+
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        # Disclaimer
+
+        ### Thank you for taking the time to fill out a proposal!
+
+        Please ensure the guidelines of this template are followed properly. 
+
+        - **Do** have a descriptive title written above.
+        - **Do not** list multiple features in one issue. Please open a separate issue for each feature.
+        - Finally, **do** first check [open](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aopen+is%3Aissue) and [closed](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aissue+is%3Aclosed) issues to make sure your feature has not already been requested.
+  
+  - type: checkboxes
+    attributes:
+      label: Disclaimer confirmation
+      description: By checking this box, you confirm you have read, understood, and followed the above disclaimer.
+      options:
+        - label: I have read, understood, and followed the above disclaimer.
+          required: true
+
+  - type: input
+    attributes:
+      label: Feature Title
+      description: Provide a concise and descriptive title of the feature.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Summary
+      description: A brief description of the feature and what it aims to achieve.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Problem Statement
+      description: A detailed explanation of the problem that this feature is intended to solve.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Proposed Solution
+      description: A clear and detailed description of the proposed feature and how it works.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Benefits
+      description: List the advantages and benefits of implementing this feature.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Use Cases
+      description: Provide examples of how this feature will be used. Describe specific scenarios where this feature would be beneficial.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Requirements
+      description: List any prerequisites or requirements for implementing this feature.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Design and Implementation Details
+      description: Outline the design and technical details of how this feature will be implemented.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Alternatives
+      description: Discuss any alternative solutions that were considered and why they were not chosen.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Impact
+      description: Describe the potential impact of this feature on the existing codebase and user experience.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Testing
+      description: Explain how the feature will be tested to ensure it works as intended.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Timeline
+      description: Provide an estimated timeline for the development and implementation of the feature.
+    validations:
+      required: true
+  
+  - type: textarea
+    attributes:
+      label: Additional Information
+      description: Include any other relevant information that might help in understanding or implementing the feature.
+    validations:
+      required: false
