@@ -1,0 +1,15 @@
+name: Bug report
+description: Report a bug
+labels: ["bug"]
+assignees: 
+  - karjon7
+
+body:
+  
+  - type: markdown
+    attributes:
+      value: |
+        # Disclaimer
+        Thank you for taking the time to fill out the report!
+        Please insure the guildines of this template are followed properly. This helps use greatly with identifying issues and resolving much faster.
+        -Have
