@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a bug
+description: Found a bug? Report it here.
 labels: ["bug"]
 assignees: 
   - karjon7
