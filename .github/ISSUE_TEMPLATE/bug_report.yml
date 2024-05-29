@@ -10,21 +10,58 @@ body:
     attributes:
       value: |
         # Disclaimer
-        Thank you for taking the time to fill out the report!
-        Please insure the guildines of this template are followed properly. This helps use greatly with identifying issues and resolving much faster.
-        -Have
+
+        ### Thank you for taking the time to fill out a report!
+
+        Please ensure the guidelines of this template are followed properly. 
+        This helps us greatly with identifying issues and resolving them much faster.
+        *Include as much information as you can.* If not enough information is given your issue may be closed.
+
+        - **Do** have a descriptive title written above.
+        - **Do not** list multiple bugs in one issue. Please open a separate issue for each bug you encounter.
+        - **Do** first check [open](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aopen+is%3Aissue) and [closed](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aissue+is%3Aclosed) issues to make sure your bug has not already been addressed.
+        - **Do** ensure that any bugs found using a personal custom build also appear in the official version of the game.
+        - Finally, **do** make sure this bug is replicable in the latest version of the game: it may have already been patched in a previous version.
+        
+  - type: checkboxes
+    attributes:
+      label: Disclaimer confirmation
+      description: By checking this box, you confirm you have read, understand and followed the above disclaimer.
+      options:
+        - label: I have read, understand and followed the above disclaimer.
+          required: true
+
+  - type: input
+    attributes:
+      label: Version of bug
+      description: |
+        If you are unsure of the game version, it is listed on the title and pause menu.
+      placeholder: |
+        Version: 0.0.4
+    validations:
+      required: true
+  
+  - type: input
+    attributes:
+      label: System info
+      description: Specify the OS, CPU, GPU and Memory space of your device. Information like this can be found in task manager.
+      placeholder: Windows 11 - Intel Core i5-10400F - NVIDIA GeForce GTX 1650 - 8.0 GB
+    validations:
+      required: true
   
   - type: textarea
     attributes:
-      label: Tested versions
+      label: Issue Description
       description: |
-        To properly fix a bug, we need to identify if the bug was recently introduced in the engine, or if it was always present.
-        - Please specify the Godot version you found the issue in, including the **Git commit hash** if using a development or non-official build. The exact Godot version (including the commit hash) can be copied by clicking the version shown in the editor (bottom bar) or in the project manager (top bar).
-        - If you can, **please test earlier Godot versions** (previous stable branch, and development snapshots of the current feature release) and, if applicable, newer versions (development snapshots for the next feature release). Mention whether the bug is reproducible or not in the versions you tested. You can find all Godot releases in our [download archive](https://godotengine.org/download/archive/).
-        - The aim is for us to identify whether a bug is a **regression**, i.e. an issue that didn't exist in a previous version, but was introduced later on, breaking existing functionality. For example, if a bug is reproducible in 4.2.stable but not in 4.1.stable, we would like you to test intermediate 4.2 dev and beta snapshots to find which snapshot is the first one where the issue can be reproduced.
-      placeholder: |
+        Describe your bug in detail. What dosen't work? What do you think is supposed to happen instead?
+        Include images  or videos if applicable.
+    validations:
+      required: true
 
-        - Reproducible in: 4.3.dev [d76c1d0e5], 4.2.stable, 4.2.dev5 and later 4.2 snapshots.
-        - Not reproducible in: 4.1.3.stable, 4.2.dev4 and earlier 4.2 snapshots.
+  - type: textarea
+    attributes:
+      label: How to replicate
+      description: |
+        List steps to recreate the bug in detail. **If the bug is not reproducible, the issue will be closed *immediatly*.**
     validations:
       required: true
