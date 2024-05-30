@@ -18,10 +18,6 @@ body:
         - **Do** have a descriptive title written above.
         - **Do not** list multiple features in one issue. Please open a separate issue for each feature.
         - Finally, **do** first check [open](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) and [closed](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aissue+label%3Aenhancement+is%3Aclosed) issues to make sure your feature has not already been requested.
-  
-  - type: markdown
-    attributes:
-      value: "# Feature Proposal"
 
   - type: checkboxes
     attributes:
@@ -30,7 +26,11 @@ body:
       options:
         - label: I have read, understood, and followed the above disclaimer.
           required: true
-
+  
+  - type: markdown
+    attributes:
+      value: "# Feature Proposal"
+  
   - type: input
     attributes:
       label: Feature Title
