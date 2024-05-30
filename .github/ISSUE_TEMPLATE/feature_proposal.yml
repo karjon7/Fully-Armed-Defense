@@ -110,6 +110,17 @@ body:
       description: Provide an estimated timeline for the development and implementation of the feature.
     validations:
       required: true
+
+  - type: dropdown
+    attributes:
+      label: Priority
+      description: Specify the priority of the feature request.
+      options:
+        - High
+        - Medium
+        - Low
+    validations:
+      required: false
   
   - type: textarea
     attributes:
