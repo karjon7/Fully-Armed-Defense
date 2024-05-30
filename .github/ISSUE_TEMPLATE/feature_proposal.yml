@@ -31,13 +31,6 @@ body:
     attributes:
       value: "# Feature Proposal"
   
-  - type: input
-    attributes:
-      label: Feature Title
-      description: Provide a concise and descriptive title of the feature.
-    validations:
-      required: true
-  
   - type: textarea
     attributes:
       label: Summary
