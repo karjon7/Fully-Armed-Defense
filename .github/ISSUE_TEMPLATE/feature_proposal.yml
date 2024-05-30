@@ -1,4 +1,4 @@
-name: Feature proposal
+name: Feature Proposal
 description: Want to see a feature added to the game? Propose it here.
 labels: ["enhancement"]
 assignees:
@@ -19,6 +19,10 @@ body:
         - **Do not** list multiple features in one issue. Please open a separate issue for each feature.
         - Finally, **do** first check [open](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) and [closed](https://github.com/Dressed-to-Kill-Studios/Fully-Armed-Defense/issues?q=is%3Aissue+label%3Aenhancement+is%3Aclosed) issues to make sure your feature has not already been requested.
   
+  - type: markdown
+    attributes:
+      value: "# Feature Proposal"
+
   - type: checkboxes
     attributes:
       label: Disclaimer confirmation
