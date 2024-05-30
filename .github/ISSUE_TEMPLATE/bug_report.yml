@@ -23,10 +23,6 @@ body:
         - **Do** ensure that any bugs found using a personal custom build also appear in the official version of the game.
         - Finally, **do** make sure this bug is replicable in the latest version of the game: it may have already been patched in a previous version.
 
-  - type: markdown
-    attributes:
-      value: "# Bug Report"
-
   - type: checkboxes
     attributes:
       label: Disclaimer Confirmation
@@ -34,6 +30,10 @@ body:
       options:
         - label: I have read, understood, and followed the above disclaimer.
           required: true
+
+  - type: markdown
+    attributes:
+      value: "# Bug Report"
 
   - type: input
     attributes:
