@@ -2,5 +2,5 @@ blank_issues_enabled: false
 
 contact_links:
   - name: DTK application
-  - url: https://forms.gle/xswTKSPznWYenoUg6
-  - about: If you are interested in joining our team, you can fill out an application here.
+    url: https://forms.gle/xswTKSPznWYenoUg6
+    about: If you are interested in joining our team, you can fill out an application here.
