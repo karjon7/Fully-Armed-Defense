@@ -4,6 +4,8 @@ extends Control
 
 @onready var text_label = %RichTextLabel
 @onready var line_edit = %LineEdit
+@onready var help_text_container = %HelpTextContainer
+
 
 var text_history : Array[String] = [] : set = _set_text_history
 var history_index : int = 0 : set = _set_history_index
@@ -73,6 +75,34 @@ func handle_input(text : String):
 	Debug.command_evaluation(command_id, command_args)
 
 
+func suggest(text : String):
+	
+	for label in help_text_container.get_children(): label.queue_free()
+	
+	if not Debug.debug_on: return
+	
+	var similar_strings : Array[Dictionary] = []
+	
+	for command in Debug.command_list:
+		if command.id.begins_with("_"): continue
+		
+		var dict = {
+			"command_id" : command.id,
+			"similarity_value" : text.similarity(command.id),
+		}
+		
+		if dict.similarity_value >= 0.25: similar_strings.append(dict)
+	
+	similar_strings.sort_custom(func(a, b): return a.similarity_value < b.similarity_value)
+	
+	for command in similar_strings:
+		var label = Label.new()
+		
+		label.text = command.command_id
+		help_text_container.add_child(label)
+	
+
+
 func _on_line_edit_text_submitted(new_text : String):
 	if new_text.is_empty(): return
 	
@@ -81,3 +111,7 @@ func _on_line_edit_text_submitted(new_text : String):
 	text_label.newline()
 	line_edit.clear()
 	history_index = 0
+
+
+func _on_line_edit_text_changed(new_text):
+	suggest(new_text)

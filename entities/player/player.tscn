@@ -759,9 +759,9 @@ bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.605023, 0.360445, 0.386336, 0.595626)
-bones/6/rotation = Quaternion(-0.0452922, -0.384943, 0.697834, 0.602324)
+bones/6/rotation = Quaternion(-0.0292374, -0.366225, 0.707837, 0.603317)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(0.349996, -0.550158, -0.176707, 0.737295)
+bones/7/rotation = Quaternion(0.314225, -0.571343, -0.129363, 0.747057)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 bones/8/scale = Vector3(1, 1, 1)
@@ -776,7 +776,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0416388, -0.00682999, 0.999109, 0.997493, 0.0575498, -0.0411779, -0.0572171, 0.998319, 0.00920915, -0.340665, -0.174027, 0.158434)
+transform = Transform3D(0.049384, 0.00685888, 0.998756, 0.998569, -0.0208548, -0.0492316, 0.0204912, 0.999759, -0.00787891, -0.337473, -0.161163, 0.169825)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -1085,6 +1085,7 @@ layer = 2
 [node name="PauseMenu" type="Control" parent="UI" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -1160,7 +1161,6 @@ fit_content = true
 [node name="DebugUI" type="Control" parent="UI" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1193,9 +1193,36 @@ size_flags_vertical = 3
 bbcode_enabled = true
 scroll_following = true
 
+[node name="HelpTextContainer" type="VBoxContainer" parent="UI/DebugUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.75)
+layout_mode = 2
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
 [node name="LineEdit" type="LineEdit" parent="UI/DebugUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/DebugUI/MarginContainer/VBoxContainer/LineEdit"]
+visible = false
+modulate = Color(1, 1, 1, 0.75)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DebugUI/MarginContainer/VBoxContainer/LineEdit/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [connection signal="body_entered" from="Camera3D/MeleeBox" to="." method="melee"]
 [connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/ReturnToGameButton" to="UI/PauseMenu" method="return_to_game"]
@@ -1204,6 +1231,7 @@ layout_mode = 2
 [connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/OptionsButton" to="UI/PauseMenu" method="options"]
 [connection signal="pressed" from="UI/PauseMenu/MarginContainer/VBoxContainer/ExitGameButton" to="UI/PauseMenu" method="exit"]
 [connection signal="meta_clicked" from="UI/PauseMenu/MarginContainer2/RichTextLabel" to="UI/PauseMenu" method="meta_clicked"]
+[connection signal="text_changed" from="UI/DebugUI/MarginContainer/VBoxContainer/LineEdit" to="UI/DebugUI" method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="UI/DebugUI/MarginContainer/VBoxContainer/LineEdit" to="UI/DebugUI" method="_on_line_edit_text_submitted"]
 
 [editable path="Camera3D/arm_model"]
