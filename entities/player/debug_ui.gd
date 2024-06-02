@@ -122,7 +122,7 @@ func suggest(text : String):
 			"similarity_value" : text.similarity(command.id),
 		}
 		
-		if dict.similarity_value >= 0.05: similar_strings.append(dict)
+		if dict.similarity_value >= 0.25: similar_strings.append(dict)
 	
 	similar_strings.sort_custom(func(a, b): return a.similarity_value < b.similarity_value)
 	
