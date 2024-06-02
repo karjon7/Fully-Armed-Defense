@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1717277623
+::res://::1717286364
 CODE_OF_CONDUCT.md::TextFile::-1::1717185465::0::1::::<><>::
 icon.svg::CompressedTexture2D::372432209532460171::1716869910::1716869910::1::::<><>::
 README.md::TextFile::-1::1716869910::0::1::::<><>::
@@ -92,10 +92,10 @@ texture_11.png::CompressedTexture2D::5827522106206853752::1716869910::1716869910
 texture_12.png::CompressedTexture2D::8962552495878517885::1716869910::1716869910::1::::<><>::
 texture_13.png::CompressedTexture2D::6063599866948785087::1716869910::1716869910::1::::<><>::
 ::res://assets/arms/::1716869910
-::res://assets/arms/arm_datas/::1716870032
+::res://assets/arms/arm_datas/::1717278024
 arm_data.gd::GDScript::-1::1716869910::0::1::::ArmData<>Resource<>::
 laser_arm.tres::Resource/Resource::5798530621427958306::1716869910::0::1::::<><>::res://assets/arms/arm_datas/arm_data.gd
-starting_arm.tres::Resource/ArmData::349662946202988929::1716870032::0::1::::<><>::res://assets/arms/arm_datas/arm_data.gd<>uid://bvaejd3lmi1jl::::res://assets/arms/arm_particles/shooting/bullet_shooting_particles.tscn<>uid://1npkpeywkw07::::res://assets/bullet/bullets/test_bullet.tscn<>uid://dr3tefv7rdar7::::res://assets/audio/bullet/shots_audio/energy_shot1.wav
+starting_arm.tres::Resource/ArmData::349662946202988929::1717278024::0::1::::<><>::res://assets/arms/arm_datas/arm_data.gd<>uid://bvaejd3lmi1jl::::res://assets/arms/arm_particles/shooting/bullet_shooting_particles.tscn<>uid://1npkpeywkw07::::res://assets/bullet/bullets/test_bullet.tscn<>uid://dr3tefv7rdar7::::res://assets/audio/bullet/shots_audio/energy_shot1.wav
 test_arm.tres::Resource/Resource::4018793274262682054::1716869910::0::1::::<><>::res://assets/arms/arm_datas/arm_data.gd<>uid://1npkpeywkw07::::res://assets/bullet/bullets/test_bullet.tscn<>uid://bvaejd3lmi1jl::::res://assets/arms/arm_particles/shooting/bullet_shooting_particles.tscn<>uid://dr3tefv7rdar7::::res://assets/audio/bullet/shots_audio/energy_shot1.wav
 ::res://assets/arms/arm_particles/::1716869910
 arm_particles.gd::GDScript::-1::1716869910::0::1::::ArmParticles<>Node3D<>::
@@ -158,16 +158,16 @@ Flare00.PNG::CompressedTexture2D::8338711623614371772::1716869910::1716869910::1
 Flare01.png::CompressedTexture2D::1347668362112973656::1716869910::1716869910::1::::<><>::
 ::res://assets/interactables/::1716869910
 interactable.gd::GDScript::-1::1716869910::0::1::::Interactable<>StaticBody3D<>::
-::res://assets/interactables/workshop/::1716870272
+::res://assets/interactables/workshop/::1717286006
 workshop.gd::GDScript::-1::1716869910::0::1::::<>Interactable<>::
-workshop.tscn::PackedScene::4709043499824617519::1716870272::0::1::::<><>::res://assets/interactables/workshop/workshop.gd<>uid://bwyrmuav1e2f5::::res://assets/interactables/workshop/workshop_upgrades/global/auto_upgrade.tres<>uid://lw1w3xipifap::::res://static/themes/workshop_theme.tres<>uid://cfcg4r8mhbfal::::res://assets/interactables/workshop/workshop_upgrades/global/firerate_upgrade.tres<>uid://dms2xqwyceelm::::res://assets/interactables/workshop/workshop_upgrades/global/heat_upgrade.tres<>uid://cbxm0l7ggpl1u::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounces.tres<>uid://dxtwefuh5ws0l::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounce_angle.tres<>uid://croyflljatyha::::res://assets/interactables/workshop/workshop_upgrades/bullets/damage.tres<>uid://j1qscpufj4su::::res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres<>uid://18glrq6p04a5::::res://assets/interactables/workshop/workshop_upgrades/bullets/range.tres<>uid://2l7gf1e5dsjm::::res://assets/interactables/workshop/workshop_upgrades/bullets/speed.tres
+workshop.tscn::PackedScene::4709043499824617519::1717286006::0::1::::<><>::res://assets/interactables/workshop/workshop.gd<>uid://bwyrmuav1e2f5::::res://assets/interactables/workshop/workshop_upgrades/global/auto_upgrade.tres<>uid://lw1w3xipifap::::res://static/themes/workshop_theme.tres<>uid://cfcg4r8mhbfal::::res://assets/interactables/workshop/workshop_upgrades/global/firerate_upgrade.tres<>uid://dms2xqwyceelm::::res://assets/interactables/workshop/workshop_upgrades/global/heat_upgrade.tres<>uid://cbxm0l7ggpl1u::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounces.tres<>uid://dxtwefuh5ws0l::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounce_angle.tres<>uid://croyflljatyha::::res://assets/interactables/workshop/workshop_upgrades/bullets/damage.tres<>uid://j1qscpufj4su::::res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres<>uid://18glrq6p04a5::::res://assets/interactables/workshop/workshop_upgrades/bullets/range.tres<>uid://2l7gf1e5dsjm::::res://assets/interactables/workshop/workshop_upgrades/bullets/speed.tres
 ::res://assets/interactables/workshop/workshop_upgrades/::1716869910
-::res://assets/interactables/workshop/workshop_upgrades/bullets/::1716870032
+::res://assets/interactables/workshop/workshop_upgrades/bullets/::1717278024
 bounces.tres::Resource/Resource::4891284775600255948::1716869910::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
 bounce_angle.tres::Resource/Resource::8814171842969528981::1716869910::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
 damage.tres::Resource/Resource::5996419729744902854::1716869910::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
 knockback.tres::Resource/Resource::3020847713719599945::1716869910::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
-pierce.tres::Resource/BulletUpgradeData::686377159656941764::1716870032::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
+pierce.tres::Resource/BulletUpgradeData::686377159656941764::1717278024::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
 range.tres::Resource/Resource::1893419265205749674::1716869910::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
 speed.tres::Resource/Resource::1919760895057124478::1716869910::0::1::::<><>::res://assets/interactables/workshop/workshop_upgrades/datas/bullet_upgrades_data.gd
 ::res://assets/interactables/workshop/workshop_upgrades/datas/::1716869910
@@ -191,33 +191,33 @@ test_world.blend::PackedScene::2333625847209557159::1716869910::1716869910::1:::
 ::res://entities/::1716869910
 ::res://entities/enemies/::1716869910
 enemy.gd::GDScript::-1::1716869910::0::1::::Enemy<>CharacterBody3D<>::
-::res://entities/enemies/basic enemy/::1716870272
+::res://entities/enemies/basic enemy/::1717286006
 basic_enemy.gd::GDScript::-1::1716869910::0::1::::BasicEnemy<>Enemy<>::
-basic_enemy.tscn::PackedScene::5116486835311928177::1716870272::0::1::::<><>::res://entities/enemies/basic enemy/basic_enemy.gd<>uid://ck87jttjfrnwm::::res://assets/models/blender/basic_enemy.blend<>uid://dq860asyaj8gr::::res://static/themes/hud_theme.tres
-::res://entities/player/::1716870272
-debug_ui.gd::GDScript::-1::1716869910::0::1::::<>Control<>::
+basic_enemy.tscn::PackedScene::5116486835311928177::1717286006::0::1::::<><>::res://entities/enemies/basic enemy/basic_enemy.gd<>uid://ck87jttjfrnwm::::res://assets/models/blender/basic_enemy.blend<>uid://dq860asyaj8gr::::res://static/themes/hud_theme.tres
+::res://entities/player/::1717286006
+debug_ui.gd::GDScript::-1::1717286006::0::1::::<>Control<>::
 hud.gd::GDScript::-1::1716869910::0::1::::<>Control<>::
 pause_menu.gd::GDScript::-1::1716869910::0::1::::<>Control<>::
 player.gd::GDScript::-1::1716869910::0::1::::Player<>CharacterBody3D<>::
-player.tscn::PackedScene::4867671321759382420::1716870272::0::1::::<><>::res://entities/player/player.gd<>uid://cow84b2o7oa7b::::res://assets/models/blender/arm_model.blend<>uid://dq860asyaj8gr::::res://static/themes/hud_theme.tres<>res://entities/player/hud.gd<>uid://cns2y172111gn::::res://assets/audio/player/heat_warning.wav<>uid://crdr2s1r2jrxx::::res://assets/audio/player/overheated.wav<>uid://c81ruuvyiittr::::res://assets/audio/player/cooling.mp3<>uid://bumjachqow3p6::::res://assets/audio/player/money_transaction1.wav<>uid://dgjp21kqa5oau::::res://assets/audio/player/money_transaction2.wav<>uid://dy8ots0vv4xa4::::res://shaders/crosshair_shader.tres<>uid://b315ugke0qjad::::res://shaders/menu_overlay_shader.tres<>uid://d1td73sjwwkdp::::res://static/themes/pause_theme.tres<>res://entities/player/pause_menu.gd<>uid://decwiypxdlcbv::::res://shaders/posterization.tres<>res://entities/player/debug_ui.gd
+player.tscn::PackedScene::4867671321759382420::1717286006::0::1::::<><>::res://entities/player/player.gd<>uid://cow84b2o7oa7b::::res://assets/models/blender/arm_model.blend<>uid://dq860asyaj8gr::::res://static/themes/hud_theme.tres<>res://entities/player/hud.gd<>uid://cns2y172111gn::::res://assets/audio/player/heat_warning.wav<>uid://crdr2s1r2jrxx::::res://assets/audio/player/overheated.wav<>uid://c81ruuvyiittr::::res://assets/audio/player/cooling.mp3<>uid://bumjachqow3p6::::res://assets/audio/player/money_transaction1.wav<>uid://dgjp21kqa5oau::::res://assets/audio/player/money_transaction2.wav<>uid://dy8ots0vv4xa4::::res://shaders/crosshair_shader.tres<>uid://b315ugke0qjad::::res://shaders/menu_overlay_shader.tres<>uid://d1td73sjwwkdp::::res://static/themes/pause_theme.tres<>res://entities/player/pause_menu.gd<>uid://decwiypxdlcbv::::res://shaders/posterization.tres<>res://entities/player/debug_ui.gd
 ::res://scenes/::1716869910
 ::res://scenes/maps/::1716869910
 map.gd::GDScript::-1::1716869910::0::1::::Map<>Node<>::
-::res://scenes/maps/test_world/::1716870273
+::res://scenes/maps/test_world/::1717286007
 test_world.gd::GDScript::-1::1716869910::0::1::::<>Map<>::
-test_world.tscn::PackedScene::2384928043989676238::1716870273::0::1::::<><>::res://scenes/maps/test_world/test_world.gd<>uid://ut2egjcueayn::::res://static/environment.tres<>uid://8ioqheo6psbv::::res://assets/models/blender/maps/test_world.blend<>uid://b3jvvgdhbuu27::::res://assets/addons/kenney_prototype_textures/orange/texture_01.png<>uid://cbl63n3ikl8eq::::res://entities/player/player.tscn<>uid://ce5p148xnruub::::res://entities/enemies/basic enemy/basic_enemy.tscn<>uid://dms2xqwyceelm::::res://assets/interactables/workshop/workshop_upgrades/global/heat_upgrade.tres<>uid://c8ys4gnjf3cui::::res://assets/addons/kenney_prototype_textures/dark/texture_06.png<>uid://cfcg4r8mhbfal::::res://assets/interactables/workshop/workshop_upgrades/global/firerate_upgrade.tres<>uid://b8ddi102xaunv::::res://assets/interactables/workshop/workshop.tscn<>uid://depmw6u6yon33::::res://assets/maps/particles/snow_particles.tscn<>uid://croyflljatyha::::res://assets/interactables/workshop/workshop_upgrades/bullets/damage.tres<>uid://d0qq448ljxk88::::res://assets/maps/particles/rain_particles.tscn<>uid://cbxm0l7ggpl1u::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounces.tres<>uid://j1qscpufj4su::::res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres<>uid://18glrq6p04a5::::res://assets/interactables/workshop/workshop_upgrades/bullets/range.tres<>uid://2l7gf1e5dsjm::::res://assets/interactables/workshop/workshop_upgrades/bullets/speed.tres<>uid://bwyrmuav1e2f5::::res://assets/interactables/workshop/workshop_upgrades/global/auto_upgrade.tres<>uid://dxtwefuh5ws0l::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounce_angle.tres<>uid://e8m5rw0nqfdx::::res://assets/arms/arm_datas/starting_arm.tres
-::res://shaders/::1716870032
-crosshair_shader.tres::VisualShader::8912803717282762897::1716870032::0::1::::<><>::
-frosted_glass.tres::VisualShader::3018166621547650049::1716870032::0::1::::<><>::
+test_world.tscn::PackedScene::2384928043989676238::1717286007::0::1::::<><>::res://scenes/maps/test_world/test_world.gd<>uid://ut2egjcueayn::::res://static/environment.tres<>uid://8ioqheo6psbv::::res://assets/models/blender/maps/test_world.blend<>uid://b3jvvgdhbuu27::::res://assets/addons/kenney_prototype_textures/orange/texture_01.png<>uid://cbl63n3ikl8eq::::res://entities/player/player.tscn<>uid://ce5p148xnruub::::res://entities/enemies/basic enemy/basic_enemy.tscn<>uid://dms2xqwyceelm::::res://assets/interactables/workshop/workshop_upgrades/global/heat_upgrade.tres<>uid://c8ys4gnjf3cui::::res://assets/addons/kenney_prototype_textures/dark/texture_06.png<>uid://cfcg4r8mhbfal::::res://assets/interactables/workshop/workshop_upgrades/global/firerate_upgrade.tres<>uid://b8ddi102xaunv::::res://assets/interactables/workshop/workshop.tscn<>uid://depmw6u6yon33::::res://assets/maps/particles/snow_particles.tscn<>uid://croyflljatyha::::res://assets/interactables/workshop/workshop_upgrades/bullets/damage.tres<>uid://d0qq448ljxk88::::res://assets/maps/particles/rain_particles.tscn<>uid://cbxm0l7ggpl1u::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounces.tres<>uid://j1qscpufj4su::::res://assets/interactables/workshop/workshop_upgrades/bullets/pierce.tres<>uid://18glrq6p04a5::::res://assets/interactables/workshop/workshop_upgrades/bullets/range.tres<>uid://2l7gf1e5dsjm::::res://assets/interactables/workshop/workshop_upgrades/bullets/speed.tres<>uid://bwyrmuav1e2f5::::res://assets/interactables/workshop/workshop_upgrades/global/auto_upgrade.tres<>uid://dxtwefuh5ws0l::::res://assets/interactables/workshop/workshop_upgrades/bullets/bounce_angle.tres<>uid://e8m5rw0nqfdx::::res://assets/arms/arm_datas/starting_arm.tres
+::res://shaders/::1717278024
+crosshair_shader.tres::VisualShader::8912803717282762897::1717278024::0::1::::<><>::
+frosted_glass.tres::VisualShader::3018166621547650049::1717278024::0::1::::<><>::
 frosted_glass_texture.tres::NoiseTexture2D::2628098815560963854::1716869910::0::1::::<><>::
-menu_overlay_shader.tres::VisualShader::4407239683628588215::1716870032::0::1::::<><>::
-posterization.tres::VisualShader::7445497526113581799::1716870032::0::1::::<><>::
-::res://static/::1716870032
+menu_overlay_shader.tres::VisualShader::4407239683628588215::1717278024::0::1::::<><>::
+posterization.tres::VisualShader::7445497526113581799::1717278024::0::1::::<><>::
+::res://static/::1717278024
 debug.gd::GDScript::-1::1716869910::0::1::::<>Node<>::
 default_bus_layout.tres::AudioBusLayout::7293361975032704070::1716869910::0::1::::<><>::
-environment.tres::Environment::1444646881229193757::1716870032::0::1::::<><>::
+environment.tres::Environment::1444646881229193757::1717278024::0::1::::<><>::
 number_formatting.gd::GDScript::-1::1716869910::0::1::::<>Node<>::
-::res://static/themes/::1716870032
+::res://static/themes/::1717278024
 hud_theme.tres::Theme::8352334915692498473::1716869910::0::1::::<><>::uid://4k7ah8257w0w::::res://assets/font/Quantico-Bold.ttf
-pause_theme.tres::Theme::9023635958278015053::1716870032::0::1::::<><>::
-workshop_theme.tres::Theme::819113026453661331::1716870032::0::1::::<><>::
+pause_theme.tres::Theme::9023635958278015053::1717278024::0::1::::<><>::
+workshop_theme.tres::Theme::819113026453661331::1717278024::0::1::::<><>::
