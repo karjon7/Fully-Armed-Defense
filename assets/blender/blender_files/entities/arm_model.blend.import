@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cow84b2o7oa7b"
-path="res://.godot/imported/arm_model.blend-5418fa19b2f54a7cddd95aa4d4b9e8d8.scn"
+path="res://.godot/imported/arm_model.blend-9096ac3c3f424dc4ceab9cc58e5e3025.scn"
 
 [deps]
 
-source_file="res://assets/models/blender/arm_model.blend"
-dest_files=["res://.godot/imported/arm_model.blend-5418fa19b2f54a7cddd95aa4d4b9e8d8.scn"]
+source_file="res://assets/blender/blender_files/entities/arm_model.blend"
+dest_files=["res://.godot/imported/arm_model.blend-9096ac3c3f424dc4ceab9cc58e5e3025.scn"]
 
 [params]
 

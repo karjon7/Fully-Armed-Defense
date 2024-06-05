@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/maps/test_world/test_world.gd" id="1_0bq1n"]
 [ext_resource type="Environment" uid="uid://ut2egjcueayn" path="res://static/environment.tres" id="2_oq6pp"]
-[ext_resource type="PackedScene" uid="uid://8ioqheo6psbv" path="res://assets/models/blender/maps/test_world.blend" id="3_dderg"]
+[ext_resource type="PackedScene" uid="uid://8ioqheo6psbv" path="res://assets/blender/blender_files/maps/test_world.blend" id="3_dderg"]
 [ext_resource type="Texture2D" uid="uid://b3jvvgdhbuu27" path="res://assets/addons/kenney_prototype_textures/orange/texture_01.png" id="4_ty0kb"]
 [ext_resource type="PackedScene" uid="uid://cbl63n3ikl8eq" path="res://entities/player/player.tscn" id="4_xfc15"]
 [ext_resource type="PackedScene" uid="uid://ce5p148xnruub" path="res://entities/enemies/basic enemy/basic_enemy.tscn" id="5_6vxhx"]
@@ -45,7 +45,6 @@ nav_region = NodePath("NavigationRegion3D")
 workshop_holder = NodePath("WorkshopHolder")
 enemy_holder = NodePath("EnemyHolder")
 enemy_spawner_holder = NodePath("EnemySpawnerHolder")
-weather = 1
 precipitation_tween_speed = 5.0
 rain_particles = NodePath("Weather/RainParticles")
 snow_particles = NodePath("Weather/SnowParticles")
@@ -75,6 +74,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_dctlx")
 [node name="Weather" type="Node" parent="."]
 
 [node name="RainParticles" parent="Weather" instance=ExtResource("7_xgueo")]
+emitting = false
 
 [node name="SnowParticles" parent="Weather" instance=ExtResource("6_wr7yx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0324144, 25, -0.0926883)

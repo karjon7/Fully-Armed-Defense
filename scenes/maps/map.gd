@@ -52,7 +52,7 @@ func _ready():
 	#Nav Check
 	assert(nav_region, "No Nav Region")
 	assert(nav_region.navigation_mesh, "No Nav Mesh")
-	assert(not nav_region.get_children().is_empty(), "No Mesh for navigation")
+	#assert(not nav_region.get_children().is_empty(), "No Mesh for navigation")
 	#FIXME: nav_region.bake_navigation_mesh()
 	
 	#Holders Check

@@ -1,3 +1,4 @@
+res://assets/blender/blender_files/maps
 res://assets/maps/particles
 res://shaders
 res://assets/maps
@@ -8,7 +9,6 @@ res://entities/enemies/basic enemy
 res://assets/arms/arm_datas
 res://assets/interactables/workshop/workshop_upgrades/bullets
 res://assets/interactables/workshop/workshop_upgrades/global
-res://assets/models/blender
 res://
 res://assets/arms/arm_particles/impact
 res://assets/arms/arm_particles
