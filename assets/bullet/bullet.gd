@@ -95,7 +95,7 @@ func _physics_process(delta):
 		if result.collider.has_method("damage"):
 			if result.collider.is_in_group("Enemy") and not result.collider.is_dead:
 				player.money += int(bullet_damage)
-				spawn_sound_at_position(result.collider, result.position, sound_bullet_enemy_hit, -10)
+				spawn_sound_at_position(result.collider, result.position, sound_bullet_enemy_hit, -15)
 			
 			result.collider.damage(bullet_damage, result.position, bullet_fly_direction)
 		

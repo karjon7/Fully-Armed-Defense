@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce5p148xnruub"]
+[gd_scene load_steps=8 format=3 uid="uid://ce5p148xnruub"]
 
 [ext_resource type="Script" path="res://entities/enemies/basic enemy/basic_enemy.gd" id="1_l4kll"]
-[ext_resource type="PackedScene" uid="uid://ck87jttjfrnwm" path="res://assets/models/blender/basic_enemy.blend" id="2_7j6bp"]
+[ext_resource type="PackedScene" uid="uid://c2e6687xpne2" path="res://assets/blender/exported/entities/basic_enemy.glb" id="2_3bpi1"]
 [ext_resource type="Theme" uid="uid://dq860asyaj8gr" path="res://static/themes/hud_theme.tres" id="2_kuw77"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qby1o"]
+albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dna2"]
 albedo_color = Color(1, 0, 0, 1)
@@ -20,35 +23,10 @@ label_timer = NodePath("Label/Timer")
 label_pos_lerp_speed = 25.0
 label_time = 1.0
 
-[node name="basic_enemy" parent="." instance=ExtResource("2_7j6bp")]
-
-[node name="Skeleton3D" parent="basic_enemy/Armature" index="0"]
-bones/0/rotation = Quaternion(-0.0249766, 0, 0, 0.999688)
-bones/1/rotation = Quaternion(0.0249766, 0, 0, 0.999688)
-bones/2/rotation = Quaternion(0.018968, -0.0189684, 0.97579, -0.217057)
-bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(0.149174, -0.00902144, -0.0627704, 0.986775)
-bones/4/rotation = Quaternion(0.0511418, -0.0216006, -0.101882, 0.993246)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.0247037, -0.0427035, 0.998058, -0.0380387)
-bones/6/rotation = Quaternion(-0.0223416, 0.00183179, -0.0162627, 0.999616)
-bones/7/rotation = Quaternion(0.663876, 0.00625458, -0.0316961, 0.747145)
-bones/8/rotation = Quaternion(-0.018968, -0.0189684, 0.97579, 0.217057)
-bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.149174, 0.00902144, 0.0627704, 0.986775)
-bones/10/rotation = Quaternion(0.0511418, 0.0216006, 0.101882, 0.993246)
-bones/10/scale = Vector3(1, 1, 1)
-bones/11/rotation = Quaternion(-0.0247037, -0.0427035, 0.998058, 0.0380387)
-bones/12/rotation = Quaternion(-0.0223416, -0.00183179, 0.0162627, 0.999616)
-bones/13/rotation = Quaternion(0.663876, -0.00625458, 0.0316961, 0.747145)
-bones/14/rotation = Quaternion(-0.00847839, 0.707056, 0.707056, -0.00847839)
-bones/15/rotation = Quaternion(5.33851e-08, 0.707107, -0.707107, -5.33851e-08)
-bones/16/rotation = Quaternion(0.00847839, 0.707056, 0.707056, 0.00847839)
-bones/17/rotation = Quaternion(-5.33851e-08, 0.707107, -0.707107, 5.33851e-08)
+[node name="basic_enemy" parent="." instance=ExtResource("2_3bpi1")]
 
 [node name="Cube" parent="basic_enemy/Armature/Skeleton3D" index="0"]
-layers = 4
-surface_material_override/0 = SubResource("StandardMaterial3D_4dna2")
+surface_material_override/0 = SubResource("StandardMaterial3D_qby1o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -11,4 +11,3 @@ res://shaders/frosted_glass.tres
 res://assets/interactables/workshop/workshop.tscn
 res://entities/player/player.tscn
 res://scenes/maps/test_world/test_world.tscn
-res://entities/player/debug_ui.gd
