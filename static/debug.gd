@@ -71,7 +71,7 @@ var DESCRIPTION_COMMAND
 var MONEY : DebugCommand = DebugCommand.new(\
 	"money", \
 	"This command grants the specified amount of money.", \
-	func(amount : int): player.deposit_money(amount) ; send_debug_messege("Gave player %s dollars" % amount), \
+	func(amount : int): player.deposit_money(amount) ; send_debug_messege("Gave player %s dollars" % NumberFormatting.notate(amount)), \
 	[ArgumentFormat.new("amount", TYPE_INT)])
 var ROSEBUD : DebugCommand = DebugCommand.new(\
 	"rosebud", \

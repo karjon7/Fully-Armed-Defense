@@ -106,7 +106,6 @@ global_upgrade_1 = ExtResource("6_ab6qo")
 type_upgrade_1 = ExtResource("10_7avc3")
 type_upgrade_2 = ExtResource("10_7avc3")
 type_upgrade_3 = ExtResource("11_ln4wy")
-can_interact = false
 
 [node name="Workshop3" parent="WorkshopHolder" node_paths=PackedStringArray("player") instance=ExtResource("6_eofya")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 2, -4)
@@ -116,6 +115,7 @@ global_upgrade_2 = ExtResource("12_6syec")
 type_upgrade_1 = ExtResource("7_a436j")
 type_upgrade_2 = ExtResource("9_5b4fc")
 type_upgrade_3 = ExtResource("13_j52g4")
+can_interact = false
 
 [node name="EnemyHolder" type="Node" parent="."]
 

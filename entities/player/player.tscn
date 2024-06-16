@@ -35,7 +35,7 @@ size = Vector3(0.172, 0.356, 0.518)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrwvh"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="Animation" id="Animation_l0iou"]
+[sub_resource type="Animation" id="Animation_p0c65"]
 resource_name = "idle_pose"
 length = 0.0166667
 tracks/0/type = "rotation_3d"
@@ -81,7 +81,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_tbuvf"]
+[sub_resource type="Animation" id="Animation_0mgyn"]
 resource_name = "melee"
 length = 0.5
 tracks/0/type = "rotation_3d"
@@ -127,7 +127,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, -0.0652311, -0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_vp4gy"]
+[sub_resource type="Animation" id="Animation_e0slh"]
 resource_name = "shoot_high_recoil"
 length = 0.666667
 tracks/0/type = "rotation_3d"
@@ -173,7 +173,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_dj4mq"]
+[sub_resource type="Animation" id="Animation_s6h4o"]
 resource_name = "shoot_low_recoil"
 length = 0.416667
 tracks/0/type = "rotation_3d"
@@ -219,7 +219,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_1gvms"]
+[sub_resource type="Animation" id="Animation_gucmw"]
 resource_name = "shoot_med_recoil"
 length = 0.583333
 tracks/0/type = "rotation_3d"
@@ -265,7 +265,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_55q0h"]
+[sub_resource type="Animation" id="Animation_sjbnr"]
 resource_name = "shoot_pose"
 length = 0.0166667
 tracks/0/type = "rotation_3d"
@@ -311,7 +311,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_a53ui"]
+[sub_resource type="Animation" id="Animation_nqgqn"]
 resource_name = "idle_loop"
 length = 4.0
 loop_mode = 1
@@ -358,7 +358,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_0qano"]
+[sub_resource type="Animation" id="Animation_fwspk"]
 resource_name = "run_loop"
 length = 0.666667
 loop_mode = 1
@@ -405,7 +405,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, -0.0652311, -0.121486, 0.990416, 0.0333333, 1, 0.0142512, -0.0660032, -0.121068, 0.990345, 0.0666667, 1, 0.0314046, -0.0680905, -0.119906, 0.989949, 0.1, 1, 0.0567607, -0.0711407, -0.118122, 0.98882, 0.133333, 1, 0.0876096, -0.0747945, -0.115843, 0.986565, 0.2, 1, 0.154559, -0.0825061, -0.110483, 0.978314, 0.233333, 1, 0.185033, -0.0859158, -0.107853, 0.97301, 0.266667, 1, 0.209904, -0.0886512, -0.105616, 0.96795, 0.3, 1, 0.22664, -0.0904675, -0.104065, 0.964168, 0.366667, 1, 0.22664, -0.0904675, -0.104065, 0.964168, 0.4, 1, 0.209904, -0.0886512, -0.105616, 0.96795, 0.433333, 1, 0.185033, -0.0859158, -0.107853, 0.97301, 0.466667, 1, 0.154559, -0.0825061, -0.110483, 0.978314, 0.533333, 1, 0.0876096, -0.0747945, -0.115843, 0.986565, 0.566667, 1, 0.0567607, -0.0711407, -0.118122, 0.98882, 0.6, 1, 0.0314046, -0.0680905, -0.119906, 0.98995, 0.633333, 1, 0.0142512, -0.0660032, -0.121068, 0.990345, 0.666667, 1, 0.00794585, -0.0652311, -0.121486, 0.990416)
 
-[sub_resource type="Animation" id="Animation_geqpw"]
+[sub_resource type="Animation" id="Animation_36eiq"]
 resource_name = "shoot_laser_loop"
 length = 4.0
 loop_mode = 1
@@ -452,7 +452,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.0666667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.133333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.2, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 0.266667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.333333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.466667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.533333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.666667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.733333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.8, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.866667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 0.933333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.06667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.13333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.2, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.26667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.33333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.46667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.53333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.66667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.73333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.8, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.86667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 1.93333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 2.06667, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 2.13333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.2, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.26667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.33333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.46667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.53333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.66667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.73333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.8, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.86667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 2.93333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.06667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.13333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.2, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.26667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.33333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.46667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.53333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.6, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.66667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.73333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.8, 1, 0.0386522, -0.0531437, -0.587598, 0.806481, 3.86667, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 3.93333, 1, 0.0386522, -0.0531437, -0.587597, 0.806481, 4, 1, 0.0386522, -0.0531437, -0.587597, 0.806481)
 
-[sub_resource type="Animation" id="Animation_cjl2p"]
+[sub_resource type="Animation" id="Animation_yuqdb"]
 resource_name = "walk_loop"
 length = 2.0
 loop_mode = 1
@@ -499,18 +499,18 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0.00794585, 0.0652311, 0.121486, 0.990416)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gxhn"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x0o05"]
 _data = {
-"idle": SubResource("Animation_a53ui"),
-"idle_pose": SubResource("Animation_l0iou"),
-"melee": SubResource("Animation_tbuvf"),
-"run": SubResource("Animation_0qano"),
-"shoot_high_recoil": SubResource("Animation_vp4gy"),
-"shoot_laser": SubResource("Animation_geqpw"),
-"shoot_low_recoil": SubResource("Animation_dj4mq"),
-"shoot_med_recoil": SubResource("Animation_1gvms"),
-"shoot_pose": SubResource("Animation_55q0h"),
-"walk": SubResource("Animation_cjl2p")
+"idle": SubResource("Animation_nqgqn"),
+"idle_pose": SubResource("Animation_p0c65"),
+"melee": SubResource("Animation_0mgyn"),
+"run": SubResource("Animation_fwspk"),
+"shoot_high_recoil": SubResource("Animation_e0slh"),
+"shoot_laser": SubResource("Animation_36eiq"),
+"shoot_low_recoil": SubResource("Animation_s6h4o"),
+"shoot_med_recoil": SubResource("Animation_gucmw"),
+"shoot_pose": SubResource("Animation_sjbnr"),
+"walk": SubResource("Animation_yuqdb")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ueprh"]
@@ -753,8 +753,8 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 [node name="Skeleton3D" parent="Camera3D/arm_model/metarig_001" index="0"]
 bones/2/rotation = Quaternion(-0.282944, 0.632397, -0.485003, 0.533656)
 bones/3/rotation = Quaternion(0.256239, 0.122555, 0.0554603, 0.957207)
-bones/6/rotation = Quaternion(-0.0480652, -0.388153, 0.696054, 0.602109)
-bones/7/rotation = Quaternion(0.356294, -0.5461, -0.185168, 0.735216)
+bones/6/rotation = Quaternion(-0.0418443, -0.380943, 0.700026, 0.602574)
+bones/7/rotation = Quaternion(0.342554, -0.554822, -0.166761, 0.739608)
 bones/8/rotation = Quaternion(0.0386522, -0.0531437, -0.587597, 0.806481)
 
 [node name="Cube_001" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="0"]
@@ -766,7 +766,7 @@ bone_name = "hand.L"
 bone_idx = 4
 
 [node name="RightHandBone" type="BoneAttachment3D" parent="Camera3D/arm_model/metarig_001/Skeleton3D" index="2"]
-transform = Transform3D(0.0406451, -0.00930907, 0.99913, 0.996607, 0.0720038, -0.0398716, -0.0715699, 0.997361, 0.0122041, -0.341184, -0.176196, 0.156395)
+transform = Transform3D(0.0430295, -0.00373829, 0.999067, 0.998232, 0.0411895, -0.0428394, -0.0409908, 0.999144, 0.00550406, -0.340007, -0.171307, 0.16094)
 bone_name = "forearm.R"
 bone_idx = 7
 
@@ -788,7 +788,7 @@ debug_shape_thickness = 1
 unique_name_in_owner = true
 root_node = NodePath("%arm_model")
 libraries = {
-"": SubResource("AnimationLibrary_1gxhn")
+"": SubResource("AnimationLibrary_x0o05")
 }
 tree_root = SubResource("AnimationNodeBlendTree_d48nq")
 anim_player = NodePath("../Camera3D/arm_model/AnimationPlayer")
